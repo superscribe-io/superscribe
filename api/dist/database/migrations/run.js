@@ -14,7 +14,12 @@ export default async function run(database, direction, log = true) {
     let customMigrationFiles = ((await fse.pathExists(customMigrationsPath)) && (await fse.readdir(customMigrationsPath))) || [];
     migrationFiles = migrationFiles.filter((file) => /^[0-9]+[A-Z]-[^.]+\.(?:js|ts)$/.test(file));
     customMigrationFiles = customMigrationFiles.filter((file) => file.endsWith('.js'));
-    const completedMigrations = await database.select('*').from('superscribe_migrations').orderBy('version');
+    let completedMigrations;
+    let has_not_upgraded = await database.schema.hasTable('directus_migrations');
+    if (has_not_upgraded)
+        completedMigrations = await database.select('*').from('directus_migrations').orderBy('version');
+    else
+        completedMigrations = await database.select('*').from('superscribe_migrations').orderBy('version');
     const migrations = [
         ...migrationFiles.map((path) => parseFilePath(path)),
         ...customMigrationFiles.map((path) => parseFilePath(path, true)),

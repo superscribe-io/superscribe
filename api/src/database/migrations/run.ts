@@ -23,7 +23,12 @@ export default async function run(database: Knex, direction: 'up' | 'down' | 'la
 	migrationFiles = migrationFiles.filter((file: string) => /^[0-9]+[A-Z]-[^.]+\.(?:js|ts)$/.test(file));
 	customMigrationFiles = customMigrationFiles.filter((file: string) => file.endsWith('.js'));
 
-	const completedMigrations = await database.select<Migration[]>('*').from('superscribe_migrations').orderBy('version');
+	let completedMigrations:Migration[];
+	let has_not_upgraded = await database.schema.hasTable('directus_migrations');
+	if(has_not_upgraded)
+		completedMigrations = await database.select<Migration[]>('*').from('directus_migrations').orderBy('version');
+	else
+		completedMigrations = await database.select<Migration[]>('*').from('superscribe_migrations').orderBy('version');
 
 	const migrations = [
 		...migrationFiles.map((path) => parseFilePath(path)),
