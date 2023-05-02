@@ -1,5 +1,5 @@
 ---
-description: REST and GraphQL API documentation on the Relations collection in Directus.
+description: REST and GraphQL API documentation on the Relations collection in Superscribe.
 readTime: 5 min read
 pageClass: page-reference
 ---
@@ -24,10 +24,10 @@ Name of the related collection. This matches the table name in the database.
 
 #### Meta
 
-Directus metadata. Used to enable non-database relationship types
+Superscribe metadata. Used to enable non-database relationship types
 
 `id` **integer**\
-Primary key of the metadata row in `directus_relations`.
+Primary key of the metadata row in `superscribe_relations`.
 
 `many_collection` **string**\
 Name of the collection. Matches the top level `collection` field.
@@ -86,11 +86,11 @@ Delete trigger for the foreign key constraint.
 {
 	"collection": "about_us",
 	"field": "logo",
-	"related_collection": "directus_files",
+	"related_collection": "superscribe_files",
 	"schema": {
 		"table": "about_us",
 		"column": "logo",
-		"foreign_key_table": "directus_files",
+		"foreign_key_table": "superscribe_files",
 		"foreign_key_column": "id",
 		"constraint_name": "about_us_logo_foreign",
 		"on_update": "NO ACTION",
@@ -102,7 +102,7 @@ Delete trigger for the foreign key constraint.
 		"many_collection": "about_us",
 		"many_field": "logo",
 		"one_allowed_collections": null,
-		"one_collection": "directus_files",
+		"one_collection": "superscribe_files",
 		"one_collection_field": null,
 		"one_deselect_action": "nullify",
 		"one_field": null,
@@ -115,7 +115,7 @@ Delete trigger for the foreign key constraint.
 
 ## List relations
 
-List all relations that exist in Directus.
+List all relations that exist in Superscribe.
 
 ::: tip Permissions
 
@@ -146,7 +146,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	relations: [directus_relations]
+	relations: [superscribe_relations]
 }
 ```
 
@@ -202,7 +202,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	relations_in_collection(collection: String!): [directus_relations]
+	relations_in_collection(collection: String!): [superscribe_relations]
 }
 ```
 
@@ -251,7 +251,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	relations_by_name(collection: String!, field: String!): directus_relations
+	relations_by_name(collection: String!, field: String!): superscribe_relations
 }
 ```
 
@@ -299,7 +299,7 @@ POST /relations
 {
 	"collection": "articles",
 	"field": "featured_image",
-	"related_collection": "directus_files"
+	"related_collection": "superscribe_files"
 }
 ```
 
@@ -311,7 +311,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	create_relations_item(data: create_directus_relations_input!): directus_relations
+	create_relations_item(data: create_superscribe_relations_input!): superscribe_relations
 }
 ```
 
@@ -320,7 +320,7 @@ type Mutation {
 ```graphql
 mutation {
 	create_relations_item(
-		data: { collection: "articles", field: "featured_image", related_collection: "directus_files" }
+		data: { collection: "articles", field: "featured_image", related_collection: "superscribe_files" }
 	) {
 		collection
 		field
@@ -373,7 +373,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	update_relations_item(collection: String!, field: String!, data: update_directus_relations_input!): directus_relations
+	update_relations_item(collection: String!, field: String!, data: update_superscribe_relations_input!): superscribe_relations
 }
 ```
 

@@ -1,4 +1,4 @@
-import type { Filter } from '@directus/types';
+import type { Filter } from '@superscribe/types';
 /**
  * Inject function output fields into a given payload for accurate validation
  *

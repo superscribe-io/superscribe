@@ -8,7 +8,7 @@ import { getHelpers } from '../helpers/index.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export default async function runSeed(database) {
     const helpers = getHelpers(database);
-    const exists = await database.schema.hasTable('directus_collections');
+    const exists = await database.schema.hasTable('superscribe_collections');
     if (exists) {
         throw new Error('Database is already installed');
     }

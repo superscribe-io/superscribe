@@ -1,4 +1,4 @@
-import type { PermissionsAction, Query } from '@directus/types';
+import type { PermissionsAction, Query } from '@superscribe/types';
 import type Keyv from 'keyv';
 import type { QueryOptions } from '../services/items.js';
 import { ItemsService } from '../services/items.js';

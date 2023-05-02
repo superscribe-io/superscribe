@@ -1,7 +1,7 @@
 import { useUserStore } from '@/stores/user';
-import { Accountability } from '@directus/types';
-import { parseFilter as parseFilterShared } from '@directus/utils';
-import { Filter } from '@directus/types';
+import { Accountability } from '@superscribe/types';
+import { parseFilter as parseFilterShared } from '@superscribe/utils';
+import { Filter } from '@superscribe/types';
 
 export function parseFilter(filter: Filter | null): Filter {
 	const userStore = useUserStore();

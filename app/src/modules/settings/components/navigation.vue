@@ -16,10 +16,10 @@
 			</v-list-item-content>
 		</v-list-item>
 
-		<v-list-item href="https://github.com/directus/directus/releases" class="version">
-			<v-list-item-icon><v-icon name="directus" /></v-list-item-icon>
+		<v-list-item href="https://github.com/superscribe/superscribe/releases" class="version">
+			<v-list-item-icon><v-icon name="superscribe" /></v-list-item-icon>
 			<v-list-item-content>
-				<v-text-overflow class="version" :text="`Directus ${version}`" />
+				<v-text-overflow class="version" :text="`Superscribe ${version}`" />
 			</v-list-item-content>
 		</v-list-item>
 	</v-list>
@@ -78,12 +78,12 @@ export default defineComponent({
 				{
 					icon: 'bug_report',
 					name: t('report_bug'),
-					href: 'https://github.com/directus/directus/issues/new?template=bug_report.yml',
+					href: 'https://github.com/superscribe/superscribe/issues/new?template=bug_report.yml',
 				},
 				{
 					icon: 'new_releases',
 					name: t('request_feature'),
-					href: 'https://github.com/directus/directus/discussions/new?category=feature-requests',
+					href: 'https://github.com/superscribe/superscribe/discussions/new?category=feature-requests',
 				},
 			];
 		});

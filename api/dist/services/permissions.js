@@ -5,7 +5,7 @@ import { filterItems } from '../utils/filter-items.js';
 export class PermissionsService extends ItemsService {
     systemCache;
     constructor(options) {
-        super('directus_permissions', options);
+        super('superscribe_permissions', options);
         const { systemCache } = getCache();
         this.systemCache = systemCache;
     }

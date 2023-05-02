@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import { LDAPAuthDriver, LocalAuthDriver, OAuth2AuthDriver, OpenIDAuthDriver, SAMLAuthDriver, } from './auth/drivers/index.js';
 import { DEFAULT_AUTH_PROVIDER } from './constants.js';
 import getDatabase from './database/index.js';

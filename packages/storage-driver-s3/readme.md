@@ -1,3 +1,3 @@
-# `@directus/storage-driver-s3`
+# `@superscribe/storage-driver-s3`
 
-S3 file storage driver for `@directus/storage`
+S3 file storage driver for `@superscribe/storage`

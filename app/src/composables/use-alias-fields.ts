@@ -1,5 +1,5 @@
-import { getSimpleHash } from '@directus/utils';
-import { Query } from '@directus/types';
+import { getSimpleHash } from '@superscribe/utils';
+import { Query } from '@superscribe/types';
 import { computed, ComputedRef, Ref } from 'vue';
 import { adjustFieldsForDisplays } from '@/utils/adjust-fields-for-displays';
 

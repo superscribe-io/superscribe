@@ -1,4 +1,4 @@
-import { getFilterOperatorsForType, getOutputTypeForFunction } from '@directus/utils';
+import { getFilterOperatorsForType, getOutputTypeForFunction } from '@superscribe/utils';
 import { clone, isPlainObject } from 'lodash-es';
 import validate from 'uuid-validate';
 import { getHelpers } from '../database/helpers/index.js';

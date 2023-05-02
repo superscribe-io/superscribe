@@ -1,4 +1,4 @@
-import type { FieldMeta } from '@directus/types';
+import type { FieldMeta } from '@superscribe/types';
 import fse from 'fs-extra';
 import { merge } from 'lodash-es';
 import path from 'path';
@@ -27,7 +27,7 @@ for (const filepath of fieldData) {
 		});
 
 		// Dynamically populate auth providers field
-		if (systemField.collection === 'directus_users' && systemField.field === 'provider') {
+		if (systemField.collection === 'superscribe_users' && systemField.field === 'provider') {
 			getAuthProviders().forEach(({ name }) => {
 				systemField.options?.['choices']?.push({
 					text: formatTitle(name),

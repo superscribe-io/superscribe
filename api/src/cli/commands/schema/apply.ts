@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import chalk from 'chalk';
 import { promises as fs } from 'fs';
 import inquirer from 'inquirer';
@@ -21,7 +21,7 @@ export async function apply(snapshotPath: string, options?: { yes: boolean; dryR
 	await validateDatabaseConnection(database);
 
 	if ((await isInstalled()) === false) {
-		logger.error(`Directus isn't installed on this database. Please run "directus bootstrap" first.`);
+		logger.error(`Superscribe isn't installed on this database. Please run "superscribe bootstrap" first.`);
 		database.destroy();
 		process.exit(0);
 	}

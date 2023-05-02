@@ -1,5 +1,5 @@
-import { API_SHARED_DEPS, APP_EXTENSION_TYPES, APP_SHARED_DEPS, EXTENSION_PKG_KEY, EXTENSION_TYPES, ExtensionManifest, ExtensionOptionsBundleEntries, HYBRID_EXTENSION_TYPES, } from '@directus/constants';
-import { isIn, isTypeIn } from '@directus/utils';
+import { API_SHARED_DEPS, APP_EXTENSION_TYPES, APP_SHARED_DEPS, EXTENSION_PKG_KEY, EXTENSION_TYPES, ExtensionManifest, ExtensionOptionsBundleEntries, HYBRID_EXTENSION_TYPES, } from '@superscribe/constants';
+import { isIn, isTypeIn } from '@superscribe/utils';
 import commonjsDefault from '@rollup/plugin-commonjs';
 import jsonDefault from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -44,7 +44,7 @@ export default async function build(options) {
             extensionManifest = ExtensionManifest.parse(await fse.readJSON(packagePath));
         }
         catch (err) {
-            log(`Current directory is not a valid Directus extension.`, 'error');
+            log(`Current directory is not a valid Superscribe extension.`, 'error');
             process.exit(1);
         }
         const extensionOptions = extensionManifest[EXTENSION_PKG_KEY];
@@ -327,7 +327,7 @@ async function buildBundleExtension({ entries, outputApp, outputApi, watch, sour
 }
 async function buildExtension(config) {
     const configs = Array.isArray(config) ? config : [config];
-    const spinner = ora(chalk.bold('Building Directus extension...')).start();
+    const spinner = ora(chalk.bold('Building Superscribe extension...')).start();
     const result = await Promise.all(configs.map(async (c) => {
         try {
             const bundle = await rollup(c.rollupOptions);
@@ -351,7 +351,7 @@ async function buildExtension(config) {
 }
 async function watchExtension(config) {
     const configs = Array.isArray(config) ? config : [config];
-    const spinner = ora(chalk.bold('Building Directus extension...'));
+    const spinner = ora(chalk.bold('Building Superscribe extension...'));
     let buildCount = 0;
     for (const c of configs) {
         const watcher = rollupWatch({

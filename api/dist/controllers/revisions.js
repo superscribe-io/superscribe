@@ -6,7 +6,7 @@ import { MetaService } from '../services/meta.js';
 import { RevisionsService } from '../services/revisions.js';
 import asyncHandler from '../utils/async-handler.js';
 const router = express.Router();
-router.use(useCollection('directus_revisions'));
+router.use(useCollection('superscribe_revisions'));
 const readHandler = asyncHandler(async (req, res, next) => {
     const service = new RevisionsService({
         accountability: req.accountability,
@@ -17,7 +17,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
         schema: req.schema,
     });
     const records = await service.readByQuery(req.sanitizedQuery);
-    const meta = await metaService.getMetaForQuery('directus_revisions', req.sanitizedQuery);
+    const meta = await metaService.getMetaForQuery('superscribe_revisions', req.sanitizedQuery);
     res.locals['payload'] = { data: records || null, meta };
     return next();
 });

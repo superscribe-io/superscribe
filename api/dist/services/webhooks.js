@@ -3,7 +3,7 @@ import { ItemsService } from './items.js';
 export class WebhooksService extends ItemsService {
     messenger;
     constructor(options) {
-        super('directus_webhooks', options);
+        super('superscribe_webhooks', options);
         this.messenger = getMessenger();
     }
     async createOne(data, opts) {

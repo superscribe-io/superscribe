@@ -93,7 +93,7 @@ logoutReason:
 public_label: Alment
 public_description: Stýrir hvat API dáta til taks uttan samgildi.
 not_allowed: Ikki loyvt
-directus_version: Directus Útgáva
+superscribe_version: Superscribe Útgáva
 node_version: Node Útgáva
 node_uptime: Node Nýtslutíð
 os_type: OS Slag
@@ -119,22 +119,22 @@ page_help_settings_datamodel_collections: >-
   **Dátamynd: Søvn** — Vísir øll tøk søvn. Hettar fevnir um sjónlig, goymd, og kervissøvn, harumframt óviðgjørd dátugrunnstalvur, sum kunnu leggjast afturat.
 page_help_users_collection: '**Brúkara Directory** — Vísir ein lista yvir øllum kervisbrúkarum innan hesari verkætlan.'
 system_fields_locked: Kervisteigar eru læstir og kunnu ikki broytast
-directus_collection:
-  directus_roles: Bólkar av loyvum fyri kervisbrúkarum
-  directus_users: Kervisbrúkarir til verkætlanina
+superscribe_collection:
+  superscribe_roles: Bólkar av loyvum fyri kervisbrúkarum
+  superscribe_users: Kervisbrúkarir til verkætlanina
 fields:
-  directus_users:
+  superscribe_users:
     theme_auto: Sjálvvirkin (Grunda á Kervi)
-  directus_settings:
+  superscribe_settings:
     module_bar: Modul Bjálki
-  directus_fields:
+  superscribe_fields:
     translation: Navna Teiga Umsetingar
-  directus_roles:
+  superscribe_roles:
     name: Leikluts Heiti
 field_options:
-  directus_collections:
+  superscribe_collections:
     archive_divider: Skjalasavna
-  directus_users:
+  superscribe_users:
     dropdown_auto: Sjálvvirkin (Grunda á Kervi)
 interfaces:
   presentation-links:

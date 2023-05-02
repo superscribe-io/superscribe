@@ -1,5 +1,5 @@
 import api from '@/api';
-import { defineModule } from '@directus/utils';
+import { defineModule } from '@superscribe/utils';
 import { useCollectionsStore } from '@/stores/collections';
 import { useFieldsStore } from '@/stores/fields';
 import { useFlowsStore } from '@/stores/flows';

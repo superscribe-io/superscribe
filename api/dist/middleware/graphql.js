@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import { getOperationAST, parse, Source } from 'graphql';
 import { InvalidPayloadException, InvalidQueryException, MethodNotAllowedException } from '../exceptions/index.js';
 import asyncHandler from '../utils/async-handler.js';

@@ -1,10 +1,10 @@
 import { ref, watch } from 'vue';
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 
 type LocalStorageObjectType = string | number | boolean | object | null;
 
 export function useLocalStorage(key: string, defaultValue: LocalStorageObjectType = null) {
-	const internalKey = `directus-${key}`;
+	const internalKey = `superscribe-${key}`;
 	const data = ref<LocalStorageObjectType>(null);
 
 	function getValue(): LocalStorageObjectType {

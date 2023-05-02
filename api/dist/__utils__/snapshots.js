@@ -1,6 +1,6 @@
 export const snapshotBeforeCreateCollection = {
     version: 1,
-    directus: '0.0.0',
+    superscribe: '0.0.0',
     collections: [
         {
             collection: 'test_table',
@@ -73,7 +73,7 @@ export const snapshotBeforeCreateCollection = {
 };
 export const snapshotCreateCollection = {
     version: 1,
-    directus: '0.0.0',
+    superscribe: '0.0.0',
     collections: [
         {
             collection: 'test_table',
@@ -274,7 +274,7 @@ export const snapshotCreateCollection = {
 };
 export const snapshotCreateCollectionNotNested = {
     version: 1,
-    directus: '0.0.0',
+    superscribe: '0.0.0',
     collections: [
         {
             collection: 'test_table',
@@ -411,7 +411,7 @@ export const snapshotCreateCollectionNotNested = {
 };
 export const snapshotBeforeDeleteCollection = {
     version: 1,
-    directus: '0.0.0',
+    superscribe: '0.0.0',
     collections: [
         {
             collection: 'articles',

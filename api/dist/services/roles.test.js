@@ -8,8 +8,8 @@ vi.mock('../../src/database/index', () => {
 });
 const testSchema = {
     collections: {
-        directus_roles: {
-            collection: 'directus_roles',
+        superscribe_roles: {
+            collection: 'superscribe_roles',
             primary: 'id',
             singleton: false,
             sortField: null,
@@ -43,9 +43,9 @@ describe('Integration Tests', () => {
         tracker = createTracker(db);
     });
     beforeEach(() => {
-        tracker.on.any('directus_roles').response({});
+        tracker.on.any('superscribe_roles').response({});
         tracker.on
-            .select(/"directus_roles"."id" from "directus_roles" order by "directus_roles"."id" asc limit .*/)
+            .select(/"superscribe_roles"."id" from "superscribe_roles" order by "superscribe_roles"."id" asc limit .*/)
             .response([]);
     });
     afterEach(() => {
@@ -76,8 +76,8 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [userId1, userId2],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -86,9 +86,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [userId1],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
                             tracker.on
-                                .select('select "id" from "directus_users" where "role" = ?')
+                                .select('select "id" from "superscribe_users" where "role" = ?')
                                 .responseOnce([{ id: userId1 }, { id: userId2 }]);
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
@@ -98,9 +98,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -114,9 +114,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -136,8 +136,8 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [{ id: userId1 }, { id: userId2 }],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -146,9 +146,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [{ id: userId1 }],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
                             tracker.on
-                                .select('select "id" from "directus_users" where "role" = ?')
+                                .select('select "id" from "superscribe_users" where "role" = ?')
                                 .responseOnce([{ id: userId1 }, { id: userId2 }]);
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
@@ -158,9 +158,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -174,9 +174,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -200,8 +200,8 @@ describe('Integration Tests', () => {
                                     delete: [],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -214,9 +214,9 @@ describe('Integration Tests', () => {
                                     delete: [],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -229,11 +229,11 @@ describe('Integration Tests', () => {
                                     delete: [userId2],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
                             tracker.on
-                                .select('select "id" from "directus_users" where "role" = ?')
+                                .select('select "id" from "superscribe_users" where "role" = ?')
                                 .responseOnce([{ id: userId1 }, { id: userId2 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -246,9 +246,9 @@ describe('Integration Tests', () => {
                                     delete: [userId1],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -266,9 +266,9 @@ describe('Integration Tests', () => {
                                     delete: [userId1],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -291,9 +291,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [userId1, userId2],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -307,9 +307,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [userId1, userId2],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -327,11 +327,11 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [userId1],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
                             tracker.on
-                                .select('select "id" from "directus_users" where "role" = ?')
+                                .select('select "id" from "superscribe_users" where "role" = ?')
                                 .responseOnce([{ id: userId1 }, { id: userId2 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -340,9 +340,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -356,9 +356,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -378,9 +378,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [{ id: userId1 }, { id: userId2 }],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -394,9 +394,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [{ id: userId1 }, { id: userId2 }],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -414,11 +414,11 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [{ id: userId1 }],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
                             tracker.on
-                                .select('select "id" from "directus_users" where "role" = ?')
+                                .select('select "id" from "superscribe_users" where "role" = ?')
                                 .responseOnce([{ id: userId1 }, { id: userId2 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -427,9 +427,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -443,9 +443,9 @@ describe('Integration Tests', () => {
                             const data = {
                                 users: [],
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -469,9 +469,9 @@ describe('Integration Tests', () => {
                                     delete: [],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -484,9 +484,9 @@ describe('Integration Tests', () => {
                                     delete: [],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -504,9 +504,9 @@ describe('Integration Tests', () => {
                                     delete: [],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -528,11 +528,11 @@ describe('Integration Tests', () => {
                                     delete: [userId2],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
                             tracker.on
-                                .select('select "id" from "directus_users" where "role" = ?')
+                                .select('select "id" from "superscribe_users" where "role" = ?')
                                 .responseOnce([{ id: userId1 }, { id: userId2 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -545,9 +545,9 @@ describe('Integration Tests', () => {
                                     delete: [userId1],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 1 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 1 });
                             const result = await service.updateOne(adminRoleId, data);
                             expect(result).toBe(adminRoleId);
                             expect(superUpdateOne).toHaveBeenCalledOnce();
@@ -565,9 +565,9 @@ describe('Integration Tests', () => {
                                     delete: [userId1],
                                 },
                             };
-                            tracker.on.select('select "admin_access" from "directus_roles"').responseOnce({ admin_access });
-                            tracker.on.select('select "id" from "directus_users" where "role" = ?').responseOnce([{ id: userId1 }]);
-                            tracker.on.select('select count(*) as "count" from "directus_users"').responseOnce({ count: 0 });
+                            tracker.on.select('select "admin_access" from "superscribe_roles"').responseOnce({ admin_access });
+                            tracker.on.select('select "id" from "superscribe_users" where "role" = ?').responseOnce([{ id: userId1 }]);
+                            tracker.on.select('select count(*) as "count" from "superscribe_users"').responseOnce({ count: 0 });
                             const promise = service.updateOne(adminRoleId, data);
                             expect.assertions(5); // to ensure both assertions in the catch block are reached
                             try {
@@ -595,8 +595,8 @@ describe('Integration Tests', () => {
                 knex: db,
                 schema: {
                     collections: {
-                        directus_roles: {
-                            collection: 'directus_roles',
+                        superscribe_roles: {
+                            collection: 'superscribe_roles',
                             primary: 'id',
                             singleton: false,
                             sortField: null,

@@ -1,4 +1,4 @@
-import type { Query } from '@directus/types';
+import type { Query } from '@superscribe/types';
 import type { AbstractServiceOptions, MutationOptions, PrimaryKey } from '../types/index.js';
 import { ItemsService } from './items.js';
 export declare class RolesService extends ItemsService {

@@ -1,4 +1,4 @@
-import type { Accountability, Filter, Role, User } from '@directus/types';
+import type { Accountability, Filter, Role, User } from '@superscribe/types';
 type ParseFilterContext = {
     $CURRENT_USER?: User & Record<string, any>;
     $CURRENT_ROLE?: Role & Record<string, any>;

@@ -10,7 +10,7 @@ import { MetaService } from '../services/meta.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_flows'));
+router.use(useCollection('superscribe_flows'));
 const webhookFlowHandler = asyncHandler(async (req, res, next) => {
     const flowManager = getFlowManager();
     const result = await flowManager.runWebhookFlow(`${req.method}-${req.params['pk']}`, {

@@ -1,12 +1,12 @@
 ---
-description: REST and GraphQL API documentation on the Operations collection in Directus.
+description: REST and GraphQL API documentation on the Operations collection in Superscribe.
 readTime: 5 min read
 pageClass: page-reference
 ---
 
 # Operations
 
-> Operations are the building blocks of Data Flows within Directus.
+> Operations are the building blocks of Data Flows within Superscribe.
 
 ---
 
@@ -71,7 +71,7 @@ The flow containing this operation. Many-to-one to [flows](/reference/system/flo
 
 ## List Operations
 
-List all operations that exist in Directus.
+List all operations that exist in Superscribe.
 
 ### Query Parameters
 
@@ -99,7 +99,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	operations: [directus_operations]
+	operations: [superscribe_operations]
 }
 ```
 
@@ -149,7 +149,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	operations_by_id(id: ID!): directus_operations
+	operations_by_id(id: ID!): superscribe_operations
 }
 ```
 
@@ -209,7 +209,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	create_operations_item(data: create_directus_operations_input!): directus_operations
+	create_operations_item(data: create_superscribe_operations_input!): superscribe_operations
 }
 ```
 
@@ -276,7 +276,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	create_operations_items(data: [create_directus_operations_input!]!): [directus_operations]
+	create_operations_items(data: [create_superscribe_operations_input!]!): [superscribe_operations]
 }
 ```
 
@@ -347,7 +347,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	update_operations_item(id: ID!, data: update_directus_operations_input): directus_operations
+	update_operations_item(id: ID!, data: update_superscribe_operations_input): superscribe_operations
 }
 ```
 
@@ -411,7 +411,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	update_operations_items(ids: [ID!]!, data: update_directus_operations_input): [directus_operations]
+	update_operations_items(ids: [ID!]!, data: update_superscribe_operations_input): [superscribe_operations]
 }
 ```
 

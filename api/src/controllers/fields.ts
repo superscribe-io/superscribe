@@ -1,5 +1,5 @@
-import { TYPES } from '@directus/constants';
-import type { Field, Type } from '@directus/types';
+import { TYPES } from '@superscribe/constants';
+import type { Field, Type } from '@superscribe/types';
 import { Router } from 'express';
 import Joi from 'joi';
 import { ALIAS_TYPES } from '../constants.js';
@@ -12,7 +12,7 @@ import asyncHandler from '../utils/async-handler.js';
 
 const router = Router();
 
-router.use(useCollection('directus_fields'));
+router.use(useCollection('superscribe_fields'));
 
 router.get(
 	'/',

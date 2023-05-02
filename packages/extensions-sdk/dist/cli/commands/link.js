@@ -1,4 +1,4 @@
-import { ExtensionManifest } from '@directus/constants';
+import { ExtensionManifest } from '@superscribe/constants';
 import fs from 'fs-extra';
 import path from 'path';
 import { log } from '../utils/logger.js';
@@ -19,7 +19,7 @@ export default async function link(extensionsPath) {
         manifestFile = await fs.readJSON(packagePath);
     }
     catch (err) {
-        log(`Current directory is not a valid Directus extension.`, 'error');
+        log(`Current directory is not a valid Superscribe extension.`, 'error');
         return;
     }
     const extensionManifest = ExtensionManifest.parse(manifestFile);
@@ -28,7 +28,7 @@ export default async function link(extensionsPath) {
         log(`Extension name not found in package.json`, 'error');
         return;
     }
-    const type = extensionManifest['directus:extension']?.type;
+    const type = extensionManifest['superscribe:extension']?.type;
     if (!type) {
         log(`Extension type not found in package.json`, 'error');
         return;

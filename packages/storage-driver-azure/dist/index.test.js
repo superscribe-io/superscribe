@@ -1,13 +1,13 @@
 import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
-import { normalizePath } from '@directus/utils';
-import { isReadableStream } from '@directus/utils/node';
+import { normalizePath } from '@superscribe/utils';
+import { isReadableStream } from '@superscribe/utils/node';
 import { join } from 'node:path';
 import { PassThrough } from 'node:stream';
 import { afterEach, describe, expect, test, vi, beforeEach } from 'vitest';
 import { DriverAzure } from './index.js';
 import { randAlphaNumeric, randDirectoryPath, randDomainName, randFilePath, randGitBranch as randContainer, randNumber, randPastDate, randWord, randText, randFileType, randUrl, randGitShortSha as randUnique, } from '@ngneat/falso';
-vi.mock('@directus/utils/node');
-vi.mock('@directus/utils');
+vi.mock('@superscribe/utils/node');
+vi.mock('@superscribe/utils');
 vi.mock('@azure/storage-blob');
 vi.mock('node:path');
 let sample;

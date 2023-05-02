@@ -1,4 +1,4 @@
-import type { FieldMeta, Type } from '@directus/types';
+import type { FieldMeta, Type } from '@superscribe/types';
 export default function getLocalType(column?: {
     data_type: string;
     numeric_precision?: null | number;

@@ -1,4 +1,4 @@
-table: directus_operations
+table: superscribe_operations
 
 fields:
   - field: id

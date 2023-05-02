@@ -1,4 +1,4 @@
-import { TYPES } from '@directus/constants';
+import { TYPES } from '@superscribe/constants';
 import { Router } from 'express';
 import Joi from 'joi';
 import { ALIAS_TYPES } from '../constants.js';
@@ -9,7 +9,7 @@ import useCollection from '../middleware/use-collection.js';
 import { FieldsService } from '../services/fields.js';
 import asyncHandler from '../utils/async-handler.js';
 const router = Router();
-router.use(useCollection('directus_fields'));
+router.use(useCollection('superscribe_fields'));
 router.get('/', asyncHandler(async (req, res, next) => {
     const service = new FieldsService({
         accountability: req.accountability,

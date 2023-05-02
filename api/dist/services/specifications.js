@@ -1,4 +1,4 @@
-import { spec } from '@directus/specs';
+import { spec } from '@superscribe/specs';
 import { cloneDeep, mergeWith } from 'lodash-es';
 import { version } from '../utils/package.js';
 import { OAS_REQUIRED_SCHEMAS } from '../constants.js';
@@ -67,7 +67,7 @@ class OASSpecsService {
             servers: [
                 {
                     url: env['PUBLIC_URL'],
-                    description: 'Your current Directus instance.',
+                    description: 'Your current Superscribe instance.',
                 },
             ],
             paths,
@@ -88,7 +88,7 @@ class OASSpecsService {
             }
         }
         for (const collection of collections) {
-            const isSystem = collection.collection.startsWith('directus_');
+            const isSystem = collection.collection.startsWith('superscribe_');
             // If the collection is one of the system collections, pull the tag from the static spec
             if (isSystem) {
                 for (const tag of spec.tags) {
@@ -117,7 +117,7 @@ class OASSpecsService {
         if (!tags)
             return paths;
         for (const tag of tags) {
-            const isSystem = 'x-collection' in tag === false || tag['x-collection'].startsWith('directus_');
+            const isSystem = 'x-collection' in tag === false || tag['x-collection'].startsWith('superscribe_');
             if (isSystem) {
                 for (const [path, pathItem] of Object.entries(spec.paths)) {
                     for (const [method, operation] of Object.entries(pathItem)) {
@@ -273,7 +273,7 @@ class OASSpecsService {
             const tag = tags.find((tag) => tag['x-collection'] === collection.collection);
             if (!tag)
                 continue;
-            const isSystem = collection.collection.startsWith('directus_');
+            const isSystem = collection.collection.startsWith('superscribe_');
             const fieldsInCollection = fields.filter((field) => field.collection === collection.collection);
             if (isSystem) {
                 const schemaComponent = cloneDeep(spec.components.schemas[tag.name]);

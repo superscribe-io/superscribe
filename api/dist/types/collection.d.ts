@@ -1,5 +1,5 @@
-import type { Field } from '@directus/types';
-import type { Table } from '@directus/schema';
+import type { Field } from '@superscribe/types';
+import type { Table } from '@superscribe/schema';
 export type CollectionMeta = {
     collection: string;
     note: string | null;

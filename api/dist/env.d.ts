@@ -1,6 +1,6 @@
 /**
  * @NOTE
- * For all possible keys, see: https://docs.directus.io/self-hosted/config-options/
+ * For all possible keys, see: https://docs.superscribe.io/self-hosted/config-options/
  */
 declare let env: Record<string, any>;
 export default env;

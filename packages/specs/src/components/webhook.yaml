@@ -1,5 +1,5 @@
 type: object
-x-collection: directus_webhooks
+x-collection: superscribe_webhooks
 properties:
   id:
     description: The index of the webhook.

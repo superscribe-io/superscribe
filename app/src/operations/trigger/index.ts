@@ -1,4 +1,4 @@
-import { defineOperationApp } from '@directus/utils';
+import { defineOperationApp } from '@superscribe/utils';
 import { useFlowsStore } from '@/stores/flows';
 
 export default defineOperationApp({

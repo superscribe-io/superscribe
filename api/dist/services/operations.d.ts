@@ -1,4 +1,4 @@
-import type { OperationRaw } from '@directus/types';
+import type { OperationRaw } from '@superscribe/types';
 import type { AbstractServiceOptions, Item, MutationOptions, PrimaryKey } from '../types/index.js';
 import { ItemsService } from './items.js';
 export declare class OperationsService extends ItemsService<OperationRaw> {

@@ -15,11 +15,11 @@ export default async function usersPasswd({ email, password }) {
         const service = new UsersService({ schema, knex: database });
         const user = await service.knex
             .select('id')
-            .from('directus_users')
+            .from('superscribe_users')
             .whereRaw('LOWER(??) = ?', ['email', email.toLowerCase()])
             .first();
         if (user) {
-            await service.knex('directus_users').update({ password: passwordHashed }).where({ id: user.id });
+            await service.knex('superscribe_users').update({ password: passwordHashed }).where({ id: user.id });
             logger.info(`Password is updated for user ${user.id}`);
         }
         else {

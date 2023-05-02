@@ -1,7 +1,7 @@
 import { Ref, computed, unref } from 'vue';
-import { AppExtensionConfigs, AppExtensionType, HybridExtensionType, Plural } from '@directus/types';
+import { AppExtensionConfigs, AppExtensionType, HybridExtensionType, Plural } from '@superscribe/types';
 import { useExtensions } from '@/extensions';
-import { pluralize } from '@directus/utils';
+import { pluralize } from '@superscribe/utils';
 
 export function useExtension<T extends AppExtensionType | HybridExtensionType>(
 	type: T | Ref<T>,

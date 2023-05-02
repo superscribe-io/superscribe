@@ -1,4 +1,4 @@
-import type { Notification } from '@directus/types';
+import type { Notification } from '@superscribe/types';
 import type { AbstractServiceOptions, MutationOptions, PrimaryKey } from '../types/index.js';
 import { ItemsService } from './items.js';
 import { MailService } from './mail/index.js';

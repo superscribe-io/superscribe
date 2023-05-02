@@ -118,7 +118,7 @@ public_label: Público
 public_description: Controla quais dados da API estão disponíveis sem autenticação.
 admin_description: Cargo administrativo inicial com acesso irrestrito ao App/API.
 not_allowed: Não Permitido
-directus_version: Versão do Directus
+superscribe_version: Versão do Superscribe
 node_version: Versão Node
 node_uptime: Tempo de Atividade do Node
 os_type: Tipo de SO
@@ -1019,30 +1019,30 @@ content: Conteúdo
 singleton: Singleton
 singleton_label: Tratar como objeto único
 system_fields_locked: Os campos do sistema estão bloqueados e não podem ser editados
-directus_collection:
-  directus_activity: Histórico de responsabilidade para todos os eventos
-  directus_collections: Configurações e metadados adicionais da coleção
-  directus_dashboards: Painéis dentro do módulo Insights
-  directus_fields: Configurações e metadados adicionais do campo
-  directus_files: Metadados de todos os arquivos gerenciados
-  directus_flows: Fluxos de automação
-  directus_folders: Fornece diretórios virtuais para arquivos
-  directus_migrations: Qual versão do banco de dados você está utilizando
-  directus_notifications: Notificações enviadas aos usuários
-  directus_operations: Operações executadas em fluxos
-  directus_panels: Painéis individuais nos dashboards de Visões
-  directus_permissions: Permissões de acesso para cada papel
-  directus_presets: Predefinições para padrões de coleção e favoritos
-  directus_relations: Configurações e metadados do relacionamento
-  directus_revisions: Cópia de dados de todas as atividades
-  directus_roles: Grupos de permissão para usuários do sistema
-  directus_sessions: Informações da sessão do usuário
-  directus_settings: Opções de configuração do projeto
-  directus_shares: Rastreia itens compartilhados externamente
-  directus_users: Usuários do sistema para a plataforma
-  directus_webhooks: Configuração para solicitações HTTP baseadas em eventos
+superscribe_collection:
+  superscribe_activity: Histórico de responsabilidade para todos os eventos
+  superscribe_collections: Configurações e metadados adicionais da coleção
+  superscribe_dashboards: Painéis dentro do módulo Insights
+  superscribe_fields: Configurações e metadados adicionais do campo
+  superscribe_files: Metadados de todos os arquivos gerenciados
+  superscribe_flows: Fluxos de automação
+  superscribe_folders: Fornece diretórios virtuais para arquivos
+  superscribe_migrations: Qual versão do banco de dados você está utilizando
+  superscribe_notifications: Notificações enviadas aos usuários
+  superscribe_operations: Operações executadas em fluxos
+  superscribe_panels: Painéis individuais nos dashboards de Visões
+  superscribe_permissions: Permissões de acesso para cada papel
+  superscribe_presets: Predefinições para padrões de coleção e favoritos
+  superscribe_relations: Configurações e metadados do relacionamento
+  superscribe_revisions: Cópia de dados de todas as atividades
+  superscribe_roles: Grupos de permissão para usuários do sistema
+  superscribe_sessions: Informações da sessão do usuário
+  superscribe_settings: Opções de configuração do projeto
+  superscribe_shares: Rastreia itens compartilhados externamente
+  superscribe_users: Usuários do sistema para a plataforma
+  superscribe_webhooks: Configuração para solicitações HTTP baseadas em eventos
 fields:
-  directus_activity:
+  superscribe_activity:
     item: Chave Primária do Item
     action: Ação
     collection: Coleção
@@ -1053,7 +1053,7 @@ fields:
     origin: Origem
     ip: Endereço de IP
     revisions: Revisões
-  directus_collections:
+  superscribe_collections:
     collection: Coleção
     icon: Ícone
     note: Nota
@@ -1069,7 +1069,7 @@ fields:
     accountability: Rastreamento de Atividades e Revisões
     archive_field: Campo de Arquivação
     item_duplication_fields: Campos de item duplicado
-  directus_files:
+  superscribe_files:
     $thumbnail: Miniatura
     title: Título
     description: Descrição
@@ -1093,7 +1093,7 @@ fields:
     height: Altura
     charset: Codificação de caracteres
     duration: Duração
-  directus_users:
+  superscribe_users:
     first_name: Primeiro Nome
     last_name: Sobrenome
     email: E-mail
@@ -1124,7 +1124,7 @@ fields:
     last_page: Última página
     last_access: Último acesso
     email_notifications: Notificações por Email
-  directus_settings:
+  superscribe_settings:
     jpg: JPEG
     png: PNG
     webP: WebP
@@ -1164,7 +1164,7 @@ fields:
     transformations_presets: Limitar transformações às predefinições abaixo
     image_editor: Editor de imagem
     custom_aspect_ratios: Proporção de tela personalizada
-  directus_shares:
+  superscribe_shares:
     name: Nome
     role: Função
     password: Senha
@@ -1172,7 +1172,7 @@ fields:
     date_end: Data Final
     max_uses: Quantidade Máxima de Usos
     times_used: Quantidade de Usos
-  directus_fields:
+  superscribe_fields:
     collection: Nome da coleção
     icon: Ícone da coleção
     note: Nota
@@ -1180,7 +1180,7 @@ fields:
     singleton: Singleton
     translation: Traduções do Nome do Campo
     display_template: Template
-  directus_roles:
+  superscribe_roles:
     name: Nome do Cargo
     icon: Ícone do cargo
     description: Descrição
@@ -1190,7 +1190,7 @@ fields:
     enforce_tfa: Exigir 2FA
     users: Usuários no cargo
     module_list: Navegação do Módulo
-  directus_webhooks:
+  superscribe_webhooks:
     name: Nome
     method: Método
     status: Status
@@ -1203,7 +1203,7 @@ fields:
     actions: Ações
     collections: Coleções
 field_options:
-  directus_settings:
+  superscribe_settings:
     project_name_placeholder: Meu projeto...
     project_color_note: Fundo de Login & Logo
     project_logo_note: 40x40 SVG/PNG (Branco)
@@ -1232,12 +1232,12 @@ field_options:
     basemaps_style: Estilo Mapbox
     files_divider_title: Arquivos e Miniaturas
     overrides_divider_title: Substituições de Aplicativos
-  directus_activity:
+  superscribe_activity:
     login: Entrar
     create: Criar
     update: Alteração
     delete: Excluir
-  directus_collections:
+  superscribe_collections:
     track_activity_revisions: Rastrear Atividades e Revisões
     only_track_activity: Acompanhar apenas Atividade
     do_not_track_anything: Não rastreie nada
@@ -1260,14 +1260,14 @@ field_options:
     sort_field: Escolha um campo...
     accountability_divider: Responsabilidade
     duplication_divider: Duplicação
-  directus_files:
+  superscribe_files:
     title: Um título único...
     description: Uma descrição opcional...
     location: Uma localização opcional...
     storage_divider: Nomeação de Arquivos
     filename_disk: Nome no armazenamento do disco...
     filename_download: Nome ao baixar...
-  directus_roles:
+  superscribe_roles:
     name: O nome único para este papel...
     description: Uma descrição deste papel...
     ip_access: Adicione endereços IP permitidos ou deixe em branco para permitir todos...
@@ -1279,7 +1279,7 @@ field_options:
       link_placeholder: URL relativa ou absoluta...
     collections_name: Coleções
     collections_addLabel: Adicionar Coleção...
-  directus_users:
+  superscribe_users:
     preferences_divider: Preferências do Usuário
     dropdown_auto: Automático (Baseado no Sistema)
     dropdown_light: Modo Claro
@@ -1291,7 +1291,7 @@ field_options:
     status_dropdown_suspended: Suspenso
     status_dropdown_archived: Arquivado
     token: Digite um token de acesso seguro...
-  directus_webhooks:
+  superscribe_webhooks:
     status_options_active: Ativo
     status_options_inactive: Inativo
     data_label: Enviar Dados do Evento
@@ -1701,7 +1701,7 @@ interfaces:
     recursive_only: A interface de exibição em árvore só funciona para relações recursivas.
   user:
     user: Usuário
-    description: Selecione um usuário Directus existente
+    description: Selecione um usuário Superscribe existente
     select_mode: Selecionar modo
     modes:
       auto: Automático
@@ -1859,7 +1859,7 @@ displays:
     display_template_configure_notice: Você pode configurar o modelo de exibição após criar este campo.
   user:
     user: Usuário
-    description: Exibe um usuário do Directus
+    description: Exibe um usuário do Superscribe
     avatar: Imagem de Perfil
     name: Nome
     both: Ambos

@@ -1,5 +1,5 @@
-import { FailedValidationException } from '@directus/exceptions';
-import { getSimpleHash, toArray } from '@directus/utils';
+import { FailedValidationException } from '@superscribe/exceptions';
+import { getSimpleHash, toArray } from '@superscribe/utils';
 import jwt from 'jsonwebtoken';
 import { cloneDeep, isEmpty } from 'lodash-es';
 import { performance } from 'perf_hooks';
@@ -16,7 +16,7 @@ import { MailService } from './mail/index.js';
 import { SettingsService } from './settings.js';
 export class UsersService extends ItemsService {
     constructor(options) {
-        super('directus_users', options);
+        super('superscribe_users', options);
         this.knex = options.knex || getDatabase();
         this.accountability = options.accountability || null;
         this.schema = options.schema;
@@ -30,14 +30,14 @@ export class UsersService extends ItemsService {
         const duplicates = emails.filter((value, index, array) => array.indexOf(value) !== index);
         if (duplicates.length) {
             throw new RecordNotUniqueException('email', {
-                collection: 'directus_users',
+                collection: 'superscribe_users',
                 field: 'email',
                 invalid: duplicates[0],
             });
         }
         const query = this.knex
             .select('email')
-            .from('directus_users')
+            .from('superscribe_users')
             .whereRaw(`LOWER(??) IN (${emails.map(() => '?')})`, ['email', ...emails]);
         if (excludeKey) {
             query.whereNot('id', excludeKey);
@@ -45,7 +45,7 @@ export class UsersService extends ItemsService {
         const results = await query;
         if (results.length) {
             throw new RecordNotUniqueException('email', {
-                collection: 'directus_users',
+                collection: 'superscribe_users',
                 field: 'email',
                 invalid: results[0].email,
             });
@@ -53,7 +53,7 @@ export class UsersService extends ItemsService {
     }
     /**
      * Check if the provided password matches the strictness as configured in
-     * directus_settings.auth_password_policy
+     * superscribe_settings.auth_password_policy
      */
     async checkPasswordPolicy(passwords) {
         const settingsService = new SettingsService({
@@ -85,10 +85,10 @@ export class UsersService extends ItemsService {
         // Make sure there's at least one admin user left after this deletion is done
         const otherAdminUsers = await this.knex
             .count('*', { as: 'count' })
-            .from('directus_users')
-            .whereNotIn('directus_users.id', excludeKeys)
-            .andWhere({ 'directus_roles.admin_access': true })
-            .leftJoin('directus_roles', 'directus_users.role', 'directus_roles.id')
+            .from('superscribe_users')
+            .whereNotIn('superscribe_users.id', excludeKeys)
+            .andWhere({ 'superscribe_roles.admin_access': true })
+            .leftJoin('superscribe_roles', 'superscribe_users.role', 'superscribe_roles.id')
             .first();
         const otherAdminUsersCount = +(otherAdminUsers?.count || 0);
         if (otherAdminUsersCount === 0) {
@@ -101,11 +101,11 @@ export class UsersService extends ItemsService {
     async checkRemainingActiveAdmin(excludeKeys) {
         const otherAdminUsers = await this.knex
             .count('*', { as: 'count' })
-            .from('directus_users')
-            .whereNotIn('directus_users.id', excludeKeys)
-            .andWhere({ 'directus_roles.admin_access': true })
-            .andWhere({ 'directus_users.status': 'active' })
-            .leftJoin('directus_roles', 'directus_users.role', 'directus_roles.id')
+            .from('superscribe_users')
+            .whereNotIn('superscribe_users.id', excludeKeys)
+            .andWhere({ 'superscribe_roles.admin_access': true })
+            .andWhere({ 'superscribe_users.status': 'active' })
+            .leftJoin('superscribe_roles', 'superscribe_users.role', 'superscribe_roles.id')
             .first();
         const otherAdminUsersCount = +(otherAdminUsers?.count || 0);
         if (otherAdminUsersCount === 0) {
@@ -118,7 +118,7 @@ export class UsersService extends ItemsService {
     async getUserByEmail(email) {
         return await this.knex
             .select('id', 'role', 'status', 'password')
-            .from('directus_users')
+            .from('superscribe_users')
             .whereRaw(`LOWER(??) = ?`, ['email', email.toLowerCase()])
             .first();
     }
@@ -127,7 +127,7 @@ export class UsersService extends ItemsService {
      */
     inviteUrl(email, url) {
         const payload = { email, scope: 'invite' };
-        const token = jwt.sign(payload, env['SECRET'], { expiresIn: '7d', issuer: 'directus' });
+        const token = jwt.sign(payload, env['SECRET'], { expiresIn: '7d', issuer: 'superscribe' });
         const inviteURL = url ? new Url(url) : new Url(env['PUBLIC_URL']).addPath('admin', 'accept-invite');
         inviteURL.setQuery('token', token);
         return inviteURL.toString();
@@ -199,7 +199,7 @@ export class UsersService extends ItemsService {
             if (data['role']) {
                 // data['role'] will be an object with id with GraphQL mutations
                 const roleId = data['role']?.id ?? data['role'];
-                const newRole = await this.knex.select('admin_access').from('directus_roles').where('id', roleId).first();
+                const newRole = await this.knex.select('admin_access').from('superscribe_roles').where('id', roleId).first();
                 if (!newRole?.admin_access) {
                     await this.checkRemainingAdminExistence(keys);
                 }
@@ -210,7 +210,7 @@ export class UsersService extends ItemsService {
             if (data['email']) {
                 if (keys.length > 1) {
                     throw new RecordNotUniqueException('email', {
-                        collection: 'directus_users',
+                        collection: 'superscribe_users',
                         field: 'email',
                         invalid: data['email'],
                     });
@@ -258,7 +258,7 @@ export class UsersService extends ItemsService {
         catch (err) {
             (opts || (opts = {})).preMutationException = err;
         }
-        await this.knex('directus_notifications').update({ sender: null }).whereIn('sender', keys);
+        await this.knex('superscribe_notifications').update({ sender: null }).whereIn('sender', keys);
         await super.deleteMany(keys, opts);
         return keys;
     }
@@ -352,7 +352,7 @@ export class UsersService extends ItemsService {
             accountability: this.accountability,
         });
         const payload = { email, scope: 'password-reset', hash: getSimpleHash('' + user.password) };
-        const token = jwt.sign(payload, env['SECRET'], { expiresIn: '1d', issuer: 'directus' });
+        const token = jwt.sign(payload, env['SECRET'], { expiresIn: '1d', issuer: 'superscribe' });
         const acceptURL = url
             ? new Url(url).setQuery('token', token).toString()
             : new Url(env['PUBLIC_URL']).addPath('admin', 'reset-password').setQuery('token', token).toString();
@@ -371,7 +371,7 @@ export class UsersService extends ItemsService {
         await stall(STALL_TIME, timeStart);
     }
     async resetPassword(token, password) {
-        const { email, scope, hash } = jwt.verify(token, env['SECRET'], { issuer: 'directus' });
+        const { email, scope, hash } = jwt.verify(token, env['SECRET'], { issuer: 'superscribe' });
         if (scope !== 'password-reset' || !hash)
             throw new ForbiddenException();
         const opts = {};

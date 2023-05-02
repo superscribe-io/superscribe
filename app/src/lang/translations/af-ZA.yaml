@@ -147,7 +147,7 @@ batch_delete_confirm: >-
 cancel: Kanselleer
 collection: Versameling
 fields:
-  directus_activity:
+  superscribe_activity:
     item: Item Primêre Sleutel
     action: Aksie
     collection: Versameling
@@ -156,9 +156,9 @@ fields:
     comment: Kommentaar
     user_agent: Gebruiker Agent
     ip: IP Adres
-  directus_collections:
+  superscribe_collections:
     collection: Versameling
-  directus_files:
+  superscribe_files:
     title: Titel
     description: Beskrywing
     tags: Sleutelwoorde
@@ -172,7 +172,7 @@ fields:
     uploaded_on: Opgelaai Op
     height: Hoogte
     duration: Tydsduur
-  directus_users:
+  superscribe_users:
     first_name: Eerste naam
     last_name: Van
     email: E-pos
@@ -187,25 +187,25 @@ fields:
     tfa_secret: Twee-Faktor Verifikasie
     status: Status
     role: Rol
-  directus_settings:
+  superscribe_settings:
     module_bar: Modulebalk
-  directus_shares:
+  superscribe_shares:
     role: Rol
     password: Wagwoord
-  directus_fields:
+  superscribe_fields:
     translation: Veldnaam vertalings
     display_template: Modelvorm
-  directus_roles:
+  superscribe_roles:
     name: Rol Naam
     description: Beskrywing
-  directus_webhooks:
+  superscribe_webhooks:
     status: Status
 field_options:
-  directus_activity:
+  superscribe_activity:
     create: Skep
-  directus_collections:
+  superscribe_collections:
     language: Taal
-  directus_webhooks:
+  superscribe_webhooks:
     actions_create: Skep
 comment: Kommentaar
 description: Beskrywing

@@ -1,4 +1,4 @@
-import type { Accountability } from '@directus/types';
+import type { Accountability } from '@superscribe/types';
 import argon2 from 'argon2';
 import { Router } from 'express';
 import Joi from 'joi';
@@ -22,7 +22,7 @@ export class LocalAuthDriver extends AuthDriver {
 
 		const user = await this.knex
 			.select('id')
-			.from('directus_users')
+			.from('superscribe_users')
 			.whereRaw('LOWER(??) = ?', ['email', payload['email'].toLowerCase()])
 			.first();
 

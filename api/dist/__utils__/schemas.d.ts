@@ -1,4 +1,4 @@
-import type { CollectionsOverview, Relation } from '@directus/types';
+import type { CollectionsOverview, Relation } from '@superscribe/types';
 export declare const systemSchema: {
     collections: CollectionsOverview;
     relations: Relation[];

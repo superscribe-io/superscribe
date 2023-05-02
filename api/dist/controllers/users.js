@@ -12,7 +12,7 @@ import { UsersService } from '../services/users.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_users'));
+router.use(useCollection('superscribe_users'));
 router.post('/', asyncHandler(async (req, res, next) => {
     const service = new UsersService({
         accountability: req.accountability,
@@ -55,7 +55,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
         schema: req.schema,
     });
     const item = await service.readByQuery(req.sanitizedQuery);
-    const meta = await metaService.getMetaForQuery('directus_users', req.sanitizedQuery);
+    const meta = await metaService.getMetaForQuery('superscribe_users', req.sanitizedQuery);
     res.locals['payload'] = { data: item || null, meta };
     return next();
 });
@@ -268,7 +268,7 @@ router.post('/me/tfa/enable/', asyncHandler(async (req, _res, next) => {
         });
         const role = (await rolesService.readOne(req.accountability.role));
         if (role && role.enforce_tfa) {
-            const existingPermission = await req.accountability.permissions?.find((p) => p.collection === 'directus_users' && p.action === 'update');
+            const existingPermission = await req.accountability.permissions?.find((p) => p.collection === 'superscribe_users' && p.action === 'update');
             if (existingPermission) {
                 existingPermission.fields = ['tfa_secret'];
                 existingPermission.permissions = { id: { _eq: req.accountability.user } };
@@ -278,7 +278,7 @@ router.post('/me/tfa/enable/', asyncHandler(async (req, _res, next) => {
             else {
                 (req.accountability.permissions || (req.accountability.permissions = [])).push({
                     action: 'update',
-                    collection: 'directus_users',
+                    collection: 'superscribe_users',
                     fields: ['tfa_secret'],
                     permissions: { id: { _eq: req.accountability.user } },
                     presets: null,
@@ -309,7 +309,7 @@ router.post('/me/tfa/disable', asyncHandler(async (req, _res, next) => {
         });
         const role = (await rolesService.readOne(req.accountability.role));
         if (role && role.enforce_tfa) {
-            const existingPermission = await req.accountability.permissions?.find((p) => p.collection === 'directus_users' && p.action === 'update');
+            const existingPermission = await req.accountability.permissions?.find((p) => p.collection === 'superscribe_users' && p.action === 'update');
             if (existingPermission) {
                 existingPermission.fields = ['tfa_secret'];
                 existingPermission.permissions = { id: { _eq: req.accountability.user } };
@@ -319,7 +319,7 @@ router.post('/me/tfa/disable', asyncHandler(async (req, _res, next) => {
             else {
                 (req.accountability.permissions || (req.accountability.permissions = [])).push({
                     action: 'update',
-                    collection: 'directus_users',
+                    collection: 'superscribe_users',
                     fields: ['tfa_secret'],
                     permissions: { id: { _eq: req.accountability.user } },
                     presets: null,

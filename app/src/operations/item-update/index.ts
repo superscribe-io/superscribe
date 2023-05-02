@@ -1,4 +1,4 @@
-import { defineOperationApp, toArray } from '@directus/utils';
+import { defineOperationApp, toArray } from '@superscribe/utils';
 
 export default defineOperationApp({
 	id: 'item-update',

@@ -1,5 +1,5 @@
-import type { Accountability, SchemaOverview } from '@directus/types';
-import { toArray } from '@directus/utils';
+import type { Accountability, SchemaOverview } from '@superscribe/types';
+import { toArray } from '@superscribe/utils';
 import type { Knex } from 'knex';
 import { merge } from 'lodash-es';
 import { Readable } from 'node:stream';
@@ -78,7 +78,7 @@ export class ServerService {
 		if (this.accountability?.admin === true) {
 			const { osType, osVersion } = getOSInfo();
 
-			info['directus'] = {
+			info['superscribe'] = {
 				version,
 			};
 

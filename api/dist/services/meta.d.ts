@@ -1,4 +1,4 @@
-import type { Accountability, Query, SchemaOverview } from '@directus/types';
+import type { Accountability, Query, SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { AbstractServiceOptions } from '../types/index.js';
 export declare class MetaService {

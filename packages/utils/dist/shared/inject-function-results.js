@@ -1,5 +1,5 @@
 import { cloneDeep, get, isPlainObject, set } from 'lodash-es';
-import { REGEX_BETWEEN_PARENS } from '@directus/constants';
+import { REGEX_BETWEEN_PARENS } from '@superscribe/constants';
 import { functions } from './functions.js';
 /**
  * Inject function output fields into a given payload for accurate validation

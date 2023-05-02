@@ -1,4 +1,4 @@
-import { getEndpoint, moveInArray } from '@directus/utils';
+import { getEndpoint, moveInArray } from '@superscribe/utils';
 import axios from 'axios';
 import { isEqual, throttle } from 'lodash-es';
 import { computed, ref, unref, watch } from 'vue';
@@ -92,7 +92,7 @@ export function useItems(collection, query) {
             fieldsToFetch.push(primaryKeyField.value.field);
         }
         // Filter out fake internal columns. This is (among other things) for a fake $thumbnail m2o field
-        // on directus_files
+        // on superscribe_files
         fieldsToFetch = fieldsToFetch.filter((field) => field.startsWith('$') === false);
         try {
             const response = await api.get(endpoint.value, {
@@ -113,13 +113,13 @@ export function useItems(collection, query) {
              * @NOTE
              *
              * This is used in conjunction with the fake field in /src/stores/fields/fields.ts to be
-             * able to render out the directus_files collection (file library) using regular layouts
+             * able to render out the superscribe_files collection (file library) using regular layouts
              *
-             * Layouts expect the file to be a m2o of a `file` type, however, directus_files is the
+             * Layouts expect the file to be a m2o of a `file` type, however, superscribe_files is the
              * only collection that doesn't have this (obviously). This fake $thumbnail field is used to
              * pretend there is a file m2o, so we can use the regular layout logic for files as well
              */
-            if (collection.value === 'directus_files') {
+            if (collection.value === 'superscribe_files') {
                 fetchedItems = fetchedItems.map((file) => ({
                     ...file,
                     $thumbnail: file,

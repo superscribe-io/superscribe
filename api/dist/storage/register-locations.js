@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import { getEnv } from '../env.js';
 import { getConfigFromEnv } from '../utils/get-config-from-env.js';
 export const registerLocations = async (storage) => {

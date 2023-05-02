@@ -1,4 +1,4 @@
-import type { SchemaOverview } from '@directus/types';
+import type { SchemaOverview } from '@superscribe/types';
 import Keyv from 'keyv';
 export declare function getCache(): {
     cache: Keyv | null;

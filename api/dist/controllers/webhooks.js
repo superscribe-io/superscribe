@@ -8,7 +8,7 @@ import { WebhooksService } from '../services/webhooks.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_webhooks'));
+router.use(useCollection('superscribe_webhooks'));
 router.post('/', asyncHandler(async (req, res, next) => {
     const service = new WebhooksService({
         accountability: req.accountability,

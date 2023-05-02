@@ -1,4 +1,4 @@
-import { FailedValidationException } from '@directus/exceptions';
+import { FailedValidationException } from '@superscribe/exceptions';
 import type {
 	Accountability,
 	Aggregate,
@@ -7,8 +7,8 @@ import type {
 	PermissionsAction,
 	Query,
 	SchemaOverview,
-} from '@directus/types';
-import { validatePayload } from '@directus/utils';
+} from '@superscribe/types';
+import { validatePayload } from '@superscribe/utils';
 import type { Knex } from 'knex';
 import { cloneDeep, flatten, isArray, isNil, merge, reduce, uniq, uniqWith } from 'lodash-es';
 import { GENERATE_SPECIAL } from '../constants.js';
@@ -39,7 +39,7 @@ export class AuthorizationService {
 		this.accountability = options.accountability || null;
 		this.schema = options.schema;
 
-		this.payloadService = new PayloadService('directus_permissions', {
+		this.payloadService = new PayloadService('superscribe_permissions', {
 			knex: this.knex,
 			schema: this.schema,
 		});

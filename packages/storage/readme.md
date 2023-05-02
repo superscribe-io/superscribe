@@ -1,3 +1,3 @@
-# `@directus/storage`
+# `@superscribe/storage`
 
-Storage abstraction for Directus
+Storage abstraction for Superscribe

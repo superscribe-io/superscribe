@@ -1,4 +1,4 @@
-import { defineOperationApi } from '@directus/extensions-sdk';
+import { defineOperationApi } from '@superscribe/extensions-sdk';
 
 type Options = {
 	text: string;

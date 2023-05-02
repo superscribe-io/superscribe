@@ -1,4 +1,4 @@
-import type { PrimaryKey } from '@directus/types';
+import type { PrimaryKey } from '@superscribe/types';
 type Options = {
     collection: string;
     key?: PrimaryKey | PrimaryKey[] | null;
@@ -7,5 +7,5 @@ type Options = {
     emitEvents: boolean;
     permissions: string;
 };
-declare const _default: import("@directus/types").OperationApiConfig<Options>;
+declare const _default: import("@superscribe/types").OperationApiConfig<Options>;
 export default _default;

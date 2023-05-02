@@ -9,7 +9,7 @@ const items = [
 		presets: null,
 		fields: ['*'],
 		system: true,
-		collection: 'directus_settings',
+		collection: 'superscribe_settings',
 		action: 'read',
 	},
 	{
@@ -23,7 +23,7 @@ const items = [
 		presets: null,
 		fields: ['*'],
 		system: true,
-		collection: 'directus_presets',
+		collection: 'superscribe_presets',
 		action: 'delete',
 	},
 ];

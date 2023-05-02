@@ -1,5 +1,5 @@
-import type { SchemaInspector } from '@directus/schema';
-import type { Accountability, Relation, RelationMeta, SchemaOverview } from '@directus/types';
+import type { SchemaInspector } from '@superscribe/schema';
+import type { Accountability, Relation, RelationMeta, SchemaOverview } from '@superscribe/types';
 import type Keyv from 'keyv';
 import type { Knex } from 'knex';
 import type { Helpers } from '../database/helpers/index.js';
@@ -38,7 +38,7 @@ export declare class RelationsService {
      */
     private get hasReadAccess();
     /**
-     * Combine raw schema foreign key information with Directus relations meta rows to form final
+     * Combine raw schema foreign key information with Superscribe relations meta rows to form final
      * Relation objects
      */
     private stitchRelations;

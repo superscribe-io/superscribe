@@ -16,8 +16,8 @@ vi.mock('./mail', () => {
 const testRoleId = '4ccdb196-14b3-4ed1-b9da-c1978be07ca2';
 const testSchema = {
     collections: {
-        directus_users: {
-            collection: 'directus_users',
+        superscribe_users: {
+            collection: 'superscribe_users',
             primary: 'id',
             singleton: false,
             sortField: null,
@@ -51,9 +51,9 @@ describe('Integration Tests', () => {
         tracker = createTracker(db);
     });
     beforeEach(() => {
-        tracker.on.any('directus_users').response({});
+        tracker.on.any('superscribe_users').response({});
         // mock notifications update query in deleteOne/deleteMany/deleteByQuery methods
-        tracker.on.update('directus_notifications').response({});
+        tracker.on.update('superscribe_notifications').response({});
     });
     afterEach(() => {
         tracker.reset();
@@ -72,8 +72,8 @@ describe('Integration Tests', () => {
                 knex: db,
                 schema: {
                     collections: {
-                        directus_users: {
-                            collection: 'directus_users',
+                        superscribe_users: {
+                            collection: 'superscribe_users',
                             primary: 'id',
                             singleton: false,
                             sortField: null,
@@ -162,13 +162,13 @@ describe('Integration Tests', () => {
         describe('updateOne', () => {
             it('should not checkRemainingAdminExistence', async () => {
                 // mock newRole query in updateMany (called by ItemsService updateOne)
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: true });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: true });
                 await service.updateOne(1, { role: testRoleId });
                 expect(checkRemainingAdminExistenceSpy).not.toBeCalled();
             });
             it('should checkRemainingAdminExistence once', async () => {
                 // mock newRole query in updateMany (called by ItemsService updateOne)
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: false });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: false });
                 await service.updateOne(1, { role: testRoleId });
                 expect(checkRemainingAdminExistenceSpy).toBeCalledTimes(1);
             });
@@ -238,13 +238,13 @@ describe('Integration Tests', () => {
         describe('updateMany', () => {
             it('should not checkRemainingAdminExistence', async () => {
                 // mock newRole query in updateMany
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: true });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: true });
                 await service.updateMany([1], { role: testRoleId });
                 expect(checkRemainingAdminExistenceSpy).not.toBeCalled();
             });
             it('should checkRemainingAdminExistence once', async () => {
                 // mock newRole query in updateMany
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: false });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: false });
                 await service.updateMany([1], { role: testRoleId });
                 expect(checkRemainingAdminExistenceSpy).toBeCalledTimes(1);
             });
@@ -324,14 +324,14 @@ describe('Integration Tests', () => {
         describe('updateByQuery', () => {
             it('should not checkRemainingAdminExistence', async () => {
                 // mock newRole query in updateMany (called by ItemsService updateByQuery)
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: true });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: true });
                 vi.spyOn(ItemsService.prototype, 'getKeysByQuery').mockResolvedValue([1]);
                 await service.updateByQuery({}, { role: testRoleId });
                 expect(checkRemainingAdminExistenceSpy).not.toBeCalled();
             });
             it('should checkRemainingAdminExistence once', async () => {
                 // mock newRole query in updateMany (called by ItemsService updateByQuery)
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: false });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: false });
                 vi.spyOn(ItemsService.prototype, 'getKeysByQuery').mockResolvedValue([1]);
                 await service.updateByQuery({}, { role: testRoleId });
                 expect(checkRemainingAdminExistenceSpy).toBeCalledTimes(1);
@@ -534,7 +534,7 @@ describe('Integration Tests', () => {
                     schema: testSchema,
                     accountability: { role: 'test', admin: true },
                 });
-                tracker.on.select(/select "admin_access" from "directus_roles"/).response({ admin_access: true });
+                tracker.on.select(/select "admin_access" from "superscribe_roles"/).response({ admin_access: true });
                 // mock an invited user with different role
                 vi.spyOn(UsersService.prototype, 'getUserByEmail').mockResolvedValueOnce({
                     id: 1,

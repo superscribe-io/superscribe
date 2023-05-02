@@ -8,7 +8,7 @@ import { RolesService } from '../services/roles.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_roles'));
+router.use(useCollection('superscribe_roles'));
 router.post('/', asyncHandler(async (req, res, next) => {
     const service = new RolesService({
         accountability: req.accountability,
@@ -51,7 +51,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
         schema: req.schema,
     });
     const records = await service.readByQuery(req.sanitizedQuery);
-    const meta = await metaService.getMetaForQuery('directus_roles', req.sanitizedQuery);
+    const meta = await metaService.getMetaForQuery('superscribe_roles', req.sanitizedQuery);
     res.locals['payload'] = { data: records || null, meta };
     return next();
 });

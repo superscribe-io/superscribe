@@ -13,7 +13,7 @@ import { UsersService } from './users.js';
 export class SharesService extends ItemsService {
     authorizationService;
     constructor(options) {
-        super('directus_shares', options);
+        super('superscribe_shares', options);
         this.authorizationService = new AuthorizationService({
             accountability: this.accountability,
             knex: this.knex,
@@ -38,7 +38,7 @@ export class SharesService extends ItemsService {
             share_max_uses: 'max_uses',
             share_password: 'password',
         })
-            .from('directus_shares')
+            .from('superscribe_shares')
             .where('id', payload['share'])
             .andWhere((subQuery) => {
             subQuery.whereNull('date_end').orWhere('date_end', '>=', new Date());
@@ -56,7 +56,7 @@ export class SharesService extends ItemsService {
         if (record.share_password && !(await argon2.verify(record.share_password, payload['password']))) {
             throw new InvalidCredentialsException();
         }
-        await this.knex('directus_shares')
+        await this.knex('superscribe_shares')
             .update({ times_used: record.share_times_used + 1 })
             .where('id', record.share_id);
         const tokenPayload = {
@@ -71,11 +71,11 @@ export class SharesService extends ItemsService {
         };
         const accessToken = jwt.sign(tokenPayload, env['SECRET'], {
             expiresIn: env['ACCESS_TOKEN_TTL'],
-            issuer: 'directus',
+            issuer: 'superscribe',
         });
         const refreshToken = nanoid(64);
         const refreshTokenExpiration = new Date(Date.now() + getMilliseconds(env['REFRESH_TOKEN_TTL'], 0));
-        await this.knex('directus_sessions').insert({
+        await this.knex('superscribe_sessions').insert({
             token: refreshToken,
             expires: refreshTokenExpiration,
             ip: this.accountability?.ip,
@@ -83,7 +83,7 @@ export class SharesService extends ItemsService {
             origin: this.accountability?.origin,
             share: record.share_id,
         });
-        await this.knex('directus_sessions').delete().where('expires', '<', new Date());
+        await this.knex('superscribe_sessions').delete().where('expires', '<', new Date());
         return {
             accessToken,
             refreshToken,

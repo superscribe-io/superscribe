@@ -1,4 +1,4 @@
-table: directus_flows
+table: superscribe_flows
 
 fields:
   - field: id

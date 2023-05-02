@@ -1,4 +1,4 @@
-import { normalizePath } from '@directus/utils';
+import { normalizePath } from '@superscribe/utils';
 import { Blob, Buffer } from 'node:buffer';
 import { createHash } from 'node:crypto';
 import { extname, join, parse } from 'node:path';

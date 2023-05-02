@@ -1,4 +1,4 @@
-import { parseJSON, toArray } from '@directus/utils';
+import { parseJSON, toArray } from '@superscribe/utils';
 import { format, isValid, parseISO } from 'date-fns';
 import flat from 'flat';
 import Joi from 'joi';

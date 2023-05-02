@@ -1,4 +1,4 @@
-import { APP_EXTENSION_TYPES, HYBRID_EXTENSION_TYPES } from '@directus/constants';
+import { APP_EXTENSION_TYPES, HYBRID_EXTENSION_TYPES } from '@superscribe/constants';
 import path from 'path';
 import { isIn, isTypeIn } from './array-helpers.js';
 import { pluralize } from './pluralize.js';

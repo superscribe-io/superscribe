@@ -311,7 +311,7 @@ describe('Integration Tests', () => {
 							        },
 							        "type": "array",
 							      },
-							      "directus": {
+							      "superscribe": {
 							        "type": "string",
 							      },
 							      "fields": {

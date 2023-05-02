@@ -1,4 +1,4 @@
-import type { SchemaOverview } from '@directus/types';
+import type { SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 import * as dateHelpers from './date/index.js';
 import * as fnHelpers from './fn/index.js';

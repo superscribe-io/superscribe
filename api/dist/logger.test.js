@@ -2,7 +2,7 @@ import { Writable } from 'node:stream';
 import { pino } from 'pino';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { REDACT_TEXT } from './constants.js';
-const REFRESH_TOKEN_COOKIE_NAME = 'directus_refresh_token';
+const REFRESH_TOKEN_COOKIE_NAME = 'superscribe_refresh_token';
 vi.doMock('./env', async () => {
     const MOCK_ENV = {
         AUTH_PROVIDERS: 'ranger,monospace',

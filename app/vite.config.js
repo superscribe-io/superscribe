@@ -3,21 +3,21 @@ import {
 	APP_OR_HYBRID_EXTENSION_TYPES,
 	APP_SHARED_DEPS,
 	NESTED_EXTENSION_TYPES,
-} from '@directus/constants';
+} from '@superscribe/constants';
 import {
 	ensureExtensionDirs,
 	generateExtensionsEntrypoint,
 	getLocalExtensions,
 	getPackageExtensions,
 	resolvePackageExtensions,
-} from '@directus/utils/node';
+} from '@superscribe/utils/node';
 import yaml from '@rollup/plugin-yaml';
 import vue from '@vitejs/plugin-vue';
 import fs from 'node:fs';
 import path from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
 import { defineConfig } from 'vitest/config';
-import { version } from '../directus/package.json';
+import { version } from '../superscribe/package.json';
 
 const API_PATH = path.join('..', 'api');
 const EXTENSIONS_PATH = path.join(API_PATH, 'extensions');
@@ -28,7 +28,7 @@ export default defineConfig({
 		__DIRECTUS_VERSION__: JSON.stringify(version),
 	},
 	plugins: [
-		directusExtensions(),
+		superscribeExtensions(),
 		vue(),
 		yaml({
 			transform(data) {
@@ -74,14 +74,14 @@ function getExtensionsRealPaths() {
 		: [];
 }
 
-function directusExtensions() {
-	const virtualExtensionsId = '@directus-extensions';
+function superscribeExtensions() {
+	const virtualExtensionsId = '@superscribe-extensions';
 
 	let extensionsEntrypoint = null;
 
 	return [
 		{
-			name: 'directus-extensions-serve',
+			name: 'superscribe-extensions-serve',
 			apply: 'serve',
 			config: () => ({
 				optimizeDeps: {
@@ -103,7 +103,7 @@ function directusExtensions() {
 			},
 		},
 		{
-			name: 'directus-extensions-build',
+			name: 'superscribe-extensions-build',
 			apply: 'build',
 			config: () => ({
 				build: {

@@ -11,7 +11,7 @@ export declare const APP_OR_HYBRID_EXTENSION_TYPES: readonly ["interface", "disp
 export declare const APP_OR_HYBRID_EXTENSION_PACKAGE_TYPES: readonly ["interface", "display", "layout", "module", "panel", "operation", "bundle"];
 export declare const EXTENSION_LANGUAGES: readonly ["javascript", "typescript"];
 export declare const EXTENSION_NAME_REGEX: RegExp;
-export declare const EXTENSION_PKG_KEY = "directus:extension";
+export declare const EXTENSION_PKG_KEY = "superscribe:extension";
 export declare const SplitEntrypoint: z.ZodObject<{
     app: z.ZodString;
     api: z.ZodString;
@@ -413,7 +413,7 @@ export declare const ExtensionManifest: z.ZodObject<{
     name: z.ZodString;
     version: z.ZodString;
     dependencies: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
-    "directus:extension": z.ZodIntersection<z.ZodObject<{
+    "superscribe:extension": z.ZodIntersection<z.ZodObject<{
         host: z.ZodString;
         hidden: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
@@ -566,7 +566,7 @@ export declare const ExtensionManifest: z.ZodObject<{
         type: "bundle";
     }>]>>;
 }, "strip", z.ZodTypeAny, {
-    "directus:extension": ({
+    "superscribe:extension": ({
         host: string;
         hidden?: boolean | undefined;
     } & {
@@ -612,7 +612,7 @@ export declare const ExtensionManifest: z.ZodObject<{
     version: string;
     dependencies?: Record<string, string> | undefined;
 }, {
-    "directus:extension": ({
+    "superscribe:extension": ({
         host: string;
         hidden?: boolean | undefined;
     } & {

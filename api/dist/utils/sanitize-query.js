@@ -1,4 +1,4 @@
-import { parseFilter, parseJSON } from '@directus/utils';
+import { parseFilter, parseJSON } from '@superscribe/utils';
 import { flatten, get, isPlainObject, merge, set } from 'lodash-es';
 import logger from '../logger.js';
 import { Meta } from '../types/index.js';

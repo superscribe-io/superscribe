@@ -1,4 +1,4 @@
-import { Type } from '@directus/types';
+import { Type } from '@superscribe/types';
 
 export function getSpecialForType(type: Type): string[] | null {
 	switch (type) {

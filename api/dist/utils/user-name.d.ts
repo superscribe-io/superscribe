@@ -1,2 +1,2 @@
-import type { User } from '@directus/types';
+import type { User } from '@superscribe/types';
 export declare function userName(user: Partial<User>): string;

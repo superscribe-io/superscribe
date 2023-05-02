@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import { merge } from 'lodash-es';
 import { pino } from 'pino';
 import { pinoHttp, stdSerializers } from 'pino-http';

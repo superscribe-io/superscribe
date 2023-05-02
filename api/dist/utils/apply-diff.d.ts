@@ -1,4 +1,4 @@
-import type { SchemaOverview } from '@directus/types';
+import type { SchemaOverview } from '@superscribe/types';
 import type { Diff } from 'deep-diff';
 import type { Knex } from 'knex';
 import type { Snapshot, SnapshotDiff, SnapshotField } from '../types/index.js';

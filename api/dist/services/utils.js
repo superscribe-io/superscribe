@@ -12,7 +12,7 @@ export class UtilsService {
         this.schema = options.schema;
     }
     async sort(collection, { item, to }) {
-        const sortFieldResponse = (await this.knex.select('sort_field').from('directus_collections').where({ collection }).first()) ||
+        const sortFieldResponse = (await this.knex.select('sort_field').from('superscribe_collections').where({ collection }).first()) ||
             systemCollectionRows;
         const sortField = sortFieldResponse?.sort_field;
         if (!sortField) {

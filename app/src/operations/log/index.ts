@@ -1,4 +1,4 @@
-import { defineOperationApp } from '@directus/utils';
+import { defineOperationApp } from '@superscribe/utils';
 
 export default defineOperationApp({
 	id: 'log',

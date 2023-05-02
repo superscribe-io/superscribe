@@ -1,4 +1,4 @@
-import { normalizePath } from '@directus/utils';
+import { normalizePath } from '@superscribe/utils';
 import { rand, randAlphaNumeric, randDirectoryPath, randFilePath, randFileType, randGitBranch as randCloudName, randGitCommitSha as randSha, randGitShortSha as randUnique, randNumber, randPastDate, randText, randWord, } from '@ngneat/falso';
 import { Blob } from 'node:buffer';
 import { createHash } from 'node:crypto';
@@ -9,8 +9,8 @@ import { fetch, FormData } from 'undici';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { IMAGE_EXTENSIONS, VIDEO_EXTENSIONS } from './constants.js';
 import { DriverCloudinary } from './index.js';
-vi.mock('@directus/utils/node');
-vi.mock('@directus/utils');
+vi.mock('@superscribe/utils/node');
+vi.mock('@superscribe/utils');
 vi.mock('node:path');
 vi.mock('node:crypto');
 vi.mock('undici');

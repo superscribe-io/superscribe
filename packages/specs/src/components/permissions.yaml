@@ -1,5 +1,5 @@
 type: object
-x-collection: directus_permissions
+x-collection: superscribe_permissions
 properties:
   id:
     description: Unique identifier for the permission.

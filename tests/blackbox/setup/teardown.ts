@@ -16,18 +16,18 @@ export default async function teardown(jestConfig?: JestConfigWithTsJest, _isAft
 	if (!process.env.TEST_LOCAL) {
 		await new Listr([
 			{
-				title: 'Stop Directus servers',
+				title: 'Stop Superscribe servers',
 				task: () => {
 					return new Listr(
 						vendors.map((vendor) => {
 							return {
 								title: config.names[vendor]!,
 								task: async () => {
-									const directus = global.directus[vendor];
-									directus!.kill();
+									const superscribe = global.superscribe[vendor];
+									superscribe!.kill();
 
-									const directusNoCache = global.directusNoCache[vendor];
-									directusNoCache!.kill();
+									const superscribeNoCache = global.superscribeNoCache[vendor];
+									superscribeNoCache!.kill();
 								},
 							};
 						}),

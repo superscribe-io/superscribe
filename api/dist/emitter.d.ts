@@ -1,4 +1,4 @@
-import type { ActionHandler, EventContext, FilterHandler, InitHandler } from '@directus/types';
+import type { ActionHandler, EventContext, FilterHandler, InitHandler } from '@superscribe/types';
 export declare class Emitter {
     private filterEmitter;
     private actionEmitter;

@@ -1,0 +1,64 @@
+{
+	"name": "superscribe",
+	"version": "9.26.0",
+	"description": "Superscribe is a real-time API and App dashboard for managing SQL database content",
+	"type": "module",
+	"keywords": [
+		"superscribe",
+		"realtime",
+		"database",
+		"content",
+		"api",
+		"rest",
+		"graphql",
+		"app",
+		"dashboard",
+		"headless",
+		"cms",
+		"mysql",
+		"postgresql",
+		"cockroachdb",
+		"sqlite",
+		"framework",
+		"vue"
+	],
+	"homepage": "https://superscribe.io",
+	"bugs": {
+		"url": "https://github.com/superscribe/superscribe/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/superscribe/superscribe.git"
+	},
+	"funding": "https://github.com/superscribe/superscribe?sponsor=1",
+	"license": "GPL-3.0-only",
+	"author": {
+		"name": "Monospace Inc",
+		"email": "info@monospace.io",
+		"url": "https://monospace.io"
+	},
+	"maintainers": [
+		{
+			"name": "Rijk van Zanten",
+			"email": "rijkvanzanten@me.com",
+			"url": "https://github.com/rijkvanzanten"
+		},
+		{
+			"name": "Ben Haynes",
+			"email": "ben@rngr.org",
+			"url": "https://github.com/benhaynes"
+		}
+	],
+	"exports": {
+		"./package.json": "./package.json"
+	},
+	"bin": {
+		"superscribe": "cli.js"
+	},
+	"dependencies": {
+		"@superscribe/api": "workspace:*"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
+}

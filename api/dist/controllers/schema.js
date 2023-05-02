@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import Busboy from 'busboy';
 import express from 'express';
 import { load as loadYaml } from 'js-yaml';
@@ -42,7 +42,7 @@ const schemaMultipartHandler = (req, res, next) => {
         if (isFileIncluded)
             return next(new InvalidPayloadException(`More than one file was included in the body`));
         isFileIncluded = true;
-        const { readableStreamToString } = await import('@directus/utils/node');
+        const { readableStreamToString } = await import('@superscribe/utils/node');
         try {
             const uploadedString = await readableStreamToString(fileStream);
             if (mimeType === 'application/json') {

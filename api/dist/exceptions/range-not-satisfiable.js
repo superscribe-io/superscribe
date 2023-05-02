@@ -1,4 +1,4 @@
-import { BaseException } from '@directus/exceptions';
+import { BaseException } from '@superscribe/exceptions';
 export class RangeNotSatisfiableException extends BaseException {
     constructor(range) {
         const rangeString = range && (range?.start !== undefined || range?.end !== undefined)

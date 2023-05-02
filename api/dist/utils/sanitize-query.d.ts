@@ -1,2 +1,2 @@
-import type { Accountability, Query } from '@directus/types';
+import type { Accountability, Query } from '@superscribe/types';
 export declare function sanitizeQuery(rawQuery: Record<string, any>, accountability?: Accountability | null): Query;

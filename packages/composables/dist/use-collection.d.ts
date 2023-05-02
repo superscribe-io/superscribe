@@ -1,4 +1,4 @@
-import type { AppCollection, Field } from '@directus/types';
+import type { AppCollection, Field } from '@superscribe/types';
 import type { ComputedRef, Ref } from 'vue';
 export type UsableCollection = {
     info: ComputedRef<AppCollection | null>;

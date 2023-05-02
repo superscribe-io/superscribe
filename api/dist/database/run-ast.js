@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import { clone, cloneDeep, isNil, merge, pick, uniq } from 'lodash-es';
 import { getHelpers } from '../database/helpers/index.js';
 import env from '../env.js';
@@ -238,7 +238,7 @@ async function getDBQuery(schema, knex, table, fieldNodes, query) {
             wrapperQuery.orderBy(`inner.${innerQuerySortRecord.alias}`, innerQuerySortRecord.order);
         });
         if (hasMultiRelationalSort) {
-            wrapperQuery.where('inner.directus_row_number', '=', 1);
+            wrapperQuery.where('inner.superscribe_row_number', '=', 1);
             applyLimit(knex, wrapperQuery, queryCopy.limit);
         }
     }

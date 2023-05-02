@@ -1,8 +1,8 @@
 /**
  * @NOTE
- * For all possible keys, see: https://docs.directus.io/self-hosted/config-options/
+ * For all possible keys, see: https://docs.superscribe.io/self-hosted/config-options/
  */
-import { parseJSON, toArray } from '@directus/utils';
+import { parseJSON, toArray } from '@superscribe/utils';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import { clone, toNumber, toString } from 'lodash-es';
@@ -214,7 +214,7 @@ const defaults = {
     REFRESH_TOKEN_TTL: '7d',
     REFRESH_TOKEN_COOKIE_SECURE: false,
     REFRESH_TOKEN_COOKIE_SAME_SITE: 'lax',
-    REFRESH_TOKEN_COOKIE_NAME: 'directus_refresh_token',
+    REFRESH_TOKEN_COOKIE_NAME: 'superscribe_refresh_token',
     LOGIN_STALL_TIME: 500,
     SERVER_SHUTDOWN_TIMEOUT: 1000,
     ROOT_REDIRECT: './admin',
@@ -390,7 +390,7 @@ function processValues(env) {
             }
         }
         // Convert values with a type prefix
-        // (see https://docs.directus.io/reference/environment-variables/#environment-syntax-prefix)
+        // (see https://docs.superscribe.io/reference/environment-variables/#environment-syntax-prefix)
         if (typeof value === 'string' && isEnvSyntaxPrefixPresent(value)) {
             env[key] = getEnvironmentValueByType(value);
             continue;

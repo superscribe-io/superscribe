@@ -7,5 +7,5 @@ type Options = {
         value: string;
     }[] | null;
 };
-declare const _default: import("@directus/types").OperationApiConfig<Options>;
+declare const _default: import("@superscribe/types").OperationApiConfig<Options>;
 export default _default;

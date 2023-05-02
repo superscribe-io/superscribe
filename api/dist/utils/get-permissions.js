@@ -1,4 +1,4 @@
-import { deepMap, parseFilter, parseJSON, parsePreset } from '@directus/utils';
+import { deepMap, parseFilter, parseJSON, parsePreset } from '@superscribe/utils';
 import { cloneDeep } from 'lodash-es';
 import hash from 'object-hash';
 import { getCache, getCacheValue, getSystemCache, setCacheValue, setSystemCache } from '../cache.js';
@@ -46,7 +46,7 @@ export async function getPermissions(accountability, schema) {
         }
     }
     if (accountability.admin !== true) {
-        const query = database.select('*').from('directus_permissions');
+        const query = database.select('*').from('superscribe_permissions');
         if (accountability.role) {
             query.where({ role: accountability.role });
         }

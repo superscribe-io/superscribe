@@ -5,7 +5,7 @@ const conditionalFilter = { user: { id: { _eq: '$CURRENT_USER' } } };
 const conditionalFilter2 = { count: { _gt: 42 } };
 const permissionTemplate = {
     role: null,
-    collection: 'directus_users',
+    collection: 'superscribe_users',
     permissions: null,
     validation: null,
     presets: null,

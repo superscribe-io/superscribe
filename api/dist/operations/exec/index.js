@@ -1,4 +1,4 @@
-import { defineOperationApi, toArray } from '@directus/utils';
+import { defineOperationApi, toArray } from '@superscribe/utils';
 import { isBuiltin } from 'node:module';
 import { NodeVM, VMScript } from 'vm2';
 export default defineOperationApi({

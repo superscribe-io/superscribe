@@ -1,4 +1,4 @@
-table: directus_revisions
+table: superscribe_revisions
 
 fields:
   - field: id

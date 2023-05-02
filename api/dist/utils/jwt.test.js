@@ -4,14 +4,14 @@ import { InvalidTokenException, ServiceUnavailableException, TokenExpiredExcepti
 import { verifyAccessJWT, verifyJWT } from '../../src/utils/jwt.js';
 const payload = { role: null, app_access: false, admin_access: false };
 const secret = 'test-secret';
-const options = { issuer: 'directus' };
+const options = { issuer: 'superscribe' };
 test('Returns the payload of a correctly signed token', () => {
     const token = jwt.sign(payload, secret, options);
     const result = verifyJWT(token, secret);
     expect(result['admin_access']).toEqual(payload.admin_access);
     expect(result['app_access']).toEqual(payload.app_access);
     expect(result['role']).toEqual(payload.role);
-    expect(result['iss']).toBe('directus');
+    expect(result['iss']).toBe('superscribe');
     expect(result['iat']).toBeTypeOf('number');
 });
 test('Throws TokenExpiredException when token used has expired', () => {

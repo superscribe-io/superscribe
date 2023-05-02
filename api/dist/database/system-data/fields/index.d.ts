@@ -1,2 +1,2 @@
-import type { FieldMeta } from '@directus/types';
+import type { FieldMeta } from '@superscribe/types';
 export declare const systemFieldRows: FieldMeta[];

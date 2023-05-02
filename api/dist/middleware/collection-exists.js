@@ -11,7 +11,7 @@ const collectionExists = asyncHandler(async (req, _res, next) => {
         throw new ForbiddenException();
     }
     req.collection = req.params['collection'];
-    if (req.collection.startsWith('directus_')) {
+    if (req.collection.startsWith('superscribe_')) {
         const systemRow = systemCollectionRows.find((collection) => {
             return collection?.collection === req.collection;
         });

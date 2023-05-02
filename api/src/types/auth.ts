@@ -1,4 +1,4 @@
-import type { SchemaOverview } from '@directus/types';
+import type { SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 
 export interface AuthDriverOptions {
@@ -29,7 +29,7 @@ export interface Session {
 	share: string;
 }
 
-export type DirectusTokenPayload = {
+export type SuperscribeTokenPayload = {
 	id?: string;
 	role: string | null;
 	app_access: boolean | number;

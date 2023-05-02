@@ -1,4 +1,4 @@
-import { BaseException } from '@directus/exceptions';
+import { BaseException } from '@superscribe/exceptions';
 import logger from '../../../logger.js';
 const processError = (accountability, error) => {
     logger.error(error);

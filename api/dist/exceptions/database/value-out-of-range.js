@@ -1,4 +1,4 @@
-import { BaseException } from '@directus/exceptions';
+import { BaseException } from '@superscribe/exceptions';
 export class ValueOutOfRangeException extends BaseException {
     constructor(field, exceptions) {
         if (field) {

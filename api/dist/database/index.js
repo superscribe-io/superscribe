@@ -1,4 +1,4 @@
-import { createInspector } from '@directus/schema';
+import { createInspector } from '@superscribe/schema';
 import fse from 'fs-extra';
 import knex from 'knex';
 import { merge } from 'lodash-es';
@@ -192,10 +192,10 @@ export function getDatabaseClient(database) {
 }
 export async function isInstalled() {
     const inspector = getSchemaInspector();
-    // The existence of a directus_collections table alone isn't a "proper" check to see if everything
+    // The existence of a superscribe_collections table alone isn't a "proper" check to see if everything
     // is installed correctly of course, but it's safe enough to assume that this collection only
-    // exists when Directus is properly installed.
-    return await inspector.hasTable('directus_collections');
+    // exists when Superscribe is properly installed.
+    return await inspector.hasTable('superscribe_collections');
 }
 export async function validateMigrations() {
     const database = getDatabase();
@@ -207,7 +207,7 @@ export async function validateMigrations() {
         customMigrationFiles = customMigrationFiles.filter((file) => file.endsWith('.js'));
         migrationFiles.push(...customMigrationFiles);
         const requiredVersions = migrationFiles.map((filePath) => filePath.split('-')[0]);
-        const completedVersions = (await database.select('version').from('directus_migrations')).map(({ version }) => version);
+        const completedVersions = (await database.select('version').from('superscribe_migrations')).map(({ version }) => version);
         return requiredVersions.every((version) => completedVersions.includes(version));
     }
     catch (error) {

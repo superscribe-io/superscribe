@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import contentDisposition from 'content-disposition';
 import { Router } from 'express';
 import { merge, pick } from 'lodash-es';
@@ -16,16 +16,16 @@ import { getCacheControlHeader } from '../utils/get-cache-headers.js';
 import { getConfigFromEnv } from '../utils/get-config-from-env.js';
 import { getMilliseconds } from '../utils/get-milliseconds.js';
 const router = Router();
-router.use(useCollection('directus_files'));
+router.use(useCollection('superscribe_files'));
 router.get('/:pk/:filename?', 
 // Validate query params
 asyncHandler(async (req, res, next) => {
-    const payloadService = new PayloadService('directus_settings', { schema: req.schema });
+    const payloadService = new PayloadService('superscribe_settings', { schema: req.schema });
     const defaults = { storage_asset_presets: [], storage_asset_transform: 'all' };
     const database = getDatabase();
     const savedAssetSettings = await database
         .select('storage_asset_presets', 'storage_asset_transform')
-        .from('directus_settings')
+        .from('superscribe_settings')
         .first();
     if (savedAssetSettings) {
         await payloadService.processValues('read', savedAssetSettings);

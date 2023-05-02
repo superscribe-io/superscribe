@@ -1,4 +1,4 @@
-import type { InterfaceConfig, DisplayConfig, LayoutConfig, ModuleConfig, PanelConfig, HookConfig, EndpointConfig, OperationAppConfig, OperationApiConfig } from '@directus/types';
+import type { InterfaceConfig, DisplayConfig, LayoutConfig, ModuleConfig, PanelConfig, HookConfig, EndpointConfig, OperationAppConfig, OperationApiConfig } from '@superscribe/types';
 export declare function defineInterface<T extends InterfaceConfig>(config: T): T;
 export declare function defineDisplay<T extends DisplayConfig>(config: T): T;
 export declare function defineLayout<Options = any, Query = any>(config: LayoutConfig<Options, Query>): LayoutConfig<Options, Query>;

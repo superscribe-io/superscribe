@@ -1,6 +1,6 @@
-import { EXTENSION_LANGUAGES, EXTENSION_NAME_REGEX, EXTENSION_PKG_KEY, EXTENSION_TYPES, ExtensionManifest, HYBRID_EXTENSION_TYPES, } from '@directus/constants';
-import { isIn, isTypeIn } from '@directus/utils';
-import { pathToRelativeUrl } from '@directus/utils/node';
+import { EXTENSION_LANGUAGES, EXTENSION_NAME_REGEX, EXTENSION_PKG_KEY, EXTENSION_TYPES, ExtensionManifest, HYBRID_EXTENSION_TYPES, } from '@superscribe/constants';
+import { isIn, isTypeIn } from '@superscribe/utils';
+import { pathToRelativeUrl } from '@superscribe/utils/node';
 import chalk from 'chalk';
 import { execa } from 'execa';
 import fse from 'fs-extra';
@@ -28,7 +28,7 @@ export default async function add() {
         indent = detectJsonIndent(extensionManifestFile);
     }
     catch (e) {
-        log(`Current directory is not a valid Directus extension.`, 'error');
+        log(`Current directory is not a valid Superscribe extension.`, 'error');
         process.exit(1);
     }
     const extensionOptions = extensionManifest[EXTENSION_PKG_KEY];
@@ -60,7 +60,7 @@ export default async function add() {
                 when: !sourceExists && extensionOptions.entries.length > 0,
             },
         ]);
-        const spinner = ora(chalk.bold('Modifying Directus extension...')).start();
+        const spinner = ora(chalk.bold('Modifying Superscribe extension...')).start();
         const source = alternativeSource ?? 'src';
         const sourcePath = path.resolve(source, name);
         await fse.ensureDir(sourcePath);
@@ -146,7 +146,7 @@ export default async function add() {
                 when: !sourceExists,
             },
         ]);
-        const spinner = ora(chalk.bold('Modifying Directus extension...')).start();
+        const spinner = ora(chalk.bold('Modifying Superscribe extension...')).start();
         const source = alternativeSource ?? 'src';
         const convertSourcePath = path.resolve(source, convertName);
         const entrySourcePath = path.resolve(source, name);
@@ -194,8 +194,8 @@ export default async function add() {
         };
         const newExtensionManifest = {
             ...extensionManifest,
-            name: EXTENSION_NAME_REGEX.test(extensionName) ? extensionName : `directus-extension-${extensionName}`,
-            keywords: ['directus', 'directus-extension', `directus-custom-bundle`],
+            name: EXTENSION_NAME_REGEX.test(extensionName) ? extensionName : `superscribe-extension-${extensionName}`,
+            keywords: ['superscribe', 'superscribe-extension', `superscribe-custom-bundle`],
             [EXTENSION_PKG_KEY]: newExtensionOptions,
             devDependencies: await getExtensionDevDeps(entries.map((entry) => entry.type), getLanguageFromEntries(entries)),
         };

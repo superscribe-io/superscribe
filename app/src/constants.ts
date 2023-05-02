@@ -1,4 +1,4 @@
-import { Type } from '@directus/types';
+import { Type } from '@superscribe/types';
 
 export const VALIDATION_TYPES = ['FAILED_VALIDATION', 'RECORD_NOT_UNIQUE'];
 
@@ -28,14 +28,14 @@ export const DIRECTUS_LOGO = `
  * These are the system endpoints that don't have full/regular CRUD operations available.
  */
 export const COLLECTIONS_DENY_LIST = [
-	'directus_activity',
-	'directus_collections',
-	'directus_fields',
-	'directus_migrations',
-	'directus_relations',
-	'directus_revisions',
-	'directus_sessions',
-	'directus_settings',
+	'superscribe_activity',
+	'superscribe_collections',
+	'superscribe_fields',
+	'superscribe_migrations',
+	'superscribe_relations',
+	'superscribe_revisions',
+	'superscribe_sessions',
+	'superscribe_settings',
 ];
 
 export const MODULE_BAR_DEFAULT = [
@@ -65,7 +65,7 @@ export const MODULE_BAR_DEFAULT = [
 		enabled: true,
 		name: '$t:documentation',
 		icon: 'help',
-		url: 'https://docs.directus.io',
+		url: 'https://docs.superscribe.io',
 	},
 	{
 		type: 'module',

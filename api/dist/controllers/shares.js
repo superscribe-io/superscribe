@@ -10,7 +10,7 @@ import { SharesService } from '../services/shares.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_shares'));
+router.use(useCollection('superscribe_shares'));
 const sharedLoginSchema = Joi.object({
     share: Joi.string().required(),
     password: Joi.string(),

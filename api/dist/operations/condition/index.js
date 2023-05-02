@@ -1,4 +1,4 @@
-import { defineOperationApi, validatePayload } from '@directus/utils';
+import { defineOperationApi, validatePayload } from '@superscribe/utils';
 export default defineOperationApi({
     id: 'condition',
     handler: ({ filter }, { data }) => {

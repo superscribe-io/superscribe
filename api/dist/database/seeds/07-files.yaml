@@ -1,4 +1,4 @@
-table: directus_files
+table: superscribe_files
 
 columns:
   id:
@@ -24,12 +24,12 @@ columns:
   folder:
     type: uuid
     references:
-      table: directus_folders
+      table: superscribe_folders
       column: id
   uploaded_by:
     type: uuid
     references:
-      table: directus_users
+      table: superscribe_users
       column: id
   uploaded_on:
     type: timestamp
@@ -38,7 +38,7 @@ columns:
   modified_by:
     type: uuid
     references:
-      table: directus_users
+      table: superscribe_users
       column: id
   modified_on:
     type: timestamp

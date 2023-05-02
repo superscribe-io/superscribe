@@ -1,6 +1,6 @@
 import api from '@/api';
 import { useUserStore } from '@/stores/user';
-import { Preset } from '@directus/types';
+import { Preset } from '@superscribe/types';
 import { cloneDeep, merge, orderBy } from 'lodash';
 import { nanoid } from 'nanoid';
 import { defineStore } from 'pinia';
@@ -20,8 +20,8 @@ const defaultPreset: Omit<Preset, 'collection'> = {
 };
 
 const systemDefaults: Record<string, Partial<Preset>> = {
-	directus_files: {
-		collection: 'directus_files',
+	superscribe_files: {
+		collection: 'superscribe_files',
 		layout: 'cards',
 		layout_query: {
 			cards: {
@@ -38,8 +38,8 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 			},
 		},
 	},
-	directus_users: {
-		collection: 'directus_users',
+	superscribe_users: {
+		collection: 'superscribe_users',
 		layout: 'cards',
 		layout_query: {
 			cards: {
@@ -55,8 +55,8 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 			},
 		},
 	},
-	directus_activity: {
-		collection: 'directus_activity',
+	superscribe_activity: {
+		collection: 'superscribe_activity',
 		layout: 'tabular',
 		layout_query: {
 			tabular: {
@@ -75,8 +75,8 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 			},
 		},
 	},
-	directus_roles: {
-		collection: 'directus_roles',
+	superscribe_roles: {
+		collection: 'superscribe_roles',
 		layout: 'tabular',
 		layout_query: {
 			tabular: {
@@ -93,8 +93,8 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 			},
 		},
 	},
-	directus_webhooks: {
-		collection: 'directus_webhooks',
+	superscribe_webhooks: {
+		collection: 'superscribe_webhooks',
 		layout: 'tabular',
 		layout_query: {
 			tabular: {

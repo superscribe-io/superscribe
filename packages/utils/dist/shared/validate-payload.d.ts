@@ -1,4 +1,4 @@
-import type { Filter } from '@directus/types';
+import type { Filter } from '@superscribe/types';
 import type Joi from 'joi';
 import type { JoiOptions } from './generate-joi.js';
 /**

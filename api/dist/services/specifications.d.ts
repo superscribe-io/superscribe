@@ -1,6 +1,6 @@
 import type { Knex } from 'knex';
 import type { OpenAPIObject } from 'openapi3-ts';
-import type { Accountability, SchemaOverview } from '@directus/types';
+import type { Accountability, SchemaOverview } from '@superscribe/types';
 import type { AbstractServiceOptions } from '../types/index.js';
 import { CollectionsService } from './collections.js';
 import { FieldsService } from './fields.js';

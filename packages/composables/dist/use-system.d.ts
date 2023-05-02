@@ -1,4 +1,4 @@
-import type { AppExtensionConfigs, RefRecord } from '@directus/types';
+import type { AppExtensionConfigs, RefRecord } from '@superscribe/types';
 import type { AxiosInstance } from 'axios';
 export declare function useStores(): Record<string, any>;
 export declare function useApi(): AxiosInstance;

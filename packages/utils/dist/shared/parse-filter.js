@@ -1,4 +1,4 @@
-import { REGEX_BETWEEN_PARENS } from '@directus/constants';
+import { REGEX_BETWEEN_PARENS } from '@superscribe/constants';
 import { isObjectLike } from 'lodash-es';
 import { adjustDate } from './adjust-date.js';
 import { deepMap } from './deep-map.js';

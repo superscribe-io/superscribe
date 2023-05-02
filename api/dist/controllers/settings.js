@@ -5,7 +5,7 @@ import useCollection from '../middleware/use-collection.js';
 import { SettingsService } from '../services/settings.js';
 import asyncHandler from '../utils/async-handler.js';
 const router = express.Router();
-router.use(useCollection('directus_settings'));
+router.use(useCollection('superscribe_settings'));
 router.get('/', asyncHandler(async (req, res, next) => {
     const service = new SettingsService({
         accountability: req.accountability,

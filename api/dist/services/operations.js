@@ -2,7 +2,7 @@ import { getFlowManager } from '../flows.js';
 import { ItemsService } from './items.js';
 export class OperationsService extends ItemsService {
     constructor(options) {
-        super('directus_operations', options);
+        super('superscribe_operations', options);
     }
     async createOne(data, opts) {
         const flowManager = getFlowManager();

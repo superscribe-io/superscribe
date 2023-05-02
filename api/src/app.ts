@@ -83,7 +83,7 @@ export default async function createApp(): Promise<express.Application> {
 	await validateDatabaseExtensions();
 
 	if ((await isInstalled()) === false) {
-		logger.error(`Database doesn't have Directus tables installed.`);
+		logger.error(`Database doesn't have superscribe tables installed.`);
 		process.exit(1);
 	}
 
@@ -120,11 +120,11 @@ export default async function createApp(): Promise<express.Application> {
 						upgradeInsecureRequests: null,
 
 						// These are required for MapLibre
-						// https://cdn.directus.io is required for images/videos in the official docs
+						// https://cdn.superscribe.io is required for images/videos in the official docs
 						workerSrc: ["'self'", 'blob:'],
 						childSrc: ["'self'", 'blob:'],
-						imgSrc: ["'self'", 'data:', 'blob:', 'https://cdn.directus.io'],
-						mediaSrc: ["'self'", 'https://cdn.directus.io'],
+						imgSrc: ["'self'", 'data:', 'blob:', 'https://cdn.superscribe.io'],
+						mediaSrc: ["'self'", 'https://cdn.superscribe.io'],
 						connectSrc: ["'self'", 'https://*'],
 					},
 				},
@@ -144,7 +144,7 @@ export default async function createApp(): Promise<express.Application> {
 	app.use(expressLogger);
 
 	app.use((_req, res, next) => {
-		res.setHeader('X-Powered-By', 'Directus');
+		res.setHeader('X-Powered-By', 'superscribe');
 		next();
 	});
 
@@ -185,7 +185,7 @@ export default async function createApp(): Promise<express.Application> {
 	});
 
 	if (env['SERVE_APP']) {
-		const adminPath = require.resolve('@directus/app');
+		const adminPath = require.resolve('@superscribe/app');
 		const adminUrl = new Url(env['PUBLIC_URL']).addPath('admin');
 
 		const embeds = extensionManager.getEmbeds();

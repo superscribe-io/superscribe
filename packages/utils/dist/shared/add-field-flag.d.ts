@@ -1,4 +1,4 @@
-import type { RawField } from '@directus/types';
+import type { RawField } from '@superscribe/types';
 /**
  * Add a flag to a field.
  */

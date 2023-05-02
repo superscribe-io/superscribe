@@ -1,4 +1,4 @@
-import { Type } from '@directus/types';
+import { Type } from '@superscribe/types';
 
 const defaultDisplayMap: Record<Type, string> = {
 	alias: 'raw',

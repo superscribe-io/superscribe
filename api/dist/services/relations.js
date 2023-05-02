@@ -1,5 +1,5 @@
-import { createInspector } from '@directus/schema';
-import { toArray } from '@directus/utils';
+import { createInspector } from '@superscribe/schema';
+import { toArray } from '@superscribe/utils';
 import { clearSystemCache, getCache } from '../cache.js';
 import { getHelpers } from '../database/helpers/index.js';
 import getDatabase, { getSchemaInspector } from '../database/index.js';
@@ -25,11 +25,11 @@ export class RelationsService {
         this.schemaInspector = options.knex ? createInspector(options.knex) : getSchemaInspector();
         this.schema = options.schema;
         this.accountability = options.accountability || null;
-        this.relationsItemService = new ItemsService('directus_relations', {
+        this.relationsItemService = new ItemsService('superscribe_relations', {
             knex: this.knex,
             schema: this.schema,
             // We don't set accountability here. If you have read access to certain fields, you are
-            // allowed to extract the relations regardless of permissions to directus_relations. This
+            // allowed to extract the relations regardless of permissions to superscribe_relations. This
             // happens in `filterForbidden` down below
         });
         this.systemCache = getCache().systemCache;
@@ -155,11 +155,11 @@ export class RelationsService {
                         }
                     });
                 }
-                const relationsItemService = new ItemsService('directus_relations', {
+                const relationsItemService = new ItemsService('superscribe_relations', {
                     knex: trx,
                     schema: this.schema,
                     // We don't set accountability here. If you have read access to certain fields, you are
-                    // allowed to extract the relations regardless of permissions to directus_relations. This
+                    // allowed to extract the relations regardless of permissions to superscribe_relations. This
                     // happens in `filterForbidden` down below
                 });
                 await relationsItemService.createOne(metaRow, {
@@ -226,11 +226,11 @@ export class RelationsService {
                         }
                     });
                 }
-                const relationsItemService = new ItemsService('directus_relations', {
+                const relationsItemService = new ItemsService('superscribe_relations', {
                     knex: trx,
                     schema: this.schema,
                     // We don't set accountability here. If you have read access to certain fields, you are
-                    // allowed to extract the relations regardless of permissions to directus_relations. This
+                    // allowed to extract the relations regardless of permissions to superscribe_relations. This
                     // happens in `filterForbidden` down below
                 });
                 if (relation.meta) {
@@ -298,7 +298,7 @@ export class RelationsService {
                     });
                 }
                 if (existingRelation.meta) {
-                    await trx('directus_relations').delete().where({ many_collection: collection, many_field: field });
+                    await trx('superscribe_relations').delete().where({ many_collection: collection, many_field: field });
                 }
                 const actionEvent = {
                     event: 'relations.delete',
@@ -341,11 +341,11 @@ export class RelationsService {
      */
     get hasReadAccess() {
         return !!this.accountability?.permissions?.find((permission) => {
-            return permission.collection === 'directus_relations' && permission.action === 'read';
+            return permission.collection === 'superscribe_relations' && permission.action === 'read';
         });
     }
     /**
-     * Combine raw schema foreign key information with Directus relations meta rows to form final
+     * Combine raw schema foreign key information with Superscribe relations meta rows to form final
      * Relation objects
      */
     stitchRelations(metaRows, schemaRows) {

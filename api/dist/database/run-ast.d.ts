@@ -1,4 +1,4 @@
-import type { Item, SchemaOverview } from '@directus/types';
+import type { Item, SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { AST, NestedCollectionNode } from '../types/ast.js';
 type RunASTOptions = {

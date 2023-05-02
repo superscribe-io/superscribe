@@ -1,4 +1,4 @@
-import type { Relation } from '@directus/types';
+import type { Relation } from '@superscribe/types';
 export declare function getRelationType(getRelationOptions: {
     relation: Relation;
     collection: string | null;

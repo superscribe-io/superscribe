@@ -1,4 +1,4 @@
-import type { SchemaOverview } from '@directus/types';
+import type { SchemaOverview } from '@superscribe/types';
 import type { PrimaryKey } from '../types/index.js';
 /**
  * Validate keys based on its type

@@ -78,7 +78,7 @@ test('Sets accountability to payload contents if valid token is passed', async (
         admin_access: adminAccess,
         share,
         share_scope: shareScope,
-    }, env['SECRET'], { issuer: 'directus' });
+    }, env['SECRET'], { issuer: 'superscribe' });
     const req = {
         ip: '127.0.0.1',
         get: vi.fn((string) => {
@@ -117,7 +117,7 @@ test('Sets accountability to payload contents if valid token is passed', async (
         admin_access: 0,
         share,
         share_scope: shareScope,
-    }, env['SECRET'], { issuer: 'directus' });
+    }, env['SECRET'], { issuer: 'superscribe' });
     await handler(req, res, next);
     expect(req.accountability).toEqual({
         user: userID,

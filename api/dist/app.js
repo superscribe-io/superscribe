@@ -69,7 +69,7 @@ export default async function createApp() {
     await validateDatabaseConnection();
     await validateDatabaseExtensions();
     if ((await isInstalled()) === false) {
-        logger.error(`Database doesn't have Directus tables installed.`);
+        logger.error(`Database doesn't have superscribe tables installed.`);
         process.exit(1);
     }
     if ((await validateMigrations()) === false) {
@@ -94,11 +94,11 @@ export default async function createApp() {
             // friendly. Ref #10806
             upgradeInsecureRequests: null,
             // These are required for MapLibre
-            // https://cdn.directus.io is required for images/videos in the official docs
+            // https://cdn.superscribe.io is required for images/videos in the official docs
             workerSrc: ["'self'", 'blob:'],
             childSrc: ["'self'", 'blob:'],
-            imgSrc: ["'self'", 'data:', 'blob:', 'https://cdn.directus.io'],
-            mediaSrc: ["'self'", 'https://cdn.directus.io'],
+            imgSrc: ["'self'", 'data:', 'blob:', 'https://cdn.superscribe.io'],
+            mediaSrc: ["'self'", 'https://cdn.superscribe.io'],
             connectSrc: ["'self'", 'https://*'],
         },
     }, getConfigFromEnv('CONTENT_SECURITY_POLICY_'))));
@@ -109,7 +109,7 @@ export default async function createApp() {
     await emitter.emitInit('middlewares.before', { app });
     app.use(expressLogger);
     app.use((_req, res, next) => {
-        res.setHeader('X-Powered-By', 'Directus');
+        res.setHeader('X-Powered-By', 'superscribe');
         next();
     });
     if (env['CORS_ENABLED'] === true) {
@@ -141,7 +141,7 @@ export default async function createApp() {
         res.send(env['ROBOTS_TXT']);
     });
     if (env['SERVE_APP']) {
-        const adminPath = require.resolve('@directus/app');
+        const adminPath = require.resolve('@superscribe/app');
         const adminUrl = new Url(env['PUBLIC_URL']).addPath('admin');
         const embeds = extensionManager.getEmbeds();
         // Set the App's base path according to the APIs public URL

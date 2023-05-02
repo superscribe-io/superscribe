@@ -1,4 +1,4 @@
-import { normalizePath } from '@directus/utils';
+import { normalizePath } from '@superscribe/utils';
 import { Storage } from '@google-cloud/storage';
 import { join } from 'node:path';
 import { pipeline } from 'node:stream/promises';

@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import env from '../env.js';
 export function getAuthProviders() {
     return toArray(env['AUTH_PROVIDERS'])

@@ -1,4 +1,4 @@
-import { BaseException } from '@directus/exceptions';
+import { BaseException } from '@superscribe/exceptions';
 
 export class RouteNotFoundException extends BaseException {
 	constructor(path: string) {

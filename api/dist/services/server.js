@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import { merge } from 'lodash-es';
 import { Readable } from 'node:stream';
 import os from 'os';
@@ -67,7 +67,7 @@ export class ServerService {
         }
         if (this.accountability?.admin === true) {
             const { osType, osVersion } = getOSInfo();
-            info['directus'] = {
+            info['superscribe'] = {
                 version,
             };
             info['node'] = {

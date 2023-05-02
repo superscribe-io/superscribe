@@ -1,4 +1,4 @@
-import type { API_EXTENSION_TYPES, APP_EXTENSION_TYPES, BUNDLE_EXTENSION_TYPES, EXTENSION_TYPES, ExtensionManifest, ExtensionOptions, ExtensionOptionsBundleEntries, ExtensionOptionsBundleEntry, HYBRID_EXTENSION_TYPES, LOCAL_TYPES, NESTED_EXTENSION_TYPES, SplitEntrypoint } from '@directus/constants';
+import type { API_EXTENSION_TYPES, APP_EXTENSION_TYPES, BUNDLE_EXTENSION_TYPES, EXTENSION_TYPES, ExtensionManifest, ExtensionOptions, ExtensionOptionsBundleEntries, ExtensionOptionsBundleEntry, HYBRID_EXTENSION_TYPES, LOCAL_TYPES, NESTED_EXTENSION_TYPES, SplitEntrypoint } from '@superscribe/constants';
 import type { Knex } from 'knex';
 import type { Logger } from 'pino';
 import type { z } from 'zod';

@@ -1,5 +1,5 @@
 ---
-description: REST and GraphQL API documentation on the Settings collection in Directus.
+description: REST and GraphQL API documentation on the Settings collection in Superscribe.
 readTime: 3 min read
 pageClass: page-reference
 ---
@@ -78,7 +78,7 @@ Custom aspect ratios in the [image editor](/app/file-library#edit-an-image).
 {
 	"data": {
 		"id": 1,
-		"project_name": "Directus",
+		"project_name": "Superscribe",
 		"project_descriptor": "Application",
 		"project_url": null,
 		"project_color": null,
@@ -149,7 +149,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	settings: directus_settings
+	settings: superscribe_settings
 }
 ```
 
@@ -203,7 +203,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	update_settings(data: update_directus_settings_input!): directus_settings
+	update_settings(data: update_superscribe_settings_input!): superscribe_settings
 }
 ```
 

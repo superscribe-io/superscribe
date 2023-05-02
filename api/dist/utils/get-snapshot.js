@@ -26,7 +26,7 @@ export async function getSnapshot(options) {
     const relationsSorted = sortBy(mapValues(relationsFiltered, sortDeep), ['collection', 'field']);
     return {
         version: 1,
-        directus: version,
+        superscribe: version,
         vendor,
         collections: collectionsSorted.map((collection) => sanitizeCollection(collection)),
         fields: fieldsSorted.map((field) => sanitizeField(field)),

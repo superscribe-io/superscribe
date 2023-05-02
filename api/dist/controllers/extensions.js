@@ -1,5 +1,5 @@
-import { EXTENSION_TYPES } from '@directus/constants';
-import { depluralize, isIn } from '@directus/utils';
+import { EXTENSION_TYPES } from '@superscribe/constants';
+import { depluralize, isIn } from '@superscribe/utils';
 import { Router } from 'express';
 import env from '../env.js';
 import { RouteNotFoundException } from '../exceptions/index.js';

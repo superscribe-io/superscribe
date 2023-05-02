@@ -39,7 +39,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
     else {
         result = await collectionsService.readByQuery();
     }
-    const meta = await metaService.getMetaForQuery('directus_collections', {});
+    const meta = await metaService.getMetaForQuery('superscribe_collections', {});
     res.locals['payload'] = { data: result, meta };
     return next();
 });

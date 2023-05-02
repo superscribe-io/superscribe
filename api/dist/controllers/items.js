@@ -9,7 +9,7 @@ import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
 router.post('/:collection', collectionExists, asyncHandler(async (req, res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     if (req.singleton) {
         throw new RouteNotFoundException(req.path);
@@ -46,7 +46,7 @@ router.post('/:collection', collectionExists, asyncHandler(async (req, res, next
     return next();
 }), respond);
 const readHandler = asyncHandler(async (req, res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     const service = new ItemsService(req.collection, {
         accountability: req.accountability,
@@ -76,7 +76,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
 router.search('/:collection', collectionExists, validateBatch('read'), readHandler, respond);
 router.get('/:collection', collectionExists, readHandler, respond);
 router.get('/:collection/:pk', collectionExists, asyncHandler(async (req, res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     const service = new ItemsService(req.collection, {
         accountability: req.accountability,
@@ -89,7 +89,7 @@ router.get('/:collection/:pk', collectionExists, asyncHandler(async (req, res, n
     return next();
 }), respond);
 router.patch('/:collection', collectionExists, validateBatch('update'), asyncHandler(async (req, res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     const service = new ItemsService(req.collection, {
         accountability: req.accountability,
@@ -125,7 +125,7 @@ router.patch('/:collection', collectionExists, validateBatch('update'), asyncHan
     return next();
 }), respond);
 router.patch('/:collection/:pk', collectionExists, asyncHandler(async (req, res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     if (req.singleton) {
         throw new RouteNotFoundException(req.path);
@@ -148,7 +148,7 @@ router.patch('/:collection/:pk', collectionExists, asyncHandler(async (req, res,
     return next();
 }), respond);
 router.delete('/:collection', collectionExists, validateBatch('delete'), asyncHandler(async (req, _res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     const service = new ItemsService(req.collection, {
         accountability: req.accountability,
@@ -167,7 +167,7 @@ router.delete('/:collection', collectionExists, validateBatch('delete'), asyncHa
     return next();
 }), respond);
 router.delete('/:collection/:pk', collectionExists, asyncHandler(async (req, _res, next) => {
-    if (req.params['collection'].startsWith('directus_'))
+    if (req.params['collection'].startsWith('superscribe_'))
         throw new ForbiddenException();
     const service = new ItemsService(req.collection, {
         accountability: req.accountability,

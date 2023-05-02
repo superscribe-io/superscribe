@@ -130,15 +130,15 @@ export default defineComponent({
 		const createDialogActive = ref(false);
 
 		const createAllowed = computed<boolean>(() => {
-			return permissionsStore.hasPermission('directus_dashboards', 'create');
+			return permissionsStore.hasPermission('superscribe_dashboards', 'create');
 		});
 
 		const updateAllowed = computed<boolean>(() => {
-			return permissionsStore.hasPermission('directus_dashboards', 'update');
+			return permissionsStore.hasPermission('superscribe_dashboards', 'update');
 		});
 
 		const deleteAllowed = computed<boolean>(() => {
-			return permissionsStore.hasPermission('directus_dashboards', 'delete');
+			return permissionsStore.hasPermission('superscribe_dashboards', 'delete');
 		});
 
 		const tableHeaders = ref<Header[]>([

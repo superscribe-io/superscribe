@@ -5,7 +5,7 @@ export class SchemaHelperMySQL extends SchemaHelper {
         if (getDatabaseVersion()?.startsWith('5.7')) {
             dbQuery.orderByRaw(`?? asc, ${orderByString}`, [`${table}.${primaryKey}`, ...orderByFields]);
             dbQuery = knex
-                .select(knex.raw(`??, ( @rank := IF ( @cur_id = deep.${primaryKey}, @rank + 1, 1 ) ) AS directus_row_number, ( @cur_id := deep.${primaryKey} ) AS current_id`, 'deep.*'))
+                .select(knex.raw(`??, ( @rank := IF ( @cur_id = deep.${primaryKey}, @rank + 1, 1 ) ) AS superscribe_row_number, ( @cur_id := deep.${primaryKey} ) AS current_id`, 'deep.*'))
                 .from(knex.raw('? as ??, (SELECT @rank := 0,  @cur_id := null) vars', [dbQuery, 'deep']));
             return dbQuery;
         }

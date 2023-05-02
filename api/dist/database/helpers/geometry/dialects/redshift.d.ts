@@ -1,4 +1,4 @@
-import type { Field, RawField } from '@directus/types';
+import type { Field, RawField } from '@superscribe/types';
 import type { Knex } from 'knex';
 import { GeometryHelper } from '../types.js';
 export declare class GeometryHelperRedshift extends GeometryHelper {

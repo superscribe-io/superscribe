@@ -1,4 +1,4 @@
-import { defineOperationApi, optionToString, toArray } from '@directus/utils';
+import { defineOperationApi, optionToString, toArray } from '@superscribe/utils';
 import { NotificationsService } from '../../services/notifications.js';
 import { getAccountabilityForRole } from '../../utils/get-accountability-for-role.js';
 export default defineOperationApi({

@@ -1,5 +1,5 @@
-import { FailedValidationException } from '@directus/exceptions';
-import { validatePayload } from '@directus/utils';
+import { FailedValidationException } from '@superscribe/exceptions';
+import { validatePayload } from '@superscribe/utils';
 import { cloneDeep, flatten, isArray, isNil, merge, reduce, uniq, uniqWith } from 'lodash-es';
 import { GENERATE_SPECIAL } from '../constants.js';
 import getDatabase from '../database/index.js';
@@ -17,7 +17,7 @@ export class AuthorizationService {
         this.knex = options.knex || getDatabase();
         this.accountability = options.accountability || null;
         this.schema = options.schema;
-        this.payloadService = new PayloadService('directus_permissions', {
+        this.payloadService = new PayloadService('superscribe_permissions', {
             knex: this.knex,
             schema: this.schema,
         });

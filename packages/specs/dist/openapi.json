@@ -1,10 +1,10 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Directus",
+    "title": "Superscribe",
     "description": "A real-time API and App dashboard for managing SQL database content.",
     "contact": {
-      "email": "contact@directus.io"
+      "email": "contact@superscribe.io"
     },
     "license": {
       "name": "GPL-3.0",
@@ -13,14 +13,14 @@
     "version": "9.0.0"
   },
   "externalDocs": {
-    "description": "Directus Docs",
-    "url": "https://docs.directus.io"
+    "description": "Superscribe Docs",
+    "url": "https://docs.superscribe.io"
   },
   "tags": [
     {
       "name": "Activity",
-      "description": "All events that happen within Directus are tracked and stored in the activities collection. This gives you full accountability over everything that happens.",
-      "x-collection": "directus_activity"
+      "description": "All events that happen within Superscribe are tracked and stored in the activities collection. This gives you full accountability over everything that happens.",
+      "x-collection": "superscribe_activity"
     },
     {
       "name": "Assets",
@@ -28,41 +28,41 @@
     },
     {
       "name": "Authentication",
-      "description": "All events that happen within Directus are tracked and stored in the activities collection. This gives you full accountability over everything that happens."
+      "description": "All events that happen within Superscribe are tracked and stored in the activities collection. This gives you full accountability over everything that happens."
     },
     {
       "name": "Presets",
-      "description": "Presets hold the preferences of individual users of the platform. This allows Directus to show and maintain custom item listings for users of the app.",
-      "x-collection": "directus_presets"
+      "description": "Presets hold the preferences of individual users of the platform. This allows Superscribe to show and maintain custom item listings for users of the app.",
+      "x-collection": "superscribe_presets"
     },
     {
       "name": "Collections",
       "description": "Collections are the individual collections of items, similar to tables in a database. Changes to collections will alter the schema of the database.",
-      "x-collection": "directus_collections"
+      "x-collection": "superscribe_collections"
     },
     {
       "name": "Extensions",
-      "description": "Directus can easily be extended through the addition of several types of extensions, including layouts, interfaces, and modules."
+      "description": "Superscribe can easily be extended through the addition of several types of extensions, including layouts, interfaces, and modules."
     },
     {
       "name": "Fields",
       "description": "Fields are individual pieces of content within an item. They are mapped to columns in the database.",
-      "x-collection": "directus_fields"
+      "x-collection": "superscribe_fields"
     },
     {
       "name": "Files",
-      "description": "Files can be saved in any given location. Directus has a powerful assets endpoint that can be used to generate thumbnails for images on the fly.",
-      "x-collection": "directus_files"
+      "description": "Files can be saved in any given location. Superscribe has a powerful assets endpoint that can be used to generate thumbnails for images on the fly.",
+      "x-collection": "superscribe_files"
     },
     {
       "name": "Flows",
       "description": "Flows enable custom, event-driven data processing and task automation.",
-      "x-collection": "directus_flows"
+      "x-collection": "superscribe_flows"
     },
     {
       "name": "Folders",
       "description": "Group files by virtual folders.",
-      "x-collection": "directus_folders"
+      "x-collection": "superscribe_folders"
     },
     {
       "name": "Items",
@@ -71,27 +71,27 @@
     {
       "name": "Operations",
       "description": "Operations are the building blocks within Data Flows.",
-      "x-collection": "directus_operations"
+      "x-collection": "superscribe_operations"
     },
     {
       "name": "Permissions",
       "description": "Permissions control who has access to what and when.",
-      "x-collection": "directus_permissions"
+      "x-collection": "superscribe_permissions"
     },
     {
       "name": "Relations",
       "description": "What data is linked to what other data. Allows you to assign authors to articles, products to sales, and whatever other structures you can think of.",
-      "x-collection": "directus_relations"
+      "x-collection": "superscribe_relations"
     },
     {
       "name": "Revisions",
-      "description": "Revisions are individual changes to items made. Directus keeps track of changes made, so you're able to revert to a previous state at will.",
-      "x-collection": "directus_revisions"
+      "description": "Revisions are individual changes to items made. Superscribe keeps track of changes made, so you're able to revert to a previous state at will.",
+      "x-collection": "superscribe_revisions"
     },
     {
       "name": "Roles",
       "description": "Roles are groups of users that share permissions.",
-      "x-collection": "directus_roles"
+      "x-collection": "superscribe_roles"
     },
     {
       "name": "Schema",
@@ -99,26 +99,26 @@
     },
     {
       "name": "Server",
-      "description": "Access to where Directus runs. Allows you to make sure your server has everything needed to run the platform, and check what kind of latency we're dealing with."
+      "description": "Access to where Superscribe runs. Allows you to make sure your server has everything needed to run the platform, and check what kind of latency we're dealing with."
     },
     {
       "name": "Settings",
       "description": "Settings control the way the platform works and acts.",
-      "x-collection": "directus_settings"
+      "x-collection": "superscribe_settings"
     },
     {
       "name": "Users",
       "description": "Users are what gives you access to the data.",
-      "x-collection": "directus_users"
+      "x-collection": "superscribe_users"
     },
     {
       "name": "Utilities",
-      "description": "Directus comes with various utility endpoints you can use to simplify your development flow."
+      "description": "Superscribe comes with various utility endpoints you can use to simplify your development flow."
     },
     {
       "name": "Webhooks",
       "description": "Webhooks.",
-      "x-collection": "directus_webhooks"
+      "x-collection": "superscribe_webhooks"
     }
   ],
   "paths": {
@@ -253,7 +253,7 @@
     "/activity/{id}": {
       "get": {
         "summary": "Retrieve an Activity Action",
-        "description": "Retrieves the details of an existing activity action. Provide the primary key of the activity action and Directus will return the corresponding information.",
+        "description": "Retrieves the details of an existing activity action. Provide the primary key of the activity action and Superscribe will return the corresponding information.",
         "operationId": "getActivity",
         "parameters": [
           {
@@ -1411,7 +1411,7 @@
       },
       "post": {
         "summary": "Create a Collection",
-        "description": "Create a new collection in Directus.",
+        "description": "Create a new collection in Superscribe.",
         "operationId": "createCollection",
         "parameters": [
           {
@@ -1978,7 +1978,7 @@
                     "type": "string"
                   },
                   "type": {
-                    "description": "Directus specific data type. Used to cast values in the API.",
+                    "description": "Superscribe specific data type. Used to cast values in the API.",
                     "example": "integer",
                     "type": "string"
                   },
@@ -2065,7 +2065,7 @@
                     "nullable": true,
                     "properties": {
                       "id": {
-                        "description": "Unique identifier for the field in the `directus_fields` collection.",
+                        "description": "Unique identifier for the field in the `superscribe_fields` collection.",
                         "example": 3,
                         "type": "integer"
                       },
@@ -2113,7 +2113,7 @@
                         "nullable": true
                       },
                       "locked": {
-                        "description": "If the field can be altered by the end user. Directus system fields have this value set to `true`.",
+                        "description": "If the field can be altered by the end user. Superscribe system fields have this value set to `true`.",
                         "example": true,
                         "type": "boolean"
                       },
@@ -2259,7 +2259,7 @@
                     "type": "string"
                   },
                   "type": {
-                    "description": "Directus specific data type. Used to cast values in the API.",
+                    "description": "Superscribe specific data type. Used to cast values in the API.",
                     "example": "integer",
                     "type": "string"
                   },
@@ -2346,7 +2346,7 @@
                     "nullable": true,
                     "properties": {
                       "id": {
-                        "description": "Unique identifier for the field in the `directus_fields` collection.",
+                        "description": "Unique identifier for the field in the `superscribe_fields` collection.",
                         "example": 3,
                         "type": "integer"
                       },
@@ -2394,7 +2394,7 @@
                         "nullable": true
                       },
                       "locked": {
-                        "description": "If the field can be altered by the end user. Directus system fields have this value set to `true`.",
+                        "description": "If the field can be altered by the end user. Superscribe system fields have this value set to `true`.",
                         "example": true,
                         "type": "boolean"
                       },
@@ -5260,7 +5260,7 @@
     "/users/me/track/page": {
       "patch": {
         "summary": "Update Last Page",
-        "description": "Updates the last used page field of the currently authenticated user. This is used internally to be able to open the Directus admin app from the last page you used.",
+        "description": "Updates the last used page field of the currently authenticated user. This is used internally to be able to open the Superscribe admin app from the last page you used.",
         "operationId": "updateLastUsedPageMe",
         "requestBody": {
           "content": {
@@ -5574,7 +5574,7 @@
     "/utils/cache/clear": {
       "post": {
         "summary": "Clear Cache",
-        "description": "Resets both the data and schema cache of Directus.",
+        "description": "Resets both the data and schema cache of Superscribe.",
         "operationId": "clear-cache",
         "responses": {
           "200": {
@@ -5886,7 +5886,7 @@
     "schemas": {
       "Activity": {
         "type": "object",
-        "x-collection": "directus_activity",
+        "x-collection": "superscribe_activity",
         "properties": {
           "id": {
             "description": "Unique identifier for the object.",
@@ -5939,7 +5939,7 @@
           },
           "origin": {
             "description": "Origin of the request when the action took place.",
-            "example": "https://directus.io",
+            "example": "https://superscribe.io",
             "type": "string"
           },
           "collection": {
@@ -5968,7 +5968,7 @@
       },
       "Presets": {
         "type": "object",
-        "x-collection": "directus_presets",
+        "x-collection": "superscribe_presets",
         "properties": {
           "id": {
             "description": "Unique identifier for this single collection preset.",
@@ -6069,7 +6069,7 @@
       },
       "Collections": {
         "type": "object",
-        "x-collection": "directus_collections",
+        "x-collection": "superscribe_collections",
         "properties": {
           "collection": {
             "description": "The collection key.",
@@ -6257,7 +6257,7 @@
       },
       "Fields": {
         "type": "object",
-        "x-collection": "directus_fields",
+        "x-collection": "superscribe_fields",
         "properties": {
           "collection": {
             "description": "Unique name of the collection this field is in.",
@@ -6270,7 +6270,7 @@
             "type": "string"
           },
           "type": {
-            "description": "Directus specific data type. Used to cast values in the API.",
+            "description": "Superscribe specific data type. Used to cast values in the API.",
             "example": "integer",
             "type": "string"
           },
@@ -6357,7 +6357,7 @@
             "nullable": true,
             "properties": {
               "id": {
-                "description": "Unique identifier for the field in the `directus_fields` collection.",
+                "description": "Unique identifier for the field in the `superscribe_fields` collection.",
                 "example": 3,
                 "type": "integer"
               },
@@ -6405,7 +6405,7 @@
                 "nullable": true
               },
               "locked": {
-                "description": "If the field can be altered by the end user. Most Directus system fields have this value set to `true`.",
+                "description": "If the field can be altered by the end user. Most Superscribe system fields have this value set to `true`.",
                 "example": true,
                 "type": "boolean"
               },
@@ -6463,7 +6463,7 @@
       },
       "Files": {
         "type": "object",
-        "x-collection": "directus_files",
+        "x-collection": "superscribe_files",
         "properties": {
           "id": {
             "description": "Unique identifier for the file.",
@@ -6476,7 +6476,7 @@
             "type": "string"
           },
           "filename_disk": {
-            "description": "Name of the file on disk. By default, Directus uses a random hash for the filename.",
+            "description": "Name of the file on disk. By default, Superscribe uses a random hash for the filename.",
             "example": "a88c3b72-ac58-5436-a4ec-b2858531333a.jpg",
             "type": "string"
           },
@@ -6588,7 +6588,7 @@
       },
       "Flows": {
         "type": "object",
-        "x-collection": "directus_flows",
+        "x-collection": "superscribe_flows",
         "properties": {
           "id": {
             "description": "Unique identifier for the flow.",
@@ -6677,7 +6677,7 @@
       },
       "Folders": {
         "type": "object",
-        "x-collection": "directus_files",
+        "x-collection": "superscribe_files",
         "properties": {
           "id": {
             "description": "Unique identifier for the folder.",
@@ -6710,7 +6710,7 @@
       },
       "Operations": {
         "type": "object",
-        "x-collection": "directus_operations",
+        "x-collection": "superscribe_operations",
         "properties": {
           "id": {
             "description": "Unique identifier for the operation.",
@@ -6807,7 +6807,7 @@
       },
       "Permissions": {
         "type": "object",
-        "x-collection": "directus_permissions",
+        "x-collection": "superscribe_permissions",
         "properties": {
           "id": {
             "description": "Unique identifier for the permission.",
@@ -6863,7 +6863,7 @@
       },
       "Relations": {
         "type": "object",
-        "x-collection": "directus_relations",
+        "x-collection": "superscribe_relations",
         "properties": {
           "id": {
             "description": "Unique identifier for the relation.",
@@ -6872,7 +6872,7 @@
           },
           "many_collection": {
             "description": "Collection that has the field that holds the foreign key.",
-            "example": "directus_activity",
+            "example": "superscribe_activity",
             "type": "string"
           },
           "many_field": {
@@ -6887,7 +6887,7 @@
           },
           "one_collection": {
             "description": "Collection on the _one_ side of the relationship.",
-            "example": "directus_users",
+            "example": "superscribe_users",
             "type": "string"
           },
           "one_field": {
@@ -6911,7 +6911,7 @@
       },
       "Revisions": {
         "type": "object",
-        "x-collection": "directus_revisions",
+        "x-collection": "superscribe_revisions",
         "properties": {
           "id": {
             "description": "Unique identifier for the revision.",
@@ -6976,7 +6976,7 @@
       },
       "Roles": {
         "type": "object",
-        "x-collection": "directus_roles",
+        "x-collection": "superscribe_roles",
         "properties": {
           "id": {
             "description": "Unique identifier for the role.",
@@ -7031,7 +7031,7 @@
             "type": "integer",
             "example": 1
           },
-          "directus": {
+          "superscribe": {
             "type": "string"
           },
           "vendor": {
@@ -7059,7 +7059,7 @@
       },
       "Settings": {
         "type": "object",
-        "x-collection": "directus_settings",
+        "x-collection": "superscribe_settings",
         "properties": {
           "id": {
             "description": "Unique identifier for the setting.",
@@ -7069,7 +7069,7 @@
           "project_name": {
             "description": "The name of the project.",
             "type": "string",
-            "example": "Directus"
+            "example": "Superscribe"
           },
           "project_url": {
             "description": "The url of the project.",
@@ -7218,7 +7218,7 @@
       },
       "Users": {
         "type": "object",
-        "x-collection": "directus_users",
+        "x-collection": "superscribe_users",
         "properties": {
           "id": {
             "description": "Unique identifier for the user.",
@@ -7286,7 +7286,7 @@
             "nullable": true
           },
           "language": {
-            "description": "The user's language used in Directus.",
+            "description": "The user's language used in Superscribe.",
             "example": "en-US",
             "type": "string"
           },
@@ -7411,7 +7411,7 @@
       },
       "Webhooks": {
         "type": "object",
-        "x-collection": "directus_webhooks",
+        "x-collection": "superscribe_webhooks",
         "properties": {
           "id": {
             "description": "The index of the webhook.",

@@ -1,4 +1,4 @@
-import type { Relation } from '@directus/types';
+import type { Relation } from '@superscribe/types';
 type RelationInfo = {
     relation: Relation | null;
     relationType: string | null;

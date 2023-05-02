@@ -3,7 +3,7 @@ import { InvalidIPException } from '../exceptions/index.js';
 import asyncHandler from '../utils/async-handler.js';
 export const checkIP = asyncHandler(async (req, _res, next) => {
     const database = getDatabase();
-    const query = database.select('ip_access').from('directus_roles');
+    const query = database.select('ip_access').from('superscribe_roles');
     if (req.accountability.role) {
         query.where({ id: req.accountability.role });
     }

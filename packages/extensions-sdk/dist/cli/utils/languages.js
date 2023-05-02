@@ -1,4 +1,4 @@
-import { EXTENSION_LANGUAGES } from '@directus/constants';
+import { EXTENSION_LANGUAGES } from '@superscribe/constants';
 export function isLanguage(language) {
     return EXTENSION_LANGUAGES.includes(language);
 }

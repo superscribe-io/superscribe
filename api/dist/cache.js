@@ -1,4 +1,4 @@
-import { getSimpleHash } from '@directus/utils';
+import { getSimpleHash } from '@superscribe/utils';
 import Keyv from 'keyv';
 import env from './env.js';
 import logger from './logger.js';

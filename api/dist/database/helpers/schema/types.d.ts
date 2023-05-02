@@ -1,5 +1,5 @@
-import type { KNEX_TYPES } from '@directus/constants';
-import type { Field, Relation, Type } from '@directus/types';
+import type { KNEX_TYPES } from '@superscribe/constants';
+import type { Field, Relation, Type } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { DatabaseClient } from '../../../types/index.js';
 import { DatabaseHelper } from '../types.js';

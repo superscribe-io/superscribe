@@ -1,4 +1,4 @@
-import { User } from '@directus/types';
+import { User } from '@superscribe/types';
 
 export type Activity = {
 	id: number;

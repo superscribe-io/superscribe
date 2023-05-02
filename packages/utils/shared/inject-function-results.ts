@@ -1,6 +1,6 @@
 import { cloneDeep, get, isPlainObject, set } from 'lodash-es';
-import { REGEX_BETWEEN_PARENS } from '@directus/constants';
-import type { FieldFunction, Filter } from '@directus/types';
+import { REGEX_BETWEEN_PARENS } from '@superscribe/constants';
+import type { FieldFunction, Filter } from '@superscribe/types';
 import { functions } from './functions.js';
 
 /**

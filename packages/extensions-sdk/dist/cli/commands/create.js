@@ -1,5 +1,5 @@
-import { BUNDLE_EXTENSION_TYPES, EXTENSION_LANGUAGES, EXTENSION_NAME_REGEX, EXTENSION_PKG_KEY, EXTENSION_TYPES, HYBRID_EXTENSION_TYPES, } from '@directus/constants';
-import { isIn } from '@directus/utils';
+import { BUNDLE_EXTENSION_TYPES, EXTENSION_LANGUAGES, EXTENSION_NAME_REGEX, EXTENSION_PKG_KEY, EXTENSION_TYPES, HYBRID_EXTENSION_TYPES, } from '@superscribe/constants';
+import { isIn } from '@superscribe/utils';
 import chalk from 'chalk';
 import { execa } from 'execa';
 import fse from 'fs-extra';
@@ -43,7 +43,7 @@ export default async function create(type, name, options) {
     }
 }
 async function createPackageExtension({ type, name, targetDir, targetPath, }) {
-    const spinner = ora(chalk.bold('Scaffolding Directus extension...')).start();
+    const spinner = ora(chalk.bold('Scaffolding Superscribe extension...')).start();
     await fse.ensureDir(targetPath);
     await copyTemplate(type, targetPath);
     const host = `^${getSdkVersion()}`;
@@ -60,7 +60,7 @@ async function createLocalExtension({ type, name, targetDir, targetPath, languag
         log(`Language ${chalk.bold(language)} is not supported. Available languages: ${EXTENSION_LANGUAGES.map((t) => chalk.bold.magenta(t)).join(', ')}.`, 'error');
         process.exit(1);
     }
-    const spinner = ora(chalk.bold('Scaffolding Directus extension...')).start();
+    const spinner = ora(chalk.bold('Scaffolding Superscribe extension...')).start();
     await fse.ensureDir(targetPath);
     await copyTemplate(type, targetPath, 'src', language);
     const host = `^${getSdkVersion()}`;
@@ -86,21 +86,21 @@ async function createLocalExtension({ type, name, targetDir, targetPath, languag
 }
 function getPackageManifest(name, options, deps) {
     const packageManifest = {
-        name: EXTENSION_NAME_REGEX.test(name) ? name : `directus-extension-${name}`,
+        name: EXTENSION_NAME_REGEX.test(name) ? name : `superscribe-extension-${name}`,
         description: 'Please enter a description for your extension',
         icon: 'extension',
         version: '1.0.0',
-        keywords: ['directus', 'directus-extension', `directus-custom-${options.type}`],
+        keywords: ['superscribe', 'superscribe-extension', `superscribe-custom-${options.type}`],
         [EXTENSION_PKG_KEY]: options,
         scripts: {
-            build: 'directus-extension build',
-            dev: 'directus-extension build -w --no-minify',
-            link: 'directus-extension link',
+            build: 'superscribe-extension build',
+            dev: 'superscribe-extension build -w --no-minify',
+            link: 'superscribe-extension link',
         },
         devDependencies: deps,
     };
     if (options.type === 'bundle') {
-        packageManifest['scripts']['add'] = 'directus-extension add';
+        packageManifest['scripts']['add'] = 'superscribe-extension add';
     }
     return packageManifest;
 }

@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import env from '../env.js';
 import logger from '../logger.js';
 import getLocalType from './get-local-type.js';

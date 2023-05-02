@@ -1,5 +1,5 @@
 import { BlobServiceClient, ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob';
-import { normalizePath } from '@directus/utils';
+import { normalizePath } from '@superscribe/utils';
 import { join } from 'node:path';
 export class DriverAzure {
     containerClient;

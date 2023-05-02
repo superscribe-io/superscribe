@@ -8,7 +8,7 @@ import { NotificationsService } from '../services/notifications.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_notifications'));
+router.use(useCollection('superscribe_notifications'));
 router.post('/', asyncHandler(async (req, res, next) => {
     const service = new NotificationsService({
         accountability: req.accountability,
@@ -60,7 +60,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
     else {
         result = await service.readByQuery(req.sanitizedQuery);
     }
-    const meta = await metaService.getMetaForQuery('directus_notifications', req.sanitizedQuery);
+    const meta = await metaService.getMetaForQuery('superscribe_notifications', req.sanitizedQuery);
     res.locals['payload'] = { data: result, meta };
     return next();
 });

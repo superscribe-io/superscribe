@@ -81,11 +81,11 @@ export default async function init() {
     firstUser.password = await generateHash(firstUser.password);
     const userID = uuid();
     const roleID = uuid();
-    await db('directus_roles').insert({
+    await db('superscribe_roles').insert({
         id: roleID,
         ...defaultAdminRole,
     });
-    await db('directus_users').insert({
+    await db('superscribe_users').insert({
         id: userID,
         email: firstUser.email,
         password: firstUser.password,
@@ -95,8 +95,8 @@ export default async function init() {
     await db.destroy();
     process.stdout.write(`\nYour project has been created at ${chalk.green(rootPath)}.\n`);
     process.stdout.write(`\nThe configuration can be found in ${chalk.green(rootPath + '/.env')}\n`);
-    process.stdout.write(`\nStart Directus by running:\n`);
+    process.stdout.write(`\nStart Superscribe by running:\n`);
     process.stdout.write(`  ${chalk.blue('cd')} ${rootPath}\n`);
-    process.stdout.write(`  ${chalk.blue('npx directus')} start\n`);
+    process.stdout.write(`  ${chalk.blue('npx superscribe')} start\n`);
     process.exit(0);
 }

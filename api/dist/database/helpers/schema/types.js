@@ -82,7 +82,7 @@ export class SchemaHelper extends DatabaseHelper {
         return 'CAST(?? AS CHAR(255))';
     }
     applyMultiRelationalSort(knex, dbQuery, table, primaryKey, orderByString, orderByFields) {
-        dbQuery.rowNumber(knex.ref('directus_row_number').toQuery(), knex.raw(`partition by ?? order by ${orderByString}`, [`${table}.${primaryKey}`, ...orderByFields]));
+        dbQuery.rowNumber(knex.ref('superscribe_row_number').toQuery(), knex.raw(`partition by ?? order by ${orderByString}`, [`${table}.${primaryKey}`, ...orderByFields]));
         return dbQuery;
     }
     formatUUID(uuid) {

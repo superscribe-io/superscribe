@@ -23,7 +23,7 @@ export async function getAccountabilityForRole(role, context) {
     else {
         const roleInfo = await context.database
             .select(['app_access', 'admin_access'])
-            .from('directus_roles')
+            .from('superscribe_roles')
             .where({ id: role })
             .first();
         if (!roleInfo) {

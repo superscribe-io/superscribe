@@ -14,7 +14,7 @@ export default async function run(database, direction, log = true) {
     let customMigrationFiles = ((await fse.pathExists(customMigrationsPath)) && (await fse.readdir(customMigrationsPath))) || [];
     migrationFiles = migrationFiles.filter((file) => /^[0-9]+[A-Z]-[^.]+\.(?:js|ts)$/.test(file));
     customMigrationFiles = customMigrationFiles.filter((file) => file.endsWith('.js'));
-    const completedMigrations = await database.select('*').from('directus_migrations').orderBy('version');
+    const completedMigrations = await database.select('*').from('superscribe_migrations').orderBy('version');
     const migrations = [
         ...migrationFiles.map((path) => parseFilePath(path)),
         ...customMigrationFiles.map((path) => parseFilePath(path, true)),
@@ -59,7 +59,7 @@ export default async function run(database, direction, log = true) {
             logger.info(`Applying ${nextVersion.name}...`);
         }
         await up(database);
-        await database.insert({ version: nextVersion.version, name: nextVersion.name }).into('directus_migrations');
+        await database.insert({ version: nextVersion.version, name: nextVersion.name }).into('superscribe_migrations');
         await flushCaches(true);
     }
     async function down() {
@@ -76,7 +76,7 @@ export default async function run(database, direction, log = true) {
             logger.info(`Undoing ${migration.name}...`);
         }
         await down(database);
-        await database('directus_migrations').delete().where({ version: migration.version });
+        await database('superscribe_migrations').delete().where({ version: migration.version });
         await flushCaches(true);
     }
     async function latest() {
@@ -89,7 +89,7 @@ export default async function run(database, direction, log = true) {
                     logger.info(`Applying ${migration.name}...`);
                 }
                 await up(database);
-                await database.insert({ version: migration.version, name: migration.name }).into('directus_migrations');
+                await database.insert({ version: migration.version, name: migration.name }).into('superscribe_migrations');
             }
         }
         if (needsCacheFlush) {

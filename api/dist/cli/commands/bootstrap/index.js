@@ -13,7 +13,7 @@ export default async function bootstrap({ skipAdminInit }) {
     const database = getDatabase();
     await waitForDatabase(database);
     if ((await isInstalled()) === false) {
-        logger.info('Installing Directus system tables...');
+        logger.info('Installing Superscribe system tables...');
         await installDatabase(database);
         logger.info('Running migrations...');
         await runMigrations(database, 'latest');

@@ -1,4 +1,4 @@
-table: directus_dashboards
+table: superscribe_dashboards
 
 fields:
   - field: id

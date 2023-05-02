@@ -1,4 +1,4 @@
-import { API_INJECT, EXTENSIONS_INJECT, STORES_INJECT } from '@directus/constants';
+import { API_INJECT, EXTENSIONS_INJECT, STORES_INJECT } from '@superscribe/constants';
 import { inject } from 'vue';
 export function useStores() {
     const stores = inject(STORES_INJECT);

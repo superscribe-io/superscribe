@@ -1,8 +1,8 @@
 ---
-description: Directus' Data Studio and APIs are the perfect choice for your Headless CMS.
+description: Superscribe' Data Studio and APIs are the perfect choice for your Headless CMS.
 tags: []
 skill_level:
-directus_version:
+superscribe_version:
 author_override:
 author: Bryant Gillespie
 ---
@@ -31,7 +31,7 @@ Learn more about [Headless CMS Concepts](/use-cases/headless-cms/concepts).
 
 ## Guides & Tutorials
 
-### Learn Directus
+### Learn Superscribe
 
 - [Create Re-Usable Page Components](/guides/headless-cms/reusable-components)
 - [Build Approval Workflows](/guides/headless-cms/approval-workflows)
@@ -40,8 +40,8 @@ Learn more about [Headless CMS Concepts](/use-cases/headless-cms/concepts).
 
 ### Build Your Project
 
-- [Build a Website with Directus and Next.js](/guides/headless-cms/build-static-website/next-13)
-- [Build a Website with Directus and Nuxt.js](/guides/headless-cms/build-static-website/nuxt-3)
+- [Build a Website with Superscribe and Next.js](/guides/headless-cms/build-static-website/next-13)
+- [Build a Website with Superscribe and Nuxt.js](/guides/headless-cms/build-static-website/nuxt-3)
 
 ### Deployment & Best Practice
 

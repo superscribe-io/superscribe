@@ -1,5 +1,5 @@
-import { defineDisplay } from '@directus/utils';
-import { DisplayConfig } from '@directus/types';
+import { defineDisplay } from '@superscribe/utils';
+import { DisplayConfig } from '@superscribe/types';
 import DisplayFormattedValue from './formatted-value.vue';
 import formatTitle from '@directus/format-title';
 import { decode } from 'html-entities';

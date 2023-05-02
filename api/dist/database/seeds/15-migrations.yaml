@@ -1,4 +1,4 @@
-table: directus_migrations
+table: superscribe_migrations
 
 columns:
   version:

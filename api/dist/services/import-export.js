@@ -1,4 +1,4 @@
-import { parseJSON, toArray } from '@directus/utils';
+import { parseJSON, toArray } from '@superscribe/utils';
 import { queue } from 'async';
 import csv from 'csv-parser';
 import destroyStream from 'destroy';
@@ -30,7 +30,7 @@ export class ImportService {
         this.schema = options.schema;
     }
     async import(collection, mimetype, stream) {
-        if (this.accountability?.admin !== true && collection.startsWith('directus_'))
+        if (this.accountability?.admin !== true && collection.startsWith('superscribe_'))
             throw new ForbiddenException();
         const createPermissions = this.accountability?.permissions?.find((permission) => permission.collection === collection && permission.action === 'create');
         const updatePermissions = this.accountability?.permissions?.find((permission) => permission.collection === collection && permission.action === 'update');
@@ -224,7 +224,7 @@ export class ExportService {
                     recipient: this.accountability.user,
                     sender: this.accountability.user,
                     subject: `Your export of ${collection} is ready`,
-                    collection: `directus_files`,
+                    collection: `superscribe_files`,
                     item: savedFile,
                 });
             }

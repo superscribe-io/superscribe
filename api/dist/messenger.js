@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import { Redis } from 'ioredis';
 import env from './env.js';
 import { getConfigFromEnv } from './utils/get-config-from-env.js';
@@ -25,7 +25,7 @@ export class MessengerRedis {
         const config = getConfigFromEnv('MESSENGER_REDIS');
         this.pub = new Redis(env['MESSENGER_REDIS'] ?? config);
         this.sub = new Redis(env['MESSENGER_REDIS'] ?? config);
-        this.namespace = env['MESSENGER_NAMESPACE'] ?? 'directus';
+        this.namespace = env['MESSENGER_NAMESPACE'] ?? 'superscribe';
     }
     publish(channel, payload) {
         this.pub.publish(`${this.namespace}:${channel}`, JSON.stringify(payload));

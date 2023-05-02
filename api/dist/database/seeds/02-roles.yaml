@@ -1,4 +1,4 @@
-table: directus_roles
+table: superscribe_roles
 
 columns:
   id:

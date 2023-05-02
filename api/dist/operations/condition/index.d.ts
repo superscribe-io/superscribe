@@ -1,6 +1,6 @@
-import type { Filter } from '@directus/types';
+import type { Filter } from '@superscribe/types';
 type Options = {
     filter: Filter;
 };
-declare const _default: import("@directus/types").OperationApiConfig<Options>;
+declare const _default: import("@superscribe/types").OperationApiConfig<Options>;
 export default _default;

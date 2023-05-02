@@ -46,9 +46,9 @@
 </template>
 
 <script lang="ts">
-import { Field } from '@directus/types';
+import { Field } from '@superscribe/types';
 import { computed, defineComponent, PropType, ref, watch } from 'vue';
-import { ValidationError } from '@directus/types';
+import { ValidationError } from '@superscribe/types';
 import { useI18n } from 'vue-i18n';
 import formatTitle from '@directus/format-title';
 import { isEqual } from 'lodash';

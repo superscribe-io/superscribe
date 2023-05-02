@@ -1,4 +1,4 @@
-import { isUpToDate } from '@directus/update-check';
+import { isUpToDate } from '@superscribe/update-check';
 import { createTerminus } from '@godaddy/terminus';
 import * as http from 'http';
 import * as https from 'https';
@@ -97,7 +97,7 @@ export async function createServer() {
             accountability: null,
         });
         if (env['NODE_ENV'] !== 'development') {
-            logger.info('Directus shut down OK. Bye bye!');
+            logger.info('superscribe shut down OK. Bye bye!');
         }
     }
 }

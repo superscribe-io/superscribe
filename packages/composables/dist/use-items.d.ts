@@ -1,4 +1,4 @@
-import type { Item, Query } from '@directus/types';
+import type { Item, Query } from '@superscribe/types';
 import type { ComputedRef, Ref, WritableComputedRef } from 'vue';
 export type ManualSortData = {
     item: string | number;

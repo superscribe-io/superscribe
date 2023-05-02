@@ -1,5 +1,5 @@
 import { compress as compressSnappy, uncompress as uncompressSnappy } from 'snappy';
-import { compress as compressJSON, decompress as decompressJSON } from '@directus/utils';
+import { compress as compressJSON, decompress as decompressJSON } from '@superscribe/utils';
 export async function compress(raw) {
     if (!raw)
         return raw;

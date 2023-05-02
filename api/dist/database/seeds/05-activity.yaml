@@ -1,4 +1,4 @@
-table: directus_activity
+table: superscribe_activity
 
 columns:
   id:
@@ -25,7 +25,7 @@ columns:
     length: 64
     nullable: false
     references:
-      table: directus_collections
+      table: superscribe_collections
       column: collection
   item:
     type: string

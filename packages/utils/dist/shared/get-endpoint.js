@@ -1,5 +1,5 @@
 export function getEndpoint(collection) {
-    if (collection.startsWith('directus_')) {
+    if (collection.startsWith('superscribe_')) {
         return `/${collection.substring(9)}`;
     }
     return `/items/${collection}`;

@@ -1,4 +1,4 @@
-import { Action } from '@directus/constants';
+import { Action } from '@superscribe/constants';
 import { uniq } from 'lodash-es';
 import validateUUID from 'uuid-validate';
 import env from '../env.js';
@@ -15,7 +15,7 @@ export class ActivityService extends ItemsService {
     notificationsService;
     usersService;
     constructor(options) {
-        super('directus_activity', options);
+        super('superscribe_activity', options);
         this.notificationsService = new NotificationsService({ schema: this.schema });
         this.usersService = new UsersService({ schema: this.schema });
     }

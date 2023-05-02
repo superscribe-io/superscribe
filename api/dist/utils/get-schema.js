@@ -1,5 +1,5 @@
-import { createInspector } from '@directus/schema';
-import { parseJSON, toArray } from '@directus/utils';
+import { createInspector } from '@superscribe/schema';
+import { parseJSON, toArray } from '@superscribe/utils';
 import { mapValues } from 'lodash-es';
 import { getSchemaCache, setSchemaCache } from '../cache.js';
 import { ALIAS_TYPES } from '../constants.js';
@@ -50,7 +50,7 @@ async function getDatabaseSchema(database, schemaInspector) {
     const collections = [
         ...(await database
             .select('collection', 'singleton', 'note', 'sort_field', 'accountability')
-            .from('directus_collections')),
+            .from('superscribe_collections')),
         ...systemCollectionRows,
     ];
     for (const [collection, info] of Object.entries(schemaOverview)) {
@@ -95,7 +95,7 @@ async function getDatabaseSchema(database, schemaInspector) {
     const fields = [
         ...(await database
             .select('id', 'collection', 'field', 'special', 'note', 'validation')
-            .from('directus_fields')),
+            .from('superscribe_fields')),
         ...systemFieldRows,
     ].filter((field) => (field.special ? toArray(field.special) : []).includes('no-data') === false);
     for (const field of fields) {

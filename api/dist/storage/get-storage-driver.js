@@ -1,9 +1,9 @@
 export const _aliasMap = {
-    local: '@directus/storage-driver-local',
-    s3: '@directus/storage-driver-s3',
-    gcs: '@directus/storage-driver-gcs',
-    azure: '@directus/storage-driver-azure',
-    cloudinary: '@directus/storage-driver-cloudinary',
+    local: '@superscribe/storage-driver-local',
+    s3: '@superscribe/storage-driver-s3',
+    gcs: '@superscribe/storage-driver-gcs',
+    azure: '@superscribe/storage-driver-azure',
+    cloudinary: '@superscribe/storage-driver-cloudinary',
 };
 export const getStorageDriver = async (driverName) => {
     if (driverName in _aliasMap) {

@@ -8,7 +8,7 @@ import { PermissionsService } from '../services/permissions.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_permissions'));
+router.use(useCollection('superscribe_permissions'));
 router.post('/', asyncHandler(async (req, res, next) => {
     const service = new PermissionsService({
         accountability: req.accountability,
@@ -60,7 +60,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
     else {
         result = await service.readByQuery(req.sanitizedQuery);
     }
-    const meta = await metaService.getMetaForQuery('directus_permissions', req.sanitizedQuery);
+    const meta = await metaService.getMetaForQuery('superscribe_permissions', req.sanitizedQuery);
     res.locals['payload'] = { data: result, meta };
     return next();
 });

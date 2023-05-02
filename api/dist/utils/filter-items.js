@@ -1,4 +1,4 @@
-import { generateJoi } from '@directus/utils';
+import { generateJoi } from '@superscribe/utils';
 /*
  Note: Filtering is normally done through SQL in run-ast. This function can be used in case an already
  existing array of items has to be filtered using the same filter syntax as used in the ast-to-sql flow

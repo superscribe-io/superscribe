@@ -21,13 +21,13 @@ async function init() {
 	console.log(DIRECTUS_LOGO);
 
 	console.info(
-		`Hey! Interested in helping build this open-source data management platform?\nIf so, join our growing team of contributors at: https://directus.chat`
+		`Hey! Interested in helping build this open-source data management platform?\nIf so, join our growing team of contributors at: https://superscribe.chat`
 	);
 
 	if (import.meta.env.DEV) {
-		console.info(`%c🐰 Starting Directus v${version}...`, 'color:Green');
+		console.info(`%c🐰 Starting Superscribe v${version}...`, 'color:Green');
 	} else {
-		console.info(`%c🐰 Starting Directus...`, 'color:Green');
+		console.info(`%c🐰 Starting Superscribe...`, 'color:Green');
 	}
 
 	console.time('🕓 Application Loaded');

@@ -7,7 +7,7 @@ import { translate as translateLiteral } from '@/utils/translate-literal';
 import { translate } from '@/utils/translate-object-values';
 import { unexpectedError } from '@/utils/unexpected-error';
 import formatTitle from '@directus/format-title';
-import { DeepPartial, Field, FieldRaw, Relation } from '@directus/types';
+import { DeepPartial, Field, FieldRaw, Relation } from '@superscribe/types';
 import { isEqual, isNil, merge, omit, orderBy } from 'lodash';
 import { nanoid } from 'nanoid';
 import { defineStore } from 'pinia';
@@ -21,21 +21,21 @@ type HydrateOptions = {
 };
 
 /**
- * directus_files is a special case. For it to play nice with interfaces/layouts/displays, we need
+ * superscribe_files is a special case. For it to play nice with interfaces/layouts/displays, we need
  * to treat the actual image thumbnail as a separate available field, instead of part of the regular
  * item (normally all file related info is nested within a separate column). This allows layouts to
  * render out files as it if were a "normal" collection, where the actual file is a fake m2o to
  * itself.
  */
 const fakeFilesField: Field = {
-	collection: 'directus_files',
+	collection: 'superscribe_files',
 	field: '$thumbnail',
 	schema: null,
 	name: '$thumbnail',
 	type: 'integer',
 	meta: {
 		id: -1,
-		collection: 'directus_files',
+		collection: 'superscribe_files',
 		field: '$thumbnail',
 		sort: null,
 		special: null,

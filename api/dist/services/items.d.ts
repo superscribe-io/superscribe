@@ -1,4 +1,4 @@
-import type { Accountability, PermissionsAction, Query, SchemaOverview } from '@directus/types';
+import type { Accountability, PermissionsAction, Query, SchemaOverview } from '@superscribe/types';
 import type Keyv from 'keyv';
 import type { Knex } from 'knex';
 import type { AbstractService, AbstractServiceOptions, Item as AnyItem, MutationOptions, PrimaryKey } from '../types/index.js';

@@ -2,8 +2,8 @@
  * I know this looks a little silly, but it allows us to explicitly differentiate between when we're
  * expecting an item vs any other generic object.
  */
-import type { BaseException } from '@directus/exceptions';
-import type { EventContext } from '@directus/types';
+import type { BaseException } from '@superscribe/exceptions';
+import type { EventContext } from '@superscribe/types';
 import type { MutationTracker } from '../services/items.js';
 export type Item = Record<string, any>;
 export type PrimaryKey = string | number;

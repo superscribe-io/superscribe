@@ -1,4 +1,4 @@
-import { FlowRaw } from '@directus/types';
+import { FlowRaw } from '@superscribe/types';
 import api from '@/api';
 import { defineStore } from 'pinia';
 import { useUserStore } from '@/stores/user';
@@ -14,7 +14,7 @@ export const useFlowsStore = defineStore({
 			const { isAdmin } = useUserStore();
 			const { hasPermission } = usePermissionsStore();
 
-			if (isAdmin !== true && !hasPermission('directus_flows', 'read')) {
+			if (isAdmin !== true && !hasPermission('superscribe_flows', 'read')) {
 				this.flows = [];
 			} else {
 				try {

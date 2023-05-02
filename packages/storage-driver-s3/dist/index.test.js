@@ -1,14 +1,14 @@
 import { CopyObjectCommand, DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsV2Command, S3Client, } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';
-import { normalizePath } from '@directus/utils';
-import { isReadableStream } from '@directus/utils/node';
+import { normalizePath } from '@superscribe/utils';
+import { isReadableStream } from '@superscribe/utils/node';
 import { randAlphaNumeric, randBoolean, randDirectoryPath, randDomainName, randFilePath, randFileType, randGitBranch as randBucket, randGitShortSha as randUnique, randNumber, randPastDate, randText, randWord, } from '@ngneat/falso';
 import { join } from 'node:path';
 import { PassThrough, Readable } from 'node:stream';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { DriverS3 } from './index.js';
-vi.mock('@directus/utils/node');
-vi.mock('@directus/utils');
+vi.mock('@superscribe/utils/node');
+vi.mock('@superscribe/utils');
 vi.mock('@aws-sdk/client-s3');
 vi.mock('@aws-sdk/lib-storage');
 vi.mock('node:path');

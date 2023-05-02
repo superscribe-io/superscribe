@@ -1,4 +1,4 @@
-import type { Accountability, SchemaOverview } from '@directus/types';
+import type { Accountability, SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { AbstractServiceOptions } from '../types/index.js';
 import { SettingsService } from './settings.js';

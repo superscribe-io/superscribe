@@ -1,4 +1,4 @@
-import type { Query } from '@directus/types';
+import type { Query } from '@superscribe/types';
 import type { AbstractServiceOptions, Item, MutationOptions, PrimaryKey } from '../types/index.js';
 import { ItemsService } from './items.js';
 export declare class UsersService extends ItemsService {
@@ -10,7 +10,7 @@ export declare class UsersService extends ItemsService {
     private checkUniqueEmails;
     /**
      * Check if the provided password matches the strictness as configured in
-     * directus_settings.auth_password_policy
+     * superscribe_settings.auth_password_policy
      */
     private checkPasswordPolicy;
     private checkRemainingAdminExistence;

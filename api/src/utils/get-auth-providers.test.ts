@@ -23,7 +23,7 @@ const scenarios = [
 	{
 		name: 'when no driver configured',
 		input: {
-			AUTH_PROVIDERS: 'directus',
+			AUTH_PROVIDERS: 'superscribe',
 		},
 		output: [],
 	},
@@ -31,16 +31,16 @@ const scenarios = [
 	{
 		name: 'when single provider and driver are properly configured',
 		input: {
-			AUTH_PROVIDERS: 'directus',
+			AUTH_PROVIDERS: 'superscribe',
 			AUTH_DIRECTUS_DRIVER: 'openid',
-			AUTH_DIRECTUS_LABEL: 'Directus',
+			AUTH_DIRECTUS_LABEL: 'Superscribe',
 			AUTH_DIRECTUS_ICON: 'hare',
 		},
 		output: [
 			{
-				name: 'directus',
+				name: 'superscribe',
 				driver: 'openid',
-				label: 'Directus',
+				label: 'Superscribe',
 				icon: 'hare',
 			},
 		],
@@ -49,18 +49,18 @@ const scenarios = [
 	{
 		name: 'when multiple provider and driver are properly configured',
 		input: {
-			AUTH_PROVIDERS: 'directus,custom',
+			AUTH_PROVIDERS: 'superscribe,custom',
 			AUTH_DIRECTUS_DRIVER: 'openid',
-			AUTH_DIRECTUS_LABEL: 'Directus',
+			AUTH_DIRECTUS_LABEL: 'Superscribe',
 			AUTH_DIRECTUS_ICON: 'hare',
 			AUTH_CUSTOM_DRIVER: 'openid',
 			AUTH_CUSTOM_ICON: 'lock',
 		},
 		output: [
 			{
-				name: 'directus',
+				name: 'superscribe',
 				driver: 'openid',
-				label: 'Directus',
+				label: 'Superscribe',
 				icon: 'hare',
 			},
 			{

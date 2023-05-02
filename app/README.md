@@ -1,3 +1,3 @@
-# @directus/app
+# @superscribe/app
 
-The Directus Admin App. Included with `directus` itself. You wouldn't install this package separately.
+The Superscribe Admin App. Included with `superscribe` itself. You wouldn't install this package separately.

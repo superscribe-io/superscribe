@@ -2,7 +2,7 @@ import { ForbiddenException, InvalidPayloadException } from '../exceptions/index
 import { ItemsService } from './items.js';
 export class RevisionsService extends ItemsService {
     constructor(options) {
-        super('directus_revisions', options);
+        super('superscribe_revisions', options);
     }
     async revert(pk) {
         const revision = await super.readOne(pk);

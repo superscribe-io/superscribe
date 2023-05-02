@@ -1,3 +1,3 @@
-# `@directus/utils`
+# `@superscribe/utils`
 
-Utilities shared between the Directus packages
+Utilities shared between the Superscribe packages

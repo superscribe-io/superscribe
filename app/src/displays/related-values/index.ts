@@ -1,6 +1,6 @@
-import { defineDisplay } from '@directus/utils';
+import { defineDisplay } from '@superscribe/utils';
 import { adjustFieldsForDisplays } from '@/utils/adjust-fields-for-displays';
-import { getFieldsFromTemplate } from '@directus/utils';
+import { getFieldsFromTemplate } from '@superscribe/utils';
 import { getRelatedCollection } from '@/utils/get-related-collection';
 import DisplayRelatedValues from './related-values.vue';
 import { useFieldsStore } from '@/stores/fields';

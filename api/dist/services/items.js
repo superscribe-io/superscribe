@@ -1,4 +1,4 @@
-import { Action } from '@directus/constants';
+import { Action } from '@superscribe/constants';
 import { assign, clone, cloneDeep, omit, pick, without } from 'lodash-es';
 import { getCache } from '../cache.js';
 import { getHelpers } from '../database/helpers/index.js';
@@ -23,7 +23,7 @@ export class ItemsService {
         this.collection = collection;
         this.knex = options.knex || getDatabase();
         this.accountability = options.accountability || null;
-        this.eventScope = this.collection.startsWith('directus_') ? this.collection.substring(9) : 'items';
+        this.eventScope = this.collection.startsWith('superscribe_') ? this.collection.substring(9) : 'items';
         this.schema = options.schema;
         this.cache = getCache().cache;
         return this;

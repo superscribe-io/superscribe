@@ -1,10 +1,10 @@
 export const systemSchema = {
     collections: {
-        directus_users: {
-            collection: 'directus_users',
+        superscribe_users: {
+            collection: 'superscribe_users',
             primary: 'id',
             singleton: false,
-            note: '$t:directus_collection.directus_users',
+            note: '$t:superscribe_collection.superscribe_users',
             sortField: null,
             accountability: null,
             fields: {
@@ -52,11 +52,11 @@ export const systemSchema = {
                 },
             },
         },
-        directus_files: {
-            collection: 'directus_files',
+        superscribe_files: {
+            collection: 'superscribe_files',
             primary: 'id',
             singleton: false,
-            note: '$t:directus_collection.directus_files',
+            note: '$t:superscribe_collection.superscribe_files',
             sortField: null,
             accountability: null,
             fields: {
@@ -107,13 +107,13 @@ export const systemSchema = {
     },
     relations: [
         {
-            collection: 'directus_files',
+            collection: 'superscribe_files',
             field: 'uploaded_by',
-            related_collection: 'directus_users',
+            related_collection: 'superscribe_users',
             schema: {
-                table: 'directus_files',
+                table: 'superscribe_files',
                 column: 'uploaded_by',
-                foreign_key_table: 'directus_users',
+                foreign_key_table: 'superscribe_users',
                 foreign_key_column: 'id',
                 on_update: 'NO ACTION',
                 on_delete: 'NO ACTION',
@@ -121,9 +121,9 @@ export const systemSchema = {
             },
             meta: {
                 system: true,
-                many_collection: 'directus_files',
+                many_collection: 'superscribe_files',
                 many_field: 'uploaded_by',
-                one_collection: 'directus_users',
+                one_collection: 'superscribe_users',
                 one_field: 'items',
                 one_allowed_collections: null,
                 one_collection_field: null,

@@ -1,7 +1,7 @@
 /**
  * Generate an AST based on a given collection and query
  */
-import { REGEX_BETWEEN_PARENS } from '@directus/constants';
+import { REGEX_BETWEEN_PARENS } from '@superscribe/constants';
 import { cloneDeep, isEmpty, mapKeys, omitBy, uniq } from 'lodash-es';
 import { getRelationType } from '../utils/get-relation-type.js';
 export default async function getASTFromQuery(collection, query, schema, options) {

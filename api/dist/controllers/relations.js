@@ -7,7 +7,7 @@ import useCollection from '../middleware/use-collection.js';
 import { RelationsService } from '../services/relations.js';
 import asyncHandler from '../utils/async-handler.js';
 const router = express.Router();
-router.use(useCollection('directus_relations'));
+router.use(useCollection('superscribe_relations'));
 router.get('/', asyncHandler(async (req, res, next) => {
     const service = new RelationsService({
         accountability: req.accountability,

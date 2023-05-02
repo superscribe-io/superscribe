@@ -1,5 +1,5 @@
 import formatTitle from '@directus/format-title';
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import Busboy from 'busboy';
 import express from 'express';
 import Joi from 'joi';
@@ -14,7 +14,7 @@ import { MetaService } from '../services/meta.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_files'));
+router.use(useCollection('superscribe_files'));
 export const multipartHandler = (req, res, next) => {
     if (req.is('multipart/form-data') === false)
         return next();
@@ -35,7 +35,7 @@ export const multipartHandler = (req, res, next) => {
     /**
      * The order of the fields in multipart/form-data is important. We require that all fields
      * are provided _before_ the files. This allows us to set the storage location, and create
-     * the row in directus_files async during the upload of the actual file.
+     * the row in superscribe_files async during the upload of the actual file.
      */
     let disk = toArray(env['STORAGE_LOCATIONS'])[0];
     let payload = {};
@@ -178,7 +178,7 @@ const readHandler = asyncHandler(async (req, res, next) => {
     else {
         result = await service.readByQuery(req.sanitizedQuery);
     }
-    const meta = await metaService.getMetaForQuery('directus_files', req.sanitizedQuery);
+    const meta = await metaService.getMetaForQuery('superscribe_files', req.sanitizedQuery);
     res.locals['payload'] = { data: result, meta };
     return next();
 });

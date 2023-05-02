@@ -1,4 +1,4 @@
-import { NESTED_EXTENSION_TYPES } from '@directus/constants';
+import { NESTED_EXTENSION_TYPES } from '@superscribe/constants';
 import { dirSync } from 'tmp';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ensureExtensionDirs } from './ensure-extension-dirs.js';

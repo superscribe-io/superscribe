@@ -1,8 +1,8 @@
 import api from '@/api';
 import { i18n } from '@/lang';
-import { Collection as CollectionRaw, DeepPartial, Field } from '@directus/types';
+import { Collection as CollectionRaw, DeepPartial, Field } from '@superscribe/types';
 import { Collection } from '@/types/collections';
-import { getCollectionType } from '@directus/utils';
+import { getCollectionType } from '@superscribe/utils';
 import { notify } from '@/utils/notify';
 import { getLiteralInterpolatedTranslation } from '@/utils/get-literal-interpolated-translation';
 import { unexpectedError } from '@/utils/unexpected-error';
@@ -20,11 +20,11 @@ export const useCollectionsStore = defineStore({
 	getters: {
 		visibleCollections(): Collection[] {
 			return this.collections
-				.filter(({ collection }) => collection.startsWith('directus_') === false)
+				.filter(({ collection }) => collection.startsWith('superscribe_') === false)
 				.filter((collection) => collection.meta && collection.meta?.hidden !== true);
 		},
 		allCollections(): Collection[] {
-			return this.collections.filter(({ collection }) => collection.startsWith('directus_') === false);
+			return this.collections.filter(({ collection }) => collection.startsWith('superscribe_') === false);
 		},
 		databaseCollections(): Collection[] {
 			return this.allCollections.filter((collection) => collection.schema);
@@ -32,7 +32,7 @@ export const useCollectionsStore = defineStore({
 		crudSafeSystemCollections(): Collection[] {
 			return orderBy(
 				this.collections.filter((collection) => {
-					return collection.collection.startsWith('directus_') === true;
+					return collection.collection.startsWith('superscribe_') === true;
 				}),
 				['collection'],
 				['asc']

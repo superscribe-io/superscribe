@@ -28,7 +28,7 @@ test('Ignores _and/_or', () => {
                     {
                         author: {
                             name: {
-                                _eq: 'Directus',
+                                _eq: 'Superscribe',
                             },
                         },
                     },

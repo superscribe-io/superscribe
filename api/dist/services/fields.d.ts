@@ -1,5 +1,5 @@
-import type { Column, SchemaInspector } from '@directus/schema';
-import type { Accountability, Field, RawField, SchemaOverview, Type } from '@directus/types';
+import type { Column, SchemaInspector } from '@superscribe/schema';
+import type { Accountability, Field, RawField, SchemaOverview, Type } from '@superscribe/types';
 import type Keyv from 'keyv';
 import type { Knex } from 'knex';
 import type { Helpers } from '../database/helpers/index.js';

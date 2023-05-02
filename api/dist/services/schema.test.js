@@ -20,7 +20,7 @@ class Client_PG extends MockClient {
 let db;
 let tracker;
 const testSnapshot = {
-    directus: '0.0.0',
+    superscribe: '0.0.0',
     version: 1,
     vendor: 'postgres',
     collections: [],
@@ -95,7 +95,7 @@ describe('Services / Schema', () => {
     });
     describe('diff', () => {
         const snapshotToApply = {
-            directus: '0.0.0',
+            superscribe: '0.0.0',
             version: 1,
             vendor: 'postgres',
             collections: [

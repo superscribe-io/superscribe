@@ -11,7 +11,7 @@ import { sanitizeQuery } from '../utils/sanitize-query.js';
 
 const router = express.Router();
 
-router.use(useCollection('directus_webhooks'));
+router.use(useCollection('superscribe_webhooks'));
 
 router.post(
 	'/',

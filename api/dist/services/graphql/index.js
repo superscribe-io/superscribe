@@ -1,5 +1,5 @@
-import { Action, FUNCTIONS } from '@directus/constants';
-import { parseFilterFunctionPath } from '@directus/utils';
+import { Action, FUNCTIONS } from '@superscribe/constants';
+import { parseFilterFunctionPath } from '@superscribe/utils';
 import argon2 from 'argon2';
 import { GraphQLBoolean, GraphQLEnumType, GraphQLError, GraphQLFloat, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLScalarType, GraphQLSchema, GraphQLString, GraphQLUnionType, NoSchemaIntrospectionCustomRule, execute, specifiedRules, validate, } from 'graphql';
 import { GraphQLJSON, InputTypeComposer, ObjectTypeComposer, SchemaComposer, toInputObjectType } from 'graphql-compose';
@@ -55,13 +55,13 @@ if (env['GRAPHQL_INTROSPECTION'] === false) {
  * These should be ignored in the context of GraphQL, and/or are replaced by a custom resolver (for non-standard structures)
  */
 const SYSTEM_DENY_LIST = [
-    'directus_collections',
-    'directus_fields',
-    'directus_relations',
-    'directus_migrations',
-    'directus_sessions',
+    'superscribe_collections',
+    'superscribe_fields',
+    'superscribe_relations',
+    'superscribe_migrations',
+    'superscribe_sessions',
 ];
-const READ_ONLY = ['directus_activity', 'directus_revisions'];
+const READ_ONLY = ['superscribe_activity', 'superscribe_revisions'];
 export class GraphQLService {
     accountability;
     knex;
@@ -125,10 +125,10 @@ export class GraphQLService {
         const { ReadCollectionTypes } = getReadableTypes();
         const { CreateCollectionTypes, UpdateCollectionTypes, DeleteCollectionTypes } = getWritableTypes();
         const scopeFilter = (collection) => {
-            if (this.scope === 'items' && collection.collection.startsWith('directus_') === true)
+            if (this.scope === 'items' && collection.collection.startsWith('superscribe_') === true)
                 return false;
             if (this.scope === 'system') {
-                if (collection.collection.startsWith('directus_') === false)
+                if (collection.collection.startsWith('superscribe_') === false)
                     return false;
                 if (SYSTEM_DENY_LIST.includes(collection.collection))
                     return false;
@@ -1069,12 +1069,12 @@ export class GraphQLService {
     }
     /**
      * Generic resolver that's used for every "regular" items/system query. Converts the incoming GraphQL AST / fragments into
-     * Directus' query structure which is then executed by the services.
+     * Superscribe' query structure which is then executed by the services.
      */
     async resolveQuery(info) {
         let collection = info.fieldName;
         if (this.scope === 'system')
-            collection = `directus_${collection}`;
+            collection = `superscribe_${collection}`;
         const selections = this.replaceFragmentsInSelections(info.fieldNodes[0]?.selectionSet?.selections, info.fragments);
         if (!selections)
             return null;
@@ -1127,7 +1127,7 @@ export class GraphQLService {
         const action = info.fieldName.split('_')[0];
         let collection = info.fieldName.substring(action.length + 1);
         if (this.scope === 'system')
-            collection = `directus_${collection}`;
+            collection = `superscribe_${collection}`;
         const selections = this.replaceFragmentsInSelections(info.fieldNodes[0]?.selectionSet?.selections, info.fragments);
         const query = this.getQuery(args, selections || [], info.variableValues);
         const singleton = collection.endsWith('_batch') === false &&
@@ -1218,8 +1218,8 @@ export class GraphQLService {
     }
     /**
      * GraphQL's regular resolver `args` variable only contains the "top-level" arguments. Seeing that we convert the
-     * whole nested tree into one big query using Directus' own query resolver, we want to have a nested structure of
-     * arguments for the whole resolving tree, which can later be transformed into Directus' AST using `deep`.
+     * whole nested tree into one big query using Superscribe' own query resolver, we want to have a nested structure of
+     * arguments for the whole resolving tree, which can later be transformed into Superscribe' AST using `deep`.
      * In order to do that, we'll parse over all ArgumentNodes and ObjectFieldNodes to manually recreate an object structure
      * of arguments
      */
@@ -1252,8 +1252,8 @@ export class GraphQLService {
         return argsObject;
     }
     /**
-     * Get a Directus Query object from the parsed arguments (rawQuery) and GraphQL AST selectionSet. Converts SelectionSet into
-     * Directus' `fields` query for use in the resolver. Also applies variables where appropriate.
+     * Get a Superscribe Query object from the parsed arguments (rawQuery) and GraphQL AST selectionSet. Converts SelectionSet into
+     * Superscribe' `fields` query for use in the resolver. Also applies variables where appropriate.
      */
     getQuery(rawQuery, selections, variableValues) {
         const query = sanitizeQuery(rawQuery, this.accountability);
@@ -1374,7 +1374,7 @@ export class GraphQLService {
         return query;
     }
     /**
-     * Replace functions from GraphQL format to Directus-Filter format
+     * Replace functions from GraphQL format to Superscribe-Filter format
      */
     replaceFuncs(filter) {
         return replaceFuncDeep(filter);
@@ -1393,7 +1393,7 @@ export class GraphQLService {
         }
     }
     /**
-     * Convert Directus-Exception into a GraphQL format, so it can be returned by GraphQL properly.
+     * Convert Superscribe-Exception into a GraphQL format, so it can be returned by GraphQL properly.
      */
     formatError(error) {
         if (Array.isArray(error)) {
@@ -1414,33 +1414,33 @@ export class GraphQLService {
             schema: this.schema,
         };
         switch (collection) {
-            case 'directus_activity':
+            case 'superscribe_activity':
                 return new ActivityService(opts);
-            case 'directus_files':
+            case 'superscribe_files':
                 return new FilesService(opts);
-            case 'directus_folders':
+            case 'superscribe_folders':
                 return new FoldersService(opts);
-            case 'directus_permissions':
+            case 'superscribe_permissions':
                 return new PermissionsService(opts);
-            case 'directus_presets':
+            case 'superscribe_presets':
                 return new PresetsService(opts);
-            case 'directus_notifications':
+            case 'superscribe_notifications':
                 return new NotificationsService(opts);
-            case 'directus_revisions':
+            case 'superscribe_revisions':
                 return new RevisionsService(opts);
-            case 'directus_roles':
+            case 'superscribe_roles':
                 return new RolesService(opts);
-            case 'directus_settings':
+            case 'superscribe_settings':
                 return new SettingsService(opts);
-            case 'directus_users':
+            case 'superscribe_users':
                 return new UsersService(opts);
-            case 'directus_webhooks':
+            case 'superscribe_webhooks':
                 return new WebhooksService(opts);
-            case 'directus_shares':
+            case 'superscribe_shares':
                 return new SharesService(opts);
-            case 'directus_flows':
+            case 'superscribe_flows':
                 return new FlowsService(opts);
-            case 'directus_operations':
+            case 'superscribe_operations':
                 return new OperationsService(opts);
             default:
                 return new ItemsService(collection, opts);
@@ -1541,9 +1541,9 @@ export class GraphQLService {
         }
         if (this.accountability?.admin === true) {
             ServerInfo.addFields({
-                directus: {
+                superscribe: {
                     type: new GraphQLObjectType({
-                        name: 'server_info_directus',
+                        name: 'server_info_superscribe',
                         fields: {
                             version: {
                                 type: GraphQLString,
@@ -1660,13 +1660,13 @@ export class GraphQLService {
             },
         });
         const Collection = schemaComposer.createObjectTC({
-            name: 'directus_collections',
+            name: 'superscribe_collections',
         });
         const Field = schemaComposer.createObjectTC({
-            name: 'directus_fields',
+            name: 'superscribe_fields',
         });
         const Relation = schemaComposer.createObjectTC({
-            name: 'directus_relations',
+            name: 'superscribe_relations',
         });
         /**
          * Globally available mutations
@@ -1983,12 +1983,12 @@ export class GraphQLService {
                 },
             },
         });
-        if ('directus_collections' in schema.read.collections) {
+        if ('superscribe_collections' in schema.read.collections) {
             Collection.addFields({
                 collection: GraphQLString,
                 meta: schemaComposer.createObjectTC({
-                    name: 'directus_collections_meta',
-                    fields: Object.values(schema.read.collections['directus_collections'].fields).reduce((acc, field) => {
+                    name: 'superscribe_collections_meta',
+                    fields: Object.values(schema.read.collections['superscribe_collections'].fields).reduce((acc, field) => {
                         acc[field.field] = {
                             type: field.nullable
                                 ? getGraphQLType(field.type, field.special)
@@ -1999,7 +1999,7 @@ export class GraphQLService {
                     }, {}),
                 }),
                 schema: schemaComposer.createObjectTC({
-                    name: 'directus_collections_schema',
+                    name: 'superscribe_collections_schema',
                     fields: {
                         name: GraphQLString,
                         comment: GraphQLString,
@@ -2032,14 +2032,14 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_fields' in schema.read.collections) {
+        if ('superscribe_fields' in schema.read.collections) {
             Field.addFields({
                 collection: GraphQLString,
                 field: GraphQLString,
                 type: GraphQLString,
                 meta: schemaComposer.createObjectTC({
-                    name: 'directus_fields_meta',
-                    fields: Object.values(schema.read.collections['directus_fields'].fields).reduce((acc, field) => {
+                    name: 'superscribe_fields_meta',
+                    fields: Object.values(schema.read.collections['superscribe_fields'].fields).reduce((acc, field) => {
                         acc[field.field] = {
                             type: field.nullable
                                 ? getGraphQLType(field.type, field.special)
@@ -2050,7 +2050,7 @@ export class GraphQLService {
                     }, {}),
                 }),
                 schema: schemaComposer.createObjectTC({
-                    name: 'directus_fields_schema',
+                    name: 'superscribe_fields_schema',
                     fields: {
                         name: GraphQLString,
                         table: GraphQLString,
@@ -2109,13 +2109,13 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_relations' in schema.read.collections) {
+        if ('superscribe_relations' in schema.read.collections) {
             Relation.addFields({
                 collection: GraphQLString,
                 field: GraphQLString,
                 related_collection: GraphQLString,
                 schema: schemaComposer.createObjectTC({
-                    name: 'directus_relations_schema',
+                    name: 'superscribe_relations_schema',
                     fields: {
                         table: new GraphQLNonNull(GraphQLString),
                         column: new GraphQLNonNull(GraphQLString),
@@ -2127,8 +2127,8 @@ export class GraphQLService {
                     },
                 }),
                 meta: schemaComposer.createObjectTC({
-                    name: 'directus_relations_meta',
-                    fields: Object.values(schema.read.collections['directus_relations'].fields).reduce((acc, field) => {
+                    name: 'superscribe_relations_meta',
+                    fields: Object.values(schema.read.collections['superscribe_relations'].fields).reduce((acc, field) => {
                         acc[field.field] = {
                             type: getGraphQLType(field.type, field.special),
                             description: field.note,
@@ -2182,11 +2182,11 @@ export class GraphQLService {
                 create_collections_item: {
                     type: Collection,
                     args: {
-                        data: toInputObjectType(Collection.clone('create_directus_collections'), {
+                        data: toInputObjectType(Collection.clone('create_superscribe_collections'), {
                             postfix: '_input',
                         }).addFields({
                             fields: [
-                                toInputObjectType(Field.clone('create_directus_collections_fields'), { postfix: '_input' }).NonNull,
+                                toInputObjectType(Field.clone('create_superscribe_collections_fields'), { postfix: '_input' }).NonNull,
                             ],
                         }).NonNull,
                     },
@@ -2203,7 +2203,7 @@ export class GraphQLService {
                     type: Collection,
                     args: {
                         collection: new GraphQLNonNull(GraphQLString),
-                        data: toInputObjectType(Collection.clone('update_directus_collections'), {
+                        data: toInputObjectType(Collection.clone('update_superscribe_collections'), {
                             postfix: '_input',
                         }).removeField(['collection', 'schema']).NonNull,
                     },
@@ -2241,7 +2241,7 @@ export class GraphQLService {
                     type: Field,
                     args: {
                         collection: new GraphQLNonNull(GraphQLString),
-                        data: toInputObjectType(Field.clone('create_directus_fields'), { postfix: '_input' }).NonNull,
+                        data: toInputObjectType(Field.clone('create_superscribe_fields'), { postfix: '_input' }).NonNull,
                     },
                     resolve: async (_, args) => {
                         const service = new FieldsService({
@@ -2257,7 +2257,7 @@ export class GraphQLService {
                     args: {
                         collection: new GraphQLNonNull(GraphQLString),
                         field: new GraphQLNonNull(GraphQLString),
-                        data: toInputObjectType(Field.clone('update_directus_fields'), { postfix: '_input' }).NonNull,
+                        data: toInputObjectType(Field.clone('update_superscribe_fields'), { postfix: '_input' }).NonNull,
                     },
                     resolve: async (_, args) => {
                         const service = new FieldsService({
@@ -2298,7 +2298,7 @@ export class GraphQLService {
                 create_relations_item: {
                     type: Relation,
                     args: {
-                        data: toInputObjectType(Relation.clone('create_directus_relations'), { postfix: '_input' }).NonNull,
+                        data: toInputObjectType(Relation.clone('create_superscribe_relations'), { postfix: '_input' }).NonNull,
                     },
                     resolve: async (_, args) => {
                         const relationsService = new RelationsService({
@@ -2314,7 +2314,7 @@ export class GraphQLService {
                     args: {
                         collection: new GraphQLNonNull(GraphQLString),
                         field: new GraphQLNonNull(GraphQLString),
-                        data: toInputObjectType(Relation.clone('update_directus_relations'), { postfix: '_input' }).NonNull,
+                        data: toInputObjectType(Relation.clone('update_superscribe_relations'), { postfix: '_input' }).NonNull,
                     },
                     resolve: async (_, args) => {
                         const relationsService = new RelationsService({
@@ -2348,10 +2348,10 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_users' in schema.read.collections) {
+        if ('superscribe_users' in schema.read.collections) {
             schemaComposer.Query.addFields({
                 users_me: {
-                    type: ReadCollectionTypes['directus_users'],
+                    type: ReadCollectionTypes['superscribe_users'],
                     resolve: async (_, args, __, info) => {
                         if (!this.accountability?.user)
                             return null;
@@ -2363,12 +2363,12 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_users' in schema.update.collections && this.accountability?.user) {
+        if ('superscribe_users' in schema.update.collections && this.accountability?.user) {
             schemaComposer.Mutation.addFields({
                 update_users_me: {
-                    type: ReadCollectionTypes['directus_users'],
+                    type: ReadCollectionTypes['superscribe_users'],
                     args: {
-                        data: toInputObjectType(UpdateCollectionTypes['directus_users']),
+                        data: toInputObjectType(UpdateCollectionTypes['superscribe_users']),
                     },
                     resolve: async (_, args, __, info) => {
                         if (!this.accountability?.user)
@@ -2378,7 +2378,7 @@ export class GraphQLService {
                             accountability: this.accountability,
                         });
                         await service.updateOne(this.accountability.user, args['data']);
-                        if ('directus_users' in ReadCollectionTypes) {
+                        if ('superscribe_users' in ReadCollectionTypes) {
                             const selections = this.replaceFragmentsInSelections(info.fieldNodes[0]?.selectionSet?.selections, info.fragments);
                             const query = this.getQuery(args, selections || [], info.variableValues);
                             return await service.readOne(this.accountability.user, query);
@@ -2388,10 +2388,10 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_activity' in schema.create.collections) {
+        if ('superscribe_activity' in schema.create.collections) {
             schemaComposer.Mutation.addFields({
                 create_comment: {
-                    type: ReadCollectionTypes['directus_activity'] ?? GraphQLBoolean,
+                    type: ReadCollectionTypes['superscribe_activity'] ?? GraphQLBoolean,
                     args: {
                         collection: new GraphQLNonNull(GraphQLString),
                         item: new GraphQLNonNull(GraphQLID),
@@ -2410,7 +2410,7 @@ export class GraphQLService {
                             user_agent: this.accountability?.userAgent,
                             origin: this.accountability?.origin,
                         });
-                        if ('directus_activity' in ReadCollectionTypes) {
+                        if ('superscribe_activity' in ReadCollectionTypes) {
                             const selections = this.replaceFragmentsInSelections(info.fieldNodes[0]?.selectionSet?.selections, info.fragments);
                             const query = this.getQuery(args, selections || [], info.variableValues);
                             return await service.readOne(primaryKey, query);
@@ -2420,10 +2420,10 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_activity' in schema.update.collections) {
+        if ('superscribe_activity' in schema.update.collections) {
             schemaComposer.Mutation.addFields({
                 update_comment: {
-                    type: ReadCollectionTypes['directus_activity'] ?? GraphQLBoolean,
+                    type: ReadCollectionTypes['superscribe_activity'] ?? GraphQLBoolean,
                     args: {
                         id: new GraphQLNonNull(GraphQLID),
                         comment: new GraphQLNonNull(GraphQLString),
@@ -2434,7 +2434,7 @@ export class GraphQLService {
                             schema: this.schema,
                         });
                         const primaryKey = await service.updateOne(args['id'], { comment: args['comment'] });
-                        if ('directus_activity' in ReadCollectionTypes) {
+                        if ('superscribe_activity' in ReadCollectionTypes) {
                             const selections = this.replaceFragmentsInSelections(info.fieldNodes[0]?.selectionSet?.selections, info.fragments);
                             const query = this.getQuery(args, selections || [], info.variableValues);
                             return await service.readOne(primaryKey, query);
@@ -2444,7 +2444,7 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_activity' in schema.delete.collections) {
+        if ('superscribe_activity' in schema.delete.collections) {
             schemaComposer.Mutation.addFields({
                 delete_comment: {
                     type: DeleteCollectionTypes['one'],
@@ -2462,13 +2462,13 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_files' in schema.create.collections) {
+        if ('superscribe_files' in schema.create.collections) {
             schemaComposer.Mutation.addFields({
                 import_file: {
-                    type: ReadCollectionTypes['directus_files'] ?? GraphQLBoolean,
+                    type: ReadCollectionTypes['superscribe_files'] ?? GraphQLBoolean,
                     args: {
                         url: new GraphQLNonNull(GraphQLString),
-                        data: toInputObjectType(CreateCollectionTypes['directus_files']).setTypeName('create_directus_files_input'),
+                        data: toInputObjectType(CreateCollectionTypes['superscribe_files']).setTypeName('create_superscribe_files_input'),
                     },
                     resolve: async (_, args, __, info) => {
                         const service = new FilesService({
@@ -2476,7 +2476,7 @@ export class GraphQLService {
                             schema: this.schema,
                         });
                         const primaryKey = await service.importOne(args['url'], args['data']);
-                        if ('directus_files' in ReadCollectionTypes) {
+                        if ('superscribe_files' in ReadCollectionTypes) {
                             const selections = this.replaceFragmentsInSelections(info.fieldNodes[0]?.selectionSet?.selections, info.fragments);
                             const query = this.getQuery(args, selections || [], info.variableValues);
                             return await service.readOne(primaryKey, query);
@@ -2486,7 +2486,7 @@ export class GraphQLService {
                 },
             });
         }
-        if ('directus_users' in schema.create.collections) {
+        if ('superscribe_users' in schema.create.collections) {
             schemaComposer.Mutation.addFields({
                 users_invite: {
                     type: GraphQLBoolean,

@@ -1,4 +1,4 @@
-import { defineOperationApi } from '@directus/utils';
+import { defineOperationApi } from '@superscribe/utils';
 export default defineOperationApi({
     id: 'sleep',
     handler: async ({ milliseconds }) => {

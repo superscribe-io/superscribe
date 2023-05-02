@@ -4,7 +4,7 @@ import request from 'supertest';
 import vendors from '@common/get-dbs-to-test';
 import knex from 'knex';
 import type { Knex } from 'knex';
-import type { FieldRaw } from '@directus/types';
+import type { FieldRaw } from '@superscribe/types';
 import { sortedUniq } from 'lodash';
 import { collection } from './crud.seed';
 import { requestGraphQL } from '@common/index';
@@ -85,17 +85,17 @@ describe.each(common.PRIMARY_KEY_TYPES)('/fields', (pkType) => {
 								);
 
 								const appAccessPermissions = [
-									'directus_activity',
-									'directus_collections',
-									'directus_fields',
-									'directus_notifications',
-									'directus_permissions',
-									'directus_presets',
-									'directus_relations',
-									'directus_roles',
-									'directus_settings',
-									'directus_shares',
-									'directus_users',
+									'superscribe_activity',
+									'superscribe_collections',
+									'superscribe_fields',
+									'superscribe_notifications',
+									'superscribe_permissions',
+									'superscribe_presets',
+									'superscribe_relations',
+									'superscribe_roles',
+									'superscribe_settings',
+									'superscribe_shares',
+									'superscribe_users',
 								];
 
 								expect(response.statusCode).toBe(200);
@@ -246,11 +246,11 @@ describe.each(common.PRIMARY_KEY_TYPES)('/fields', (pkType) => {
 			afterEach(async () => {
 				const db = databases.get(currentVendor)!;
 
-				await db('directus_fields')
+				await db('superscribe_fields')
 					.update({ note: null })
 					.where({ collection: TEST_COLLECTION_NAME, field: TEST_FIELD_NAME });
 
-				await db('directus_fields')
+				await db('superscribe_fields')
 					.update({ note: null })
 					.where({ collection: TEST_COLLECTION_NAME, field: TEST_ALIAS_FIELD_NAME });
 			});
@@ -341,11 +341,11 @@ describe.each(common.PRIMARY_KEY_TYPES)('/fields', (pkType) => {
 			afterEach(async () => {
 				const db = databases.get(currentVendor)!;
 
-				await db('directus_fields')
+				await db('superscribe_fields')
 					.update({ note: null })
 					.where({ collection: TEST_COLLECTION_NAME, field: TEST_FIELD_NAME });
 
-				await db('directus_fields')
+				await db('superscribe_fields')
 					.update({ note: null })
 					.where({ collection: TEST_COLLECTION_NAME, field: TEST_ALIAS_FIELD_NAME });
 			});

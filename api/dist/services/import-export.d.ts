@@ -1,5 +1,5 @@
 /// <reference types="node" resolution-mode="require"/>
-import type { Accountability, Query, SchemaOverview } from '@directus/types';
+import type { Accountability, Query, SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { Readable } from 'node:stream';
 import type { AbstractServiceOptions, File } from '../types/index.js';

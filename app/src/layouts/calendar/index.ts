@@ -6,9 +6,9 @@ import { renderDisplayStringTemplate } from '@/utils/render-string-template';
 import { saveAsCSV } from '@/utils/save-as-csv';
 import { syncRefProperty } from '@/utils/sync-ref-property';
 import { unexpectedError } from '@/utils/unexpected-error';
-import { useCollection, useItems, useSync } from '@directus/composables';
-import { Field, Item } from '@directus/types';
-import { defineLayout, getEndpoint, getFieldsFromTemplate } from '@directus/utils';
+import { useCollection, useItems, useSync } from '@superscribe/composables';
+import { Field, Item } from '@superscribe/types';
+import { defineLayout, getEndpoint, getFieldsFromTemplate } from '@superscribe/utils';
 import { Calendar, CalendarOptions as FullCalendarOptions, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -172,7 +172,7 @@ export default defineLayout<LayoutOptions>({
 					} else {
 						const primaryKey = info.event.id;
 
-						const route = collection.value.startsWith('directus_')
+						const route = collection.value.startsWith('superscribe_')
 							? collection.value.substring(9)
 							: `content/${collection.value}`;
 

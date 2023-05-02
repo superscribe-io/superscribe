@@ -1,4 +1,4 @@
-import { EXTENSION_NAME_REGEX, EXTENSION_PKG_KEY, HYBRID_EXTENSION_TYPES, NESTED_EXTENSION_TYPES, ExtensionManifest, } from '@directus/constants';
+import { EXTENSION_NAME_REGEX, EXTENSION_PKG_KEY, HYBRID_EXTENSION_TYPES, NESTED_EXTENSION_TYPES, ExtensionManifest, } from '@superscribe/constants';
 import fse from 'fs-extra';
 import path from 'path';
 import { isIn, isTypeIn } from './array-helpers.js';

@@ -1,7 +1,7 @@
-import { APP_EXTENSION_TYPES, APP_SHARED_DEPS, HYBRID_EXTENSION_TYPES, NESTED_EXTENSION_TYPES, } from '@directus/constants';
-import * as sharedExceptions from '@directus/exceptions';
-import { isIn, isTypeIn, pluralize } from '@directus/utils';
-import { ensureExtensionDirs, generateExtensionsEntrypoint, getLocalExtensions, getPackageExtensions, pathToRelativeUrl, resolvePackage, resolvePackageExtensions, } from '@directus/utils/node';
+import { APP_EXTENSION_TYPES, APP_SHARED_DEPS, HYBRID_EXTENSION_TYPES, NESTED_EXTENSION_TYPES, } from '@superscribe/constants';
+import * as sharedExceptions from '@superscribe/exceptions';
+import { isIn, isTypeIn, pluralize } from '@superscribe/utils';
+import { ensureExtensionDirs, generateExtensionsEntrypoint, getLocalExtensions, getPackageExtensions, pathToRelativeUrl, resolvePackage, resolvePackageExtensions, } from '@superscribe/utils/node';
 import aliasDefault from '@rollup/plugin-alias';
 import nodeResolveDefault from '@rollup/plugin-node-resolve';
 import virtualDefault from '@rollup/plugin-virtual';
@@ -278,7 +278,7 @@ class ExtensionManager {
         return null;
     }
     async getSharedDepsMapping(deps) {
-        const appDir = await readdir(path.join(resolvePackage('@directus/app', __dirname), 'dist', 'assets'));
+        const appDir = await readdir(path.join(resolvePackage('@superscribe/app', __dirname), 'dist', 'assets'));
         const depsMapping = {};
         for (const dep of deps) {
             const depRegex = new RegExp(`${escapeRegExp(dep.replace(/\//g, '_'))}\\.[0-9a-f]{8}\\.entry\\.js`);

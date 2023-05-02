@@ -1,5 +1,5 @@
-import { REGEX_BETWEEN_PARENS } from '@directus/constants';
-import { getFunctionsForType } from '@directus/utils';
+import { REGEX_BETWEEN_PARENS } from '@superscribe/constants';
+import { getFunctionsForType } from '@superscribe/utils';
 import { getFunctions } from '../database/helpers/index.js';
 import { InvalidQueryException } from '../exceptions/index.js';
 import { applyFunctionToColumnName } from './apply-function-to-column-name.js';

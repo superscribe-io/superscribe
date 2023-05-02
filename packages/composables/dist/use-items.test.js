@@ -158,9 +158,9 @@ test('should reset when collection changes', async () => {
     await flushPromises();
     expect(unref(items)).toEqual([]);
 });
-test('should append $thumbnail to fetched items when collection is directus_files', async () => {
+test('should append $thumbnail to fetched items when collection is superscribe_files', async () => {
     vi.mocked(useCollection).mockReturnValueOnce({ primaryKeyField: computed(() => null) });
-    const collection = ref('directus_files');
+    const collection = ref('superscribe_files');
     const { items } = useItems(collection, {
         fields: ref(['*']),
         limit: ref(1),

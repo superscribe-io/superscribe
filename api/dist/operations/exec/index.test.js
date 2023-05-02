@@ -81,7 +81,7 @@ test('Allows built-in modules that are whitelisted', () => {
 
 		module.exports = async function (data) {
 			return {
-				result: crypto.createHash('sha256').update('directus').digest('hex'),
+				result: crypto.createHash('sha256').update('superscribe').digest('hex'),
 			};
 		};
 	`;

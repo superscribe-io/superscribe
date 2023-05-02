@@ -1,4 +1,4 @@
-import { normalizePath } from '@directus/utils';
+import { normalizePath } from '@superscribe/utils';
 import { Bucket, Storage } from '@google-cloud/storage';
 import { randDirectoryPath, randFilePath, randFileType, randGitBranch as randBucket, randGitShortSha as randUnique, randNumber, randPastDate, randText, randUrl, } from '@ngneat/falso';
 import { join } from 'node:path';
@@ -6,8 +6,8 @@ import { PassThrough } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { DriverGCS } from './index.js';
-vi.mock('@directus/utils/node');
-vi.mock('@directus/utils');
+vi.mock('@superscribe/utils/node');
+vi.mock('@superscribe/utils');
 vi.mock('@google-cloud/storage');
 vi.mock('node:path');
 vi.mock('node:stream/promises');

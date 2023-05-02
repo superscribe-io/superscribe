@@ -1,5 +1,5 @@
-import type { BaseException } from '@directus/exceptions';
-import type { Accountability, Filter, Query, SchemaOverview } from '@directus/types';
+import type { BaseException } from '@superscribe/exceptions';
+import type { Accountability, Filter, Query, SchemaOverview } from '@superscribe/types';
 import type { ArgumentNode, FormattedExecutionResult, FragmentDefinitionNode, GraphQLResolveInfo, SelectionNode } from 'graphql';
 import { GraphQLError, GraphQLSchema } from 'graphql';
 import { ObjectTypeComposer, SchemaComposer } from 'graphql-compose';
@@ -26,7 +26,7 @@ export declare class GraphQLService {
     getSchema(type: 'sdl'): GraphQLSchema | string;
     /**
      * Generic resolver that's used for every "regular" items/system query. Converts the incoming GraphQL AST / fragments into
-     * Directus' query structure which is then executed by the services.
+     * Superscribe' query structure which is then executed by the services.
      */
     resolveQuery(info: GraphQLResolveInfo): Promise<Partial<Item> | null>;
     resolveMutation(args: Record<string, any>, info: GraphQLResolveInfo): Promise<Partial<Item> | boolean | undefined>;
@@ -40,15 +40,15 @@ export declare class GraphQLService {
     upsertSingleton(collection: string, body: Record<string, any> | Record<string, any>[], query: Query): Promise<Partial<Item> | boolean>;
     /**
      * GraphQL's regular resolver `args` variable only contains the "top-level" arguments. Seeing that we convert the
-     * whole nested tree into one big query using Directus' own query resolver, we want to have a nested structure of
-     * arguments for the whole resolving tree, which can later be transformed into Directus' AST using `deep`.
+     * whole nested tree into one big query using Superscribe' own query resolver, we want to have a nested structure of
+     * arguments for the whole resolving tree, which can later be transformed into Superscribe' AST using `deep`.
      * In order to do that, we'll parse over all ArgumentNodes and ObjectFieldNodes to manually recreate an object structure
      * of arguments
      */
     parseArgs(args: readonly ArgumentNode[], variableValues: GraphQLResolveInfo['variableValues']): Record<string, any>;
     /**
-     * Get a Directus Query object from the parsed arguments (rawQuery) and GraphQL AST selectionSet. Converts SelectionSet into
-     * Directus' `fields` query for use in the resolver. Also applies variables where appropriate.
+     * Get a Superscribe Query object from the parsed arguments (rawQuery) and GraphQL AST selectionSet. Converts SelectionSet into
+     * Superscribe' `fields` query for use in the resolver. Also applies variables where appropriate.
      */
     getQuery(rawQuery: Query, selections: readonly SelectionNode[], variableValues: GraphQLResolveInfo['variableValues']): Query;
     /**
@@ -56,11 +56,11 @@ export declare class GraphQLService {
      */
     getAggregateQuery(rawQuery: Query, selections: readonly SelectionNode[]): Query;
     /**
-     * Replace functions from GraphQL format to Directus-Filter format
+     * Replace functions from GraphQL format to Superscribe-Filter format
      */
     replaceFuncs(filter: Filter): Filter;
     /**
-     * Convert Directus-Exception into a GraphQL format, so it can be returned by GraphQL properly.
+     * Convert Superscribe-Exception into a GraphQL format, so it can be returned by GraphQL properly.
      */
     formatError(error: BaseException | BaseException[]): GraphQLError;
     /**

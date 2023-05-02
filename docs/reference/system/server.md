@@ -1,5 +1,5 @@
 ---
-description: REST and GraphQL API documentation on the Server collection in Directus.
+description: REST and GraphQL API documentation on the Server collection in Superscribe.
 readTime: 4 min read
 pageClass: page-reference
 ---
@@ -76,8 +76,8 @@ type about_us {
   general_email: String
   primary_color: String
   secondary_color: String
-  logo: directus_files
-  mark: directus_files
+  logo: superscribe_files
+  mark: superscribe_files
 }
 
 type articles {
@@ -183,8 +183,8 @@ If rate-limiter is enabled, duration in seconds in which points are counted
 
 Admin users also get the following information:
 
-`directus.version` **string**\
-Current version of Directus used.
+`superscribe.version` **string**\
+Current version of Superscribe used.
 
 `node.version` **string**\
 Current version of Node used.
@@ -227,7 +227,7 @@ type Query {
 ```graphql
 query {
 	server_info {
-		directus {
+		superscribe {
 			version
 		}
 	}
@@ -314,10 +314,10 @@ One of `ok`, `warn`, `error`.
 Authenticated admin users also get the following information:
 
 `releaseId` **string**\
-Directus version in use.
+Superscribe version in use.
 
 `serviceId` **string**\
-UUID of the current Directus instance.
+UUID of the current Superscribe instance.
 
 `checks` **array**\
 Array with the status of all individually connected services.

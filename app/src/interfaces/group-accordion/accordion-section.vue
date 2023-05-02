@@ -36,8 +36,8 @@
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue';
 import { merge, isNil } from 'lodash';
-import { Field } from '@directus/types';
-import { ValidationError } from '@directus/types';
+import { Field } from '@superscribe/types';
+import { ValidationError } from '@superscribe/types';
 import { useI18n } from 'vue-i18n';
 
 export default defineComponent({

@@ -1,4 +1,4 @@
-table: directus_webhooks
+table: superscribe_webhooks
 
 columns:
   id:

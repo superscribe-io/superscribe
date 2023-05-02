@@ -9,11 +9,11 @@ const assetsDirectory = [__dirname, '..', '..', 'assets'];
 const storages = ['local', 'minio'];
 
 const imageFile = {
-	name: 'directus.png',
+	name: 'superscribe.png',
 	type: 'image/png',
 	filesize: '7136',
-	title: 'Directus',
-	description: 'The Directus Logo',
+	title: 'Superscribe',
+	description: 'The Superscribe Logo',
 };
 
 const imageFilePath = path.join(...assetsDirectory, imageFile.name);

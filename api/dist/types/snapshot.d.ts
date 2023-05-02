@@ -1,10 +1,10 @@
-import type { Field, FieldMeta, Relation, RelationMeta } from '@directus/types';
+import type { Field, FieldMeta, Relation, RelationMeta } from '@superscribe/types';
 import type { Diff } from 'deep-diff';
 import type { Collection } from './collection.js';
 import type { DatabaseClient } from './database.js';
 export type Snapshot = {
     version: number;
-    directus: string;
+    superscribe: string;
     vendor?: DatabaseClient;
     collections: Collection[];
     fields: SnapshotField[];

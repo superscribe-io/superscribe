@@ -1,5 +1,5 @@
 ---
-description: REST and GraphQL API documentation on using Shares in Directus
+description: REST and GraphQL API documentation on using Shares in Superscribe
 readTime: 5 min read
 pageClass: page-reference
 ---
@@ -67,7 +67,7 @@ The maximum number of times the shared item can be viewed.
 
 ## List Shares
 
-List all shares that exist in Directus.
+List all shares that exist in Superscribe.
 
 ### Query Parameters
 
@@ -95,7 +95,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	shares: [directus_shares]
+	shares: [superscribe_shares]
 }
 ```
 
@@ -146,7 +146,7 @@ POST /graphql/system
 
 ```graphql
 type Query {
-	shares_by_id(id: ID!): directus_shares
+	shares_by_id(id: ID!): superscribe_shares
 }
 ```
 
@@ -208,7 +208,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	create_shares_item(data: create_directus_shares_input!): directus_shares
+	create_shares_item(data: create_superscribe_shares_input!): superscribe_shares
 }
 ```
 
@@ -278,7 +278,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	create_shares_items(data: [create_directus_shares_input!]!): [directus_shares]
+	create_shares_items(data: [create_superscribe_shares_input!]!): [superscribe_shares]
 }
 ```
 
@@ -347,7 +347,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	update_shares_item(id: ID!, data: update_directus_shares_input): directus_shares
+	update_shares_item(id: ID!, data: update_superscribe_shares_input): superscribe_shares
 }
 ```
 
@@ -413,7 +413,7 @@ POST /graphql/system
 
 ```graphql
 type Mutation {
-	update_shares_items(ids: [ID!]!, data: update_directus_shares_input): [directus_shares]
+	update_shares_items(ids: [ID!]!, data: update_superscribe_shares_input): [superscribe_shares]
 }
 ```
 

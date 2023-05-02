@@ -1,6 +1,6 @@
 /// <reference types="node" resolution-mode="require"/>
 /// <reference types="node" resolution-mode="require"/>
-import type { Driver, Range } from '@directus/storage';
+import type { Driver, Range } from '@superscribe/storage';
 import type { Readable } from 'node:stream';
 export type DriverLocalConfig = {
     root: string;

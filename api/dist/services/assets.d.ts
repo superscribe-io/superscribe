@@ -1,6 +1,6 @@
 /// <reference types="node" resolution-mode="require"/>
-import type { Range, Stat } from '@directus/storage';
-import type { Accountability } from '@directus/types';
+import type { Range, Stat } from '@superscribe/storage';
+import type { Accountability } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { Readable } from 'node:stream';
 import type { AbstractServiceOptions, TransformationParams } from '../types/index.js';

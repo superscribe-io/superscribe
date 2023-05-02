@@ -8,7 +8,7 @@ import { PanelsService } from '../services/panels.js';
 import asyncHandler from '../utils/async-handler.js';
 import { sanitizeQuery } from '../utils/sanitize-query.js';
 const router = express.Router();
-router.use(useCollection('directus_panels'));
+router.use(useCollection('superscribe_panels'));
 router.post('/', asyncHandler(async (req, res, next) => {
     const service = new PanelsService({
         accountability: req.accountability,

@@ -17,7 +17,7 @@ describe('Integration Tests', () => {
         tracker = createTracker(db);
     });
     beforeEach(() => {
-        tracker.on.any('directus_webhooks').response({});
+        tracker.on.any('superscribe_webhooks').response({});
     });
     afterEach(() => {
         tracker.reset();
@@ -30,8 +30,8 @@ describe('Integration Tests', () => {
                 knex: db,
                 schema: {
                     collections: {
-                        directus_webhooks: {
-                            collection: 'directus_webhooks',
+                        superscribe_webhooks: {
+                            collection: 'superscribe_webhooks',
                             primary: 'id',
                             singleton: false,
                             sortField: null,

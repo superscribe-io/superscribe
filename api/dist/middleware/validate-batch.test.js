@@ -1,7 +1,7 @@
 import { validateBatch } from './validate-batch.js';
 import '../../src/types/express.d.ts';
 import { InvalidPayloadException } from '../exceptions/invalid-payload.js';
-import { FailedValidationException } from '@directus/exceptions';
+import { FailedValidationException } from '@superscribe/exceptions';
 import { vi, beforeEach, test, expect } from 'vitest';
 let mockRequest;
 let mockResponse;

@@ -7,7 +7,7 @@ export const _cache = {
 export const getStorage = async () => {
     if (_cache.storage)
         return _cache.storage;
-    const { StorageManager } = await import('@directus/storage');
+    const { StorageManager } = await import('@superscribe/storage');
     validateEnv(['STORAGE_LOCATIONS']);
     _cache.storage = new StorageManager();
     await registerDrivers(_cache.storage);

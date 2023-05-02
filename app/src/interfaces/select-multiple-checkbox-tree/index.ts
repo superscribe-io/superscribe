@@ -1,5 +1,5 @@
-import { defineInterface } from '@directus/utils';
-import { DeepPartial, Field } from '@directus/types';
+import { defineInterface } from '@superscribe/utils';
+import { DeepPartial, Field } from '@superscribe/types';
 import InterfaceSelectMultipleCheckboxesTree from './select-multiple-checkbox-tree.vue';
 import PreviewSVG from './preview.svg?raw';
 

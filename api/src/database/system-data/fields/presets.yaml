@@ -1,4 +1,4 @@
-table: directus_presets
+table: superscribe_presets
 
 fields:
   - field: filter

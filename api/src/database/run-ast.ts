@@ -1,5 +1,5 @@
-import type { Item, Query, SchemaOverview } from '@directus/types';
-import { toArray } from '@directus/utils';
+import type { Item, Query, SchemaOverview } from '@superscribe/types';
+import { toArray } from '@superscribe/utils';
 import type { Knex } from 'knex';
 import { clone, cloneDeep, isNil, merge, pick, uniq } from 'lodash-es';
 import { getHelpers } from '../database/helpers/index.js';
@@ -362,7 +362,7 @@ async function getDBQuery(
 		});
 
 		if (hasMultiRelationalSort) {
-			wrapperQuery.where('inner.directus_row_number', '=', 1);
+			wrapperQuery.where('inner.superscribe_row_number', '=', 1);
 			applyLimit(knex, wrapperQuery, queryCopy.limit);
 		}
 	}

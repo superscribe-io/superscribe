@@ -1,5 +1,5 @@
-import { createInspector } from '@directus/schema';
-import { addFieldFlag } from '@directus/utils';
+import { createInspector } from '@superscribe/schema';
+import { addFieldFlag } from '@superscribe/utils';
 import { chunk, omit } from 'lodash-es';
 import { clearSystemCache, getCache } from '../cache.js';
 import { ALIAS_TYPES } from '../constants.js';
@@ -39,13 +39,13 @@ export class CollectionsService {
         }
         if (!payload.collection)
             throw new InvalidPayloadException(`"collection" is required`);
-        if (payload.collection.startsWith('directus_')) {
-            throw new InvalidPayloadException(`Collections can't start with "directus_"`);
+        if (payload.collection.startsWith('superscribe_')) {
+            throw new InvalidPayloadException(`Collections can't start with "superscribe_"`);
         }
         const nestedActionEvents = [];
         try {
             const existingCollections = [
-                ...((await this.knex.select('collection').from('directus_collections'))?.map(({ collection }) => collection) ??
+                ...((await this.knex.select('collection').from('superscribe_collections'))?.map(({ collection }) => collection) ??
                     []),
                 ...Object.keys(this.schema.collections),
             ];
@@ -57,7 +57,7 @@ export class CollectionsService {
             // transactions.
             await this.knex.transaction(async (trx) => {
                 if (payload.schema) {
-                    // Directus heavily relies on the primary key of a collection, so we have to make sure that
+                    // Superscribe heavily relies on the primary key of a collection, so we have to make sure that
                     // every collection that is created has a primary key. If no primary key field is created
                     // while making the collection, we default to an auto incremented id named `id`
                     if (!payload.fields)
@@ -100,7 +100,7 @@ export class CollectionsService {
                             }
                         }
                     });
-                    const fieldItemsService = new ItemsService('directus_fields', {
+                    const fieldItemsService = new ItemsService('superscribe_fields', {
                         knex: trx,
                         accountability: this.accountability,
                         schema: this.schema,
@@ -112,7 +112,7 @@ export class CollectionsService {
                     });
                 }
                 if (payload.meta) {
-                    const collectionItemsService = new ItemsService('directus_collections', {
+                    const collectionItemsService = new ItemsService('superscribe_collections', {
                         knex: trx,
                         accountability: this.accountability,
                         schema: this.schema,
@@ -189,7 +189,7 @@ export class CollectionsService {
      * Read all collections. Currently doesn't support any query.
      */
     async readByQuery() {
-        const collectionItemsService = new ItemsService('directus_collections', {
+        const collectionItemsService = new ItemsService('superscribe_collections', {
             knex: this.knex,
             schema: this.schema,
             accountability: this.accountability,
@@ -285,7 +285,7 @@ export class CollectionsService {
         }
         const nestedActionEvents = [];
         try {
-            const collectionItemsService = new ItemsService('directus_collections', {
+            const collectionItemsService = new ItemsService('superscribe_collections', {
                 knex: this.knex,
                 accountability: this.accountability,
                 schema: this.schema,
@@ -296,7 +296,7 @@ export class CollectionsService {
             }
             const exists = !!(await this.knex
                 .select('collection')
-                .from('directus_collections')
+                .from('superscribe_collections')
                 .where({ collection: collectionKey })
                 .first());
             if (exists) {
@@ -439,9 +439,9 @@ export class CollectionsService {
                     await trx.schema.dropTable(collectionKey);
                 }
                 // Make sure this collection isn't used as a group in any other collections
-                await trx('directus_collections').update({ group: null }).where({ group: collectionKey });
+                await trx('superscribe_collections').update({ group: null }).where({ group: collectionKey });
                 if (collectionToBeDeleted.meta) {
-                    const collectionItemsService = new ItemsService('directus_collections', {
+                    const collectionItemsService = new ItemsService('superscribe_collections', {
                         knex: trx,
                         accountability: this.accountability,
                         schema: this.schema,
@@ -456,22 +456,22 @@ export class CollectionsService {
                         accountability: this.accountability,
                         schema: this.schema,
                     });
-                    await trx('directus_fields').delete().where('collection', '=', collectionKey);
-                    await trx('directus_presets').delete().where('collection', '=', collectionKey);
+                    await trx('superscribe_fields').delete().where('collection', '=', collectionKey);
+                    await trx('superscribe_presets').delete().where('collection', '=', collectionKey);
                     const revisionsToDelete = await trx
                         .select('id')
-                        .from('directus_revisions')
+                        .from('superscribe_revisions')
                         .where({ collection: collectionKey });
                     if (revisionsToDelete.length > 0) {
                         const chunks = chunk(revisionsToDelete.map((record) => record.id), 10000);
                         for (const keys of chunks) {
-                            await trx('directus_revisions').update({ parent: null }).whereIn('parent', keys);
+                            await trx('superscribe_revisions').update({ parent: null }).whereIn('parent', keys);
                         }
                     }
-                    await trx('directus_revisions').delete().where('collection', '=', collectionKey);
-                    await trx('directus_activity').delete().where('collection', '=', collectionKey);
-                    await trx('directus_permissions').delete().where('collection', '=', collectionKey);
-                    await trx('directus_relations').delete().where({ many_collection: collectionKey });
+                    await trx('superscribe_revisions').delete().where('collection', '=', collectionKey);
+                    await trx('superscribe_activity').delete().where('collection', '=', collectionKey);
+                    await trx('superscribe_permissions').delete().where('collection', '=', collectionKey);
+                    await trx('superscribe_relations').delete().where({ many_collection: collectionKey });
                     const relations = this.schema.relations.filter((relation) => {
                         return relation.collection === collectionKey || relation.related_collection === collectionKey;
                     });
@@ -500,7 +500,7 @@ export class CollectionsService {
                         const newAllowedCollections = relation
                             .meta.one_allowed_collections.filter((collection) => collectionKey !== collection)
                             .join(',');
-                        await trx('directus_relations')
+                        await trx('superscribe_relations')
                             .update({ one_allowed_collections: newAllowedCollections })
                             .where({ id: relation.meta.id });
                     }

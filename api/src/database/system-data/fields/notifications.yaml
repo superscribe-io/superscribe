@@ -1,4 +1,4 @@
-table: directus_notifications
+table: superscribe_notifications
 
 fields:
   - field: id

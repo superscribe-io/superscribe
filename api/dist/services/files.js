@@ -1,5 +1,5 @@
 import formatTitle from '@directus/format-title';
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import encodeURL from 'encodeurl';
 import exif from 'exif-reader';
 import { parse as parseIcc } from 'icc';
@@ -20,7 +20,7 @@ import { parseIptc, parseXmp } from '../utils/parse-image-metadata.js';
 import { ItemsService } from './items.js';
 export class FilesService extends ItemsService {
     constructor(options) {
-        super('directus_files', options);
+        super('superscribe_files', options);
     }
     /**
      * Upload a single new file to the configured storage adapter
@@ -32,13 +32,13 @@ export class FilesService extends ItemsService {
             existingFile =
                 (await this.knex
                     .select('folder', 'filename_download')
-                    .from('directus_files')
+                    .from('superscribe_files')
                     .where({ id: primaryKey })
                     .first()) ?? {};
         }
         const payload = { ...existingFile, ...clone(data) };
         if ('folder' in payload === false) {
-            const settings = await this.knex.select('storage_default_folder').from('directus_settings').first();
+            const settings = await this.knex.select('storage_default_folder').from('superscribe_settings').first();
             if (settings?.storage_default_folder) {
                 payload.folder = settings.storage_default_folder;
             }
@@ -82,7 +82,7 @@ export class FilesService extends ItemsService {
         }
         // We do this in a service without accountability. Even if you don't have update permissions to the file,
         // we still want to be able to set the extracted values from the file on create
-        const sudoService = new ItemsService('directus_files', {
+        const sudoService = new ItemsService('superscribe_files', {
             knex: this.knex,
             schema: this.schema,
         });
@@ -202,7 +202,7 @@ export class FilesService extends ItemsService {
      * Import a single file from an external URL
      */
     async importOne(importURL, body) {
-        const fileCreatePermissions = this.accountability?.permissions?.find((permission) => permission.collection === 'directus_files' && permission.action === 'create');
+        const fileCreatePermissions = this.accountability?.permissions?.find((permission) => permission.collection === 'superscribe_files' && permission.action === 'create');
         if (this.accountability && this.accountability?.admin !== true && !fileCreatePermissions) {
             throw new ForbiddenException();
         }

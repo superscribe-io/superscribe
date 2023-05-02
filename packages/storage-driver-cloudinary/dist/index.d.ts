@@ -1,5 +1,5 @@
 /// <reference types="node" resolution-mode="require"/>
-import type { Driver, Range } from '@directus/storage';
+import type { Driver, Range } from '@superscribe/storage';
 import { Readable } from 'node:stream';
 export type DriverCloudinaryConfig = {
     root?: string;

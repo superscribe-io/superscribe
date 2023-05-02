@@ -1,4 +1,4 @@
-import type { SchemaInspector } from '@directus/schema';
+import type { SchemaInspector } from '@superscribe/schema';
 import type { Knex } from 'knex';
 import type { DatabaseClient } from '../types/index.js';
 export default function getDatabase(): Knex;

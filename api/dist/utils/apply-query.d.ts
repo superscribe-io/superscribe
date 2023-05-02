@@ -1,4 +1,4 @@
-import type { Aggregate, Filter, Query, SchemaOverview } from '@directus/types';
+import type { Aggregate, Filter, Query, SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 import type { AliasMap } from './get-column-path.js';
 export declare const generateAlias: (size?: number | undefined) => string;

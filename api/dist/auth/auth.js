@@ -6,7 +6,7 @@ export class AuthDriver {
         this.schema = options.schema;
     }
     /**
-     * Check with the (external) provider if the user is allowed entry to Directus
+     * Check with the (external) provider if the user is allowed entry to Superscribe
      *
      * @param _user User information
      * @param _payload Any data that the user might've provided

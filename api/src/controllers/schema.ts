@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import Busboy from 'busboy';
 import type { RequestHandler } from 'express';
 import express from 'express';
@@ -60,7 +60,7 @@ const schemaMultipartHandler: RequestHandler = (req, res, next) => {
 
 		isFileIncluded = true;
 
-		const { readableStreamToString } = await import('@directus/utils/node');
+		const { readableStreamToString } = await import('@superscribe/utils/node');
 
 		try {
 			const uploadedString = await readableStreamToString(fileStream);

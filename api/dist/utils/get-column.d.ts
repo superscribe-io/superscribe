@@ -1,4 +1,4 @@
-import type { Query, SchemaOverview } from '@directus/types';
+import type { Query, SchemaOverview } from '@superscribe/types';
 import type { Knex } from 'knex';
 type GetColumnOptions = {
     query?: Query | undefined;

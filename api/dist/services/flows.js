@@ -2,7 +2,7 @@ import { getFlowManager } from '../flows.js';
 import { ItemsService } from './items.js';
 export class FlowsService extends ItemsService {
     constructor(options) {
-        super('directus_flows', options);
+        super('superscribe_flows', options);
     }
     async createOne(data, opts) {
         const flowManager = getFlowManager();
@@ -30,8 +30,8 @@ export class FlowsService extends ItemsService {
     }
     async deleteMany(keys, opts) {
         const flowManager = getFlowManager();
-        // this is to prevent foreign key constraint error on directus_operations resolve/reject during cascade deletion
-        await this.knex('directus_operations').update({ resolve: null, reject: null }).whereIn('flow', keys);
+        // this is to prevent foreign key constraint error on superscribe_operations resolve/reject during cascade deletion
+        await this.knex('superscribe_operations').update({ resolve: null, reject: null }).whereIn('flow', keys);
         const result = await super.deleteMany(keys, opts);
         await flowManager.reload();
         return result;

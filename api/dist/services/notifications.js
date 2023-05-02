@@ -9,7 +9,7 @@ export class NotificationsService extends ItemsService {
     usersService;
     mailService;
     constructor(options) {
-        super('directus_notifications', options);
+        super('superscribe_notifications', options);
         this.usersService = new UsersService({ schema: this.schema });
         this.mailService = new MailService({ schema: this.schema, accountability: this.accountability });
     }

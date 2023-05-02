@@ -243,7 +243,7 @@ describe('applySnapshot', () => {
         it.each(['char', 'varchar'])('casts non-postgres schema snapshots of UUID fields as %s(36) to UUID type', async (fieldSchemaDataType) => {
             const snapshotToApply = {
                 version: 1,
-                directus: '0.0.0',
+                superscribe: '0.0.0',
                 collections: [
                     {
                         collection: 'test_uuid_table',
@@ -377,7 +377,7 @@ describe('applySnapshot', () => {
                 database: db,
                 current: {
                     version: 1,
-                    directus: '0.0.0',
+                    superscribe: '0.0.0',
                     collections: [],
                     fields: [],
                     relations: [],
@@ -392,7 +392,7 @@ describe('applySnapshot', () => {
         it('Deletes interrelated collections', async () => {
             const snapshotToApply = {
                 version: 1,
-                directus: '0.0.0',
+                superscribe: '0.0.0',
                 collections: [],
                 fields: [],
                 relations: [],

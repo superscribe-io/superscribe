@@ -1,4 +1,4 @@
-import type { FlowRaw } from '@directus/types';
+import type { FlowRaw } from '@superscribe/types';
 import type { AbstractServiceOptions, Item, MutationOptions, PrimaryKey } from '../types/index.js';
 import { ItemsService } from './items.js';
 export declare class FlowsService extends ItemsService<FlowRaw> {

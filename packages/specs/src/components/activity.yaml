@@ -1,5 +1,5 @@
 type: object
-x-collection: directus_activity
+x-collection: superscribe_activity
 properties:
   id:
     description: Unique identifier for the object.
@@ -39,7 +39,7 @@ properties:
     type: string
   origin:
     description: Origin of the request when the action took place.
-    example: https://directus.io
+    example: https://superscribe.io
     type: string
   collection:
     description: Collection identifier in which the item resides.

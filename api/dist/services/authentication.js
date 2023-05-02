@@ -1,4 +1,4 @@
-import { Action } from '@directus/constants';
+import { Action } from '@superscribe/constants';
 import jwt from 'jsonwebtoken';
 import { clone, cloneDeep } from 'lodash-es';
 import { performance } from 'perf_hooks';
@@ -47,8 +47,8 @@ export class AuthenticationService {
         }
         const user = await this.knex
             .select('u.id', 'u.first_name', 'u.last_name', 'u.email', 'u.password', 'u.status', 'u.role', 'r.admin_access', 'r.app_access', 'u.tfa_secret', 'u.provider', 'u.external_identifier', 'u.auth_data')
-            .from('directus_users as u')
-            .leftJoin('directus_roles as r', 'u.role', 'r.id')
+            .from('superscribe_users as u')
+            .leftJoin('superscribe_roles as r', 'u.role', 'r.id')
             .where('u.id', userId)
             .first();
         const updatedPayload = await emitter.emitFilter('auth.login', payload, {
@@ -100,7 +100,7 @@ export class AuthenticationService {
                 await loginAttemptsLimiter.consume(user.id);
             }
             catch {
-                await this.knex('directus_users').update({ status: 'suspended' }).where({ id: user.id });
+                await this.knex('superscribe_users').update({ status: 'suspended' }).where({ id: user.id });
                 user.status = 'suspended';
                 // This means that new attempts after the user has been re-activated will be accepted
                 await loginAttemptsLimiter.set(user.id, 0, 0);
@@ -146,11 +146,11 @@ export class AuthenticationService {
         });
         const accessToken = jwt.sign(customClaims, env['SECRET'], {
             expiresIn: env['ACCESS_TOKEN_TTL'],
-            issuer: 'directus',
+            issuer: 'superscribe',
         });
         const refreshToken = nanoid(64);
         const refreshTokenExpiration = new Date(Date.now() + getMilliseconds(env['REFRESH_TOKEN_TTL'], 0));
-        await this.knex('directus_sessions').insert({
+        await this.knex('superscribe_sessions').insert({
             token: refreshToken,
             user: user.id,
             expires: refreshTokenExpiration,
@@ -158,7 +158,7 @@ export class AuthenticationService {
             user_agent: this.accountability?.userAgent,
             origin: this.accountability?.origin,
         });
-        await this.knex('directus_sessions').delete().where('expires', '<', new Date());
+        await this.knex('superscribe_sessions').delete().where('expires', '<', new Date());
         if (this.accountability) {
             await this.activityService.createOne({
                 action: Action.LOGIN,
@@ -166,11 +166,11 @@ export class AuthenticationService {
                 ip: this.accountability.ip,
                 user_agent: this.accountability.userAgent,
                 origin: this.accountability.origin,
-                collection: 'directus_users',
+                collection: 'superscribe_users',
                 item: user.id,
             });
         }
-        await this.knex('directus_users').update({ last_access: new Date() }).where({ id: user.id });
+        await this.knex('superscribe_users').update({ last_access: new Date() }).where({ id: user.id });
         emitStatus('success');
         if (allowedAttempts !== null) {
             await loginAttemptsLimiter.set(user.id, 0, 0);
@@ -214,10 +214,10 @@ export class AuthenticationService {
             share_times_used: 'd.times_used',
             share_max_uses: 'd.max_uses',
         })
-            .from('directus_sessions AS s')
-            .leftJoin('directus_users AS u', 's.user', 'u.id')
-            .leftJoin('directus_shares AS d', 's.share', 'd.id')
-            .leftJoin('directus_roles AS r', (join) => {
+            .from('superscribe_sessions AS s')
+            .leftJoin('superscribe_users AS u', 's.user', 'u.id')
+            .leftJoin('superscribe_shares AS d', 's.share', 'd.id')
+            .leftJoin('superscribe_roles AS r', (join) => {
             join.onIn('r.id', [this.knex.ref('u.role'), this.knex.ref('d.role')]);
         })
             .where('s.token', refreshToken)
@@ -233,7 +233,7 @@ export class AuthenticationService {
             throw new InvalidCredentialsException();
         }
         if (record.user_id && record.user_status !== 'active') {
-            await this.knex('directus_sessions').where({ token: refreshToken }).del();
+            await this.knex('superscribe_sessions').where({ token: refreshToken }).del();
             if (record.user_status === 'suspended') {
                 await stall(STALL_TIME, timeStart);
                 throw new UserSuspendedException();
@@ -289,18 +289,18 @@ export class AuthenticationService {
         });
         const accessToken = jwt.sign(customClaims, env['SECRET'], {
             expiresIn: env['ACCESS_TOKEN_TTL'],
-            issuer: 'directus',
+            issuer: 'superscribe',
         });
         const newRefreshToken = nanoid(64);
         const refreshTokenExpiration = new Date(Date.now() + getMilliseconds(env['REFRESH_TOKEN_TTL'], 0));
-        await this.knex('directus_sessions')
+        await this.knex('superscribe_sessions')
             .update({
             token: newRefreshToken,
             expires: refreshTokenExpiration,
         })
             .where({ token: refreshToken });
         if (record.user_id) {
-            await this.knex('directus_users').update({ last_access: new Date() }).where({ id: record.user_id });
+            await this.knex('superscribe_users').update({ last_access: new Date() }).where({ id: record.user_id });
         }
         return {
             accessToken,
@@ -312,21 +312,21 @@ export class AuthenticationService {
     async logout(refreshToken) {
         const record = await this.knex
             .select('u.id', 'u.first_name', 'u.last_name', 'u.email', 'u.password', 'u.status', 'u.role', 'u.provider', 'u.external_identifier', 'u.auth_data')
-            .from('directus_sessions as s')
-            .innerJoin('directus_users as u', 's.user', 'u.id')
+            .from('superscribe_sessions as s')
+            .innerJoin('superscribe_users as u', 's.user', 'u.id')
             .where('s.token', refreshToken)
             .first();
         if (record) {
             const user = record;
             const provider = getAuthProvider(user.provider);
             await provider.logout(clone(user));
-            await this.knex.delete().from('directus_sessions').where('token', refreshToken);
+            await this.knex.delete().from('superscribe_sessions').where('token', refreshToken);
         }
     }
     async verifyPassword(userID, password) {
         const user = await this.knex
             .select('id', 'first_name', 'last_name', 'email', 'password', 'status', 'role', 'provider', 'external_identifier', 'auth_data')
-            .from('directus_users')
+            .from('superscribe_users')
             .where('id', userID)
             .first();
         if (!user) {

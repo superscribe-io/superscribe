@@ -1,7 +1,7 @@
 import { usePermissionsStore } from '@/stores/permissions';
 import { useUserStore } from '@/stores/user';
-import { FieldFilter, Permission } from '@directus/types';
-import { generateJoi } from '@directus/utils';
+import { FieldFilter, Permission } from '@superscribe/types';
+import { generateJoi } from '@superscribe/utils';
 
 export function isAllowed(
 	collection: string,

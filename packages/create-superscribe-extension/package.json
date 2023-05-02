@@ -1,0 +1,40 @@
+{
+	"name": "create-superscribe-extension",
+	"version": "9.26.0",
+	"description": "A small util that will scaffold a Superscribe extension",
+	"keywords": [
+		"superscribe",
+		"extensions"
+	],
+	"type": "module",
+	"homepage": "https://superscribe.io",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/superscribe/superscribe.git",
+		"directory": "packages/create-superscribe-extension"
+	},
+	"funding": "https://github.com/superscribe/superscribe?sponsor=1",
+	"license": "GPL-3.0-only",
+	"author": "Nicola Krumschmidt",
+	"contributors": [
+		"Joonas Palosuo <joonas.palosuo@gmail.com>",
+		"Rijk van Zanten <rijkvanzanten@me.com>"
+	],
+	"exports": {
+		".": "./lib/index.js",
+		"./package.json": "./package.json"
+	},
+	"main": "lib/index.js",
+	"bin": {
+		"cde": "./lib/index.js",
+		"create-superscribe-extension": "./lib/index.js"
+	},
+	"files": [
+		"lib/index.js"
+	],
+	"dependencies": {
+		"@superscribe/constants": "workspace:*",
+		"@superscribe/extensions-sdk": "workspace:*",
+		"inquirer": "9.1.5"
+	}
+}

@@ -1,4 +1,4 @@
-table: directus_panels
+table: superscribe_panels
 
 fields:
   - field: id

@@ -1,4 +1,4 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import logger from '../logger.js';
 import { URL } from 'url';
 /**

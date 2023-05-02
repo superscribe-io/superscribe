@@ -1,5 +1,5 @@
-# directus_permissions isn't surfaced in the app
-table: directus_permissions
+# superscribe_permissions isn't surfaced in the app
+table: superscribe_permissions
 
 fields:
   - field: permissions

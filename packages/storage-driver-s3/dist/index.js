@@ -1,7 +1,7 @@
 import { CopyObjectCommand, DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsV2Command, S3Client, } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';
-import { normalizePath } from '@directus/utils';
-import { isReadableStream } from '@directus/utils/node';
+import { normalizePath } from '@superscribe/utils';
+import { isReadableStream } from '@superscribe/utils/node';
 import { join } from 'node:path';
 export class DriverS3 {
     config;

@@ -164,7 +164,7 @@ cancel: Batal
 collection: Koleksi
 collections: Koleksi-koleksi
 fields:
-  directus_activity:
+  superscribe_activity:
     item: Kunci Utama Item
     action: Tindakan
     collection: Koleksi
@@ -172,10 +172,10 @@ fields:
     user: Tindakan Oleh
     comment: Komen
     ip: Alamat IP
-  directus_collections:
+  superscribe_collections:
     collection: Koleksi
     note: Nota
-  directus_files:
+  superscribe_files:
     title: Tajuk
     description: Penerangan
     tags: Tag
@@ -187,7 +187,7 @@ fields:
     uploaded_on: Dimuat naik pada
     height: Tinggi
     duration: Durasi
-  directus_users:
+  superscribe_users:
     first_name: Nama pertama
     email: Emel
     password: Katalaluan
@@ -199,33 +199,33 @@ fields:
     theme: Tema
     status: Status
     role: Peranan
-  directus_settings:
+  superscribe_settings:
     project_name: Nama Projek
     module_bar: Modul.bar
-  directus_shares:
+  superscribe_shares:
     name: Nama
     role: Peranan
     password: Katalaluan
-  directus_fields:
+  superscribe_fields:
     note: Nota
     translation: Terjemahan nama bidang
-  directus_roles:
+  superscribe_roles:
     name: Nama peranan
     description: Penerangan
-  directus_webhooks:
+  superscribe_webhooks:
     name: Nama
     status: Status
     value: Nilai
     collections: Koleksi-koleksi
 field_options:
-  directus_activity:
+  superscribe_activity:
     create: Cipta
     update: Kemaskini
-  directus_roles:
+  superscribe_roles:
     fields:
       name_name: Nama
     collections_name: Koleksi-koleksi
-  directus_webhooks:
+  superscribe_webhooks:
     actions_create: Cipta
     actions_update: Kemaskini
     headers:

@@ -107,7 +107,7 @@ typings/
 # TernJS port file
 .tern-port
 
-# directus asset uploads directory
+# superscribe asset uploads directory
 uploads/
 
 .vscode/

@@ -4,7 +4,7 @@ export function verifyJWT(token, secret) {
     let payload;
     try {
         payload = jwt.verify(token, secret, {
-            issuer: 'directus',
+            issuer: 'superscribe',
         });
     }
     catch (err) {

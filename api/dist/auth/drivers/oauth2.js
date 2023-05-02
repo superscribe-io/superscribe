@@ -1,5 +1,5 @@
-import { BaseException } from '@directus/exceptions';
-import { parseJSON } from '@directus/utils';
+import { BaseException } from '@superscribe/exceptions';
+import { parseJSON } from '@superscribe/utils';
 import express, { Router } from 'express';
 import flatten from 'flat';
 import jwt from 'jsonwebtoken';
@@ -75,7 +75,7 @@ export class OAuth2AuthDriver extends LocalAuthDriver {
     async fetchUserId(identifier) {
         const user = await this.knex
             .select('id')
-            .from('directus_users')
+            .from('superscribe_users')
             .whereRaw('LOWER(??) = ?', ['external_identifier', identifier.toLowerCase()])
             .first();
         return user?.id;
@@ -209,7 +209,7 @@ export function createOAuth2AuthRouter(providerName) {
         const prompt = !!req.query['prompt'];
         const token = jwt.sign({ verifier: codeVerifier, redirect: req.query['redirect'], prompt }, env['SECRET'], {
             expiresIn: '5m',
-            issuer: 'directus',
+            issuer: 'superscribe',
         });
         res.cookie(`oauth2.${providerName}`, token, {
             httpOnly: true,
@@ -224,7 +224,7 @@ export function createOAuth2AuthRouter(providerName) {
         let tokenData;
         try {
             tokenData = jwt.verify(req.cookies[`oauth2.${providerName}`], env['SECRET'], {
-                issuer: 'directus',
+                issuer: 'superscribe',
             });
         }
         catch (e) {

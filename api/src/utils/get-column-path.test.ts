@@ -1,4 +1,4 @@
-import type { DeepPartial } from '@directus/types';
+import type { DeepPartial } from '@superscribe/types';
 import { expect, test } from 'vitest';
 import { InvalidQueryException } from '../../src/exceptions/index.js';
 import type { ColPathProps } from '../../src/utils/get-column-path.js';
@@ -9,8 +9,8 @@ import { getColumnPath } from '../../src/utils/get-column-path.js';
   path: [ 'author', 'role', 'name' ],
   collection: 'articles',
   aliasMap: {
-    author: { alias: 'grenv', collection: 'directus_users' },
-	'author.role': { alias: 'ljnsv', collection: 'directus_roles' },
+    author: { alias: 'grenv', collection: 'superscribe_users' },
+	'author.role': { alias: 'ljnsv', collection: 'superscribe_roles' },
   },
   relations: []
 
@@ -93,21 +93,21 @@ test('Returns correct alias for m2o', () => {
 		path: ['author', 'role', 'name'],
 		collection: 'articles',
 		aliasMap: {
-			author: { alias: 'ljnsv', collection: 'directus_users' },
-			'author.role': { alias: 'grenv', collection: 'directus_roles' },
+			author: { alias: 'ljnsv', collection: 'superscribe_users' },
+			'author.role': { alias: 'grenv', collection: 'superscribe_roles' },
 		},
 		relations: [
 			{
 				collection: 'articles',
 				field: 'author',
-				related_collection: 'directus_users',
+				related_collection: 'superscribe_users',
 				meta: null,
 				schema: null,
 			},
 			{
-				collection: 'directus_users',
+				collection: 'superscribe_users',
 				field: 'role',
-				related_collection: 'directus_roles',
+				related_collection: 'superscribe_roles',
 				meta: null,
 				schema: null,
 			},
@@ -116,7 +116,7 @@ test('Returns correct alias for m2o', () => {
 
 	const result = getColumnPath(input as ColPathProps);
 	expect(result.columnPath).toBe('grenv.name');
-	expect(result.targetCollection).toBe('directus_roles');
+	expect(result.targetCollection).toBe('superscribe_roles');
 });
 
 test('Returns correct alias for o2m', () => {
@@ -218,29 +218,29 @@ test('Returns correct alias when there are multiple joins to the same table', ()
 		path: ['author', 'secondary_role', 'name'],
 		collection: 'articles',
 		aliasMap: {
-			author: { alias: 'ljnsv', collection: 'directus_users' },
-			'author.role': { alias: 'grenv', collection: 'directus_roles' },
-			'author.secondary_role': { alias: 'psgwn', collection: 'directus_roles' },
+			author: { alias: 'ljnsv', collection: 'superscribe_users' },
+			'author.role': { alias: 'grenv', collection: 'superscribe_roles' },
+			'author.secondary_role': { alias: 'psgwn', collection: 'superscribe_roles' },
 		},
 		relations: [
 			{
 				collection: 'articles',
 				field: 'author',
-				related_collection: 'directus_users',
+				related_collection: 'superscribe_users',
 				meta: null,
 				schema: null,
 			},
 			{
-				collection: 'directus_users',
+				collection: 'superscribe_users',
 				field: 'role',
-				related_collection: 'directus_roles',
+				related_collection: 'superscribe_roles',
 				meta: null,
 				schema: null,
 			},
 			{
-				collection: 'directus_users',
+				collection: 'superscribe_users',
 				field: 'secondary_role',
-				related_collection: 'directus_roles',
+				related_collection: 'superscribe_roles',
 				meta: null,
 				schema: null,
 			},
@@ -249,5 +249,5 @@ test('Returns correct alias when there are multiple joins to the same table', ()
 
 	const result = getColumnPath(input as ColPathProps);
 	expect(result.columnPath).toBe('psgwn.name');
-	expect(result.targetCollection).toBe('directus_roles');
+	expect(result.targetCollection).toBe('superscribe_roles');
 });

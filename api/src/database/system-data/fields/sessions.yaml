@@ -1,4 +1,4 @@
-table: directus_sessions
+table: superscribe_sessions
 
 fields:
   - field: token
