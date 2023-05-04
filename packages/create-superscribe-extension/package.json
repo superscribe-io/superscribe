@@ -1,6 +1,6 @@
 {
 	"name": "create-superscribe-extension",
-	"version": "9.26.1",
+	"version": "9.26.2",
 	"description": "A small util that will scaffold a Superscribe extension",
 	"keywords": [
 		"superscribe",

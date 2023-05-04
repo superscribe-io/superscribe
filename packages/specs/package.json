@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/specs",
-	"version": "9.26.1",
+	"version": "9.26.2",
 	"description": "OpenAPI Specification of the Superscribe API",
 	"homepage": "https://superscribe.io",
 	"type": "module",

@@ -7,6 +7,7 @@ let directus_tables = [
     'directus_flows',
     'directus_folders',
     'directus_migrations',
+    'directus_notifications',
     'directus_operations',
     'directus_panels',
     'directus_permissions',
