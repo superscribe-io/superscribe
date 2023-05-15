@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/app",
-	"version": "9.26.2",
+	"version": "9.26.3",
 	"description": "App dashboard for Superscribe",
 	"homepage": "https://superscribe.io",
 	"type": "module",

@@ -212,8 +212,7 @@ export class RelationsService {
                         let constraintName = getDefaultIndexName('foreign', collection, field);
                         // If the FK already exists in the DB, drop it first
                         if (existingRelation?.schema) {
-                            constraintName = existingRelation.schema.constraint_name || constraintName;
-                            table.dropForeign(field, constraintName);
+                            table.dropForeign(field, existingRelation.schema.constraint_name);
                             constraintName = this.helpers.schema.constraintName(constraintName);
                             existingRelation.schema.constraint_name = constraintName;
                         }
@@ -233,7 +232,7 @@ export class RelationsService {
                     // allowed to extract the relations regardless of permissions to superscribe_relations. This
                     // happens in `filterForbidden` down below
                 });
-                if (relation.meta) {
+                if (relation.meta && (!relation.meta.system)) {
                     if (existingRelation?.meta) {
                         await relationsItemService.updateOne(existingRelation.meta.id, relation.meta, {
                             bypassEmitAction: (params) => opts?.bypassEmitAction ? opts.bypassEmitAction(params) : nestedActionEvents.push(params),

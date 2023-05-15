@@ -284,8 +284,7 @@ export class RelationsService {
 
 						// If the FK already exists in the DB, drop it first
 						if (existingRelation?.schema) {
-							constraintName = existingRelation.schema.constraint_name || constraintName;
-							table.dropForeign(field, constraintName);
+							table.dropForeign(field, existingRelation.schema.constraint_name as string);
 
 							constraintName = this.helpers.schema.constraintName(constraintName);
 							existingRelation.schema.constraint_name = constraintName;
@@ -315,7 +314,7 @@ export class RelationsService {
 					// happens in `filterForbidden` down below
 				});
 
-				if (relation.meta) {
+				if (relation.meta && (!relation.meta.system)) {
 					if (existingRelation?.meta) {
 						await relationsItemService.updateOne(existingRelation.meta.id, relation.meta, {
 							bypassEmitAction: (params) =>

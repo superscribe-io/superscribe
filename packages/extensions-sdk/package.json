@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/extensions-sdk",
-	"version": "9.26.2",
+	"version": "9.26.3",
 	"description": "A toolkit to develop extensions to extend Superscribe",
 	"homepage": "https://superscribe.io",
 	"type": "module",
