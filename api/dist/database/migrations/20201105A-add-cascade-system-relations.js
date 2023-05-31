@@ -1,106 +1,106 @@
 const updates = [
     {
-        table: 'directus_fields',
+        table: 'superscribe_fields',
         constraints: [
             {
                 column: 'group',
-                references: 'directus_fields.id',
+                references: 'superscribe_fields.id',
             },
         ],
     },
     {
-        table: 'directus_files',
+        table: 'superscribe_files',
         constraints: [
             {
                 column: 'folder',
-                references: 'directus_folders.id',
+                references: 'superscribe_folders.id',
             },
             {
                 column: 'uploaded_by',
-                references: 'directus_users.id',
+                references: 'superscribe_users.id',
             },
             {
                 column: 'modified_by',
-                references: 'directus_users.id',
+                references: 'superscribe_users.id',
             },
         ],
     },
     {
-        table: 'directus_folders',
+        table: 'superscribe_folders',
         constraints: [
             {
                 column: 'parent',
-                references: 'directus_folders.id',
+                references: 'superscribe_folders.id',
             },
         ],
     },
     {
-        table: 'directus_permissions',
+        table: 'superscribe_permissions',
         constraints: [
             {
                 column: 'role',
-                references: 'directus_roles.id',
+                references: 'superscribe_roles.id',
             },
         ],
     },
     {
-        table: 'directus_presets',
+        table: 'superscribe_presets',
         constraints: [
             {
                 column: 'user',
-                references: 'directus_users.id',
+                references: 'superscribe_users.id',
             },
             {
                 column: 'role',
-                references: 'directus_roles.id',
+                references: 'superscribe_roles.id',
             },
         ],
     },
     {
-        table: 'directus_revisions',
+        table: 'superscribe_revisions',
         constraints: [
             {
                 column: 'activity',
-                references: 'directus_activity.id',
+                references: 'superscribe_activity.id',
             },
             {
                 column: 'parent',
-                references: 'directus_revisions.id',
+                references: 'superscribe_revisions.id',
             },
         ],
     },
     {
-        table: 'directus_sessions',
+        table: 'superscribe_sessions',
         constraints: [
             {
                 column: 'user',
-                references: 'directus_users.id',
+                references: 'superscribe_users.id',
             },
         ],
     },
     {
-        table: 'directus_settings',
+        table: 'superscribe_settings',
         constraints: [
             {
                 column: 'project_logo',
-                references: 'directus_files.id',
+                references: 'superscribe_files.id',
             },
             {
                 column: 'public_foreground',
-                references: 'directus_files.id',
+                references: 'superscribe_files.id',
             },
             {
                 column: 'public_background',
-                references: 'directus_files.id',
+                references: 'superscribe_files.id',
             },
         ],
     },
     {
-        table: 'directus_users',
+        table: 'superscribe_users',
         constraints: [
             {
                 column: 'role',
-                references: 'directus_roles.id',
+                references: 'superscribe_roles.id',
             },
         ],
     },

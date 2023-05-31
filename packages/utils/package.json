@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/utils",
-	"version": "9.26.4",
+	"version": "9.26.5",
 	"type": "module",
 	"scripts": {
 		"build": "tsc --project browser/tsconfig.json && tsc --project node/tsconfig.json && tsc --project shared/tsconfig.json",

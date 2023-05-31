@@ -1,5 +1,5 @@
 export async function up(knex) {
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({
         interface: 'files',
     })
@@ -7,7 +7,7 @@ export async function up(knex) {
         .andWhere('special', '=', 'files');
 }
 export async function down(knex) {
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({
         interface: 'list-m2m',
     })

@@ -1,11 +1,11 @@
 export async function up(knex) {
-    await knex.schema.alterTable('directus_collections', (table) => {
+    await knex.schema.alterTable('superscribe_collections', (table) => {
         table.string('accountability').defaultTo('all');
     });
-    await knex('directus_collections').update({ accountability: 'all' });
+    await knex('superscribe_collections').update({ accountability: 'all' });
 }
 export async function down(knex) {
-    await knex.schema.alterTable('directus_collections', (table) => {
+    await knex.schema.alterTable('superscribe_collections', (table) => {
         table.dropColumn('accountability');
     });
 }

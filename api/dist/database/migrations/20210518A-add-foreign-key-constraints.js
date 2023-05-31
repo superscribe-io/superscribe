@@ -1,4 +1,4 @@
-import { createInspector } from '@directus/schema';
+import { createInspector } from '@superscribe/schema';
 import logger from '../../logger.js';
 import { getDefaultIndexName } from '../../utils/get-default-index-name.js';
 export async function up(knex) {
@@ -6,7 +6,7 @@ export async function up(knex) {
     const foreignKeys = await inspector.foreignKeys();
     const relations = await knex
         .select('id', 'many_collection', 'many_field', 'one_collection')
-        .from('directus_relations');
+        .from('superscribe_relations');
     const constraintsToAdd = relations.filter((relation) => {
         const exists = !!foreignKeys.find((fk) => fk.table === relation?.many_collection && fk.column === relation?.many_field);
         return exists === false;
@@ -83,13 +83,13 @@ export async function up(knex) {
         }
     }
     if (corruptedRelations.length > 0) {
-        logger.warn(`Encountered one or more corrupted relationships. Please check the following rows in "directus_relations": ${corruptedRelations.join(', ')}`);
+        logger.warn(`Encountered one or more corrupted relationships. Please check the following rows in "superscribe_relations": ${corruptedRelations.join(', ')}`);
     }
 }
 export async function down(knex) {
     const relations = await knex
         .select('many_collection', 'many_field', 'one_collection')
-        .from('directus_relations');
+        .from('superscribe_relations');
     for (const relation of relations) {
         if (!relation.one_collection)
             continue;

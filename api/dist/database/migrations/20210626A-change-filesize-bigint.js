@@ -4,7 +4,7 @@ export async function up(knex) {
     if (helper.isOneOfClients(['oracle', 'cockroachdb'])) {
         return;
     }
-    await knex.schema.alterTable('directus_files', (table) => {
+    await knex.schema.alterTable('superscribe_files', (table) => {
         table.bigInteger('filesize').nullable().defaultTo(null).alter();
     });
 }
@@ -13,7 +13,7 @@ export async function down(knex) {
     if (helper.isOneOfClients(['oracle', 'cockroachdb'])) {
         return;
     }
-    await knex.schema.alterTable('directus_files', (table) => {
+    await knex.schema.alterTable('superscribe_files', (table) => {
         table.integer('filesize').nullable().defaultTo(null).alter();
     });
 }

@@ -1,4 +1,4 @@
-import { createInspector } from '@directus/schema';
+import { createInspector } from '@superscribe/schema';
 import logger from '../../logger.js';
 /**
  * Things to keep in mind:
@@ -11,66 +11,66 @@ import logger from '../../logger.js';
  */
 const updates = [
     {
-        table: 'directus_files',
+        table: 'superscribe_files',
         constraints: [
             {
                 column: 'folder',
-                references: 'directus_folders.id',
+                references: 'superscribe_folders.id',
                 on_delete: 'SET NULL',
             },
         ],
     },
     {
-        table: 'directus_permissions',
+        table: 'superscribe_permissions',
         constraints: [
             {
                 column: 'role',
-                references: 'directus_roles.id',
+                references: 'superscribe_roles.id',
                 on_delete: 'CASCADE',
             },
         ],
     },
     {
-        table: 'directus_presets',
+        table: 'superscribe_presets',
         constraints: [
             {
                 column: 'user',
-                references: 'directus_users.id',
+                references: 'superscribe_users.id',
                 on_delete: 'CASCADE',
             },
             {
                 column: 'role',
-                references: 'directus_roles.id',
+                references: 'superscribe_roles.id',
                 on_delete: 'CASCADE',
             },
         ],
     },
     {
-        table: 'directus_revisions',
+        table: 'superscribe_revisions',
         constraints: [
             {
                 column: 'activity',
-                references: 'directus_activity.id',
+                references: 'superscribe_activity.id',
                 on_delete: 'CASCADE',
             },
         ],
     },
     {
-        table: 'directus_sessions',
+        table: 'superscribe_sessions',
         constraints: [
             {
                 column: 'user',
-                references: 'directus_users.id',
+                references: 'superscribe_users.id',
                 on_delete: 'CASCADE',
             },
         ],
     },
     {
-        table: 'directus_users',
+        table: 'superscribe_users',
         constraints: [
             {
                 column: 'role',
-                references: 'directus_roles.id',
+                references: 'superscribe_roles.id',
                 on_delete: 'SET NULL',
             },
         ],

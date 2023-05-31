@@ -1,9 +1,9 @@
-import { toArray } from '@directus/utils';
+import { toArray } from '@superscribe/utils';
 import { isArray } from 'lodash-es';
 export async function up(knex) {
     const fields = await knex
         .select('id', 'special')
-        .from('directus_fields')
+        .from('superscribe_fields')
         .whereNotNull('special')
         .orWhere('special', '<>', '');
     for (const { id, special } of fields) {
@@ -28,7 +28,7 @@ export async function up(knex) {
                 }
             });
             if (updateRequired) {
-                await knex('directus_fields')
+                await knex('superscribe_fields')
                     .update({ special: parsedSpecial.join(',') })
                     .where({ id });
             }
@@ -38,7 +38,7 @@ export async function up(knex) {
 export async function down(knex) {
     const fields = await knex
         .select('id', 'special')
-        .from('directus_fields')
+        .from('superscribe_fields')
         .whereNotNull('special')
         .orWhere('special', '<>', '');
     for (const { id, special } of fields) {
@@ -63,7 +63,7 @@ export async function down(knex) {
                 }
             });
             if (updateRequired) {
-                await knex('directus_fields')
+                await knex('superscribe_fields')
                     .update({ special: parsedSpecial.join(',') })
                     .where({ id });
             }

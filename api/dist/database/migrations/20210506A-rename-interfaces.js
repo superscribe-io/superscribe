@@ -1,4 +1,4 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 // [before, after, after-option additions]
 const changes = [
     ['button-links', 'presentation-links'],
@@ -49,7 +49,7 @@ export async function up(knex) {
         if (options) {
             const fields = await knex
                 .select('id', 'options')
-                .from('directus_fields')
+                .from('superscribe_fields')
                 .where({ interface: before });
             for (const { id, options: existingOptionsRaw } of fields) {
                 const existingOptions = typeof existingOptionsRaw === 'string' ? parseJSON(existingOptionsRaw) : existingOptionsRaw;
@@ -57,18 +57,18 @@ export async function up(knex) {
                     ...(existingOptions || {}),
                     ...options,
                 };
-                await knex('directus_fields')
+                await knex('superscribe_fields')
                     .update({ interface: after, options: JSON.stringify(newOptions) })
                     .where({ id });
             }
         }
         else {
-            await knex('directus_fields').update({ interface: after }).where({ interface: before });
+            await knex('superscribe_fields').update({ interface: after }).where({ interface: before });
         }
     }
 }
 export async function down(knex) {
     for (const [before, after] of changes) {
-        await knex('directus_fields').update({ interface: before }).where({ interface: after });
+        await knex('superscribe_fields').update({ interface: before }).where({ interface: after });
     }
 }

@@ -1,6 +1,6 @@
 {
 	"name": "superscribe",
-	"version": "9.26.4",
+	"version": "9.26.5",
 	"description": "Superscribe is a real-time API and App dashboard for managing SQL database content",
 	"type": "module",
 	"keywords": [

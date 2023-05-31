@@ -1,6 +1,6 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 export async function up(knex) {
-    const groups = await knex.select('*').from('directus_fields').where({ interface: 'group-standard' });
+    const groups = await knex.select('*').from('superscribe_fields').where({ interface: 'group-standard' });
     const raw = [];
     const detail = [];
     for (const group of groups) {
@@ -13,14 +13,14 @@ export async function up(knex) {
         }
     }
     for (const field of raw) {
-        await knex('directus_fields').update({ interface: 'group-raw' }).where({ id: field.id });
+        await knex('superscribe_fields').update({ interface: 'group-raw' }).where({ id: field.id });
     }
     for (const field of detail) {
-        await knex('directus_fields').update({ interface: 'group-detail' }).where({ id: field.id });
+        await knex('superscribe_fields').update({ interface: 'group-detail' }).where({ id: field.id });
     }
 }
 export async function down(knex) {
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({
         interface: 'group-standard',
     })

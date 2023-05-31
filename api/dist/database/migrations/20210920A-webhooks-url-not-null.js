@@ -6,7 +6,7 @@ export async function up(knex) {
         // "20201105B-change-webhook-url-type.ts"
         return;
     }
-    await helper.changeToType('directus_webhooks', 'url', 'string', {
+    await helper.changeToType('superscribe_webhooks', 'url', 'string', {
         nullable: false,
     });
 }
@@ -17,5 +17,5 @@ export async function down(knex) {
         // "20201105B-change-webhook-url-type.ts"
         return;
     }
-    await helper.changeToType('directus_webhooks', 'url', 'string');
+    await helper.changeToType('superscribe_webhooks', 'url', 'string');
 }

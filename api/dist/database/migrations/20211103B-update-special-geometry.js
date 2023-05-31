@@ -1,5 +1,5 @@
 export async function up(knex) {
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({ special: knex.raw(`REPLACE(??, 'geometry,', 'geometry.')`, ['special']) })
         .where('special', 'like', '%geometry,Point%')
         .orWhere('special', 'like', '%geometry,LineString%')
@@ -9,7 +9,7 @@ export async function up(knex) {
         .orWhere('special', 'like', '%geometry,MultiPolygon%');
 }
 export async function down(knex) {
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({ special: knex.raw(`REPLACE(??, 'geometry.', 'geometry,')`, ['special']) })
         .where('special', 'like', '%geometry.Point%')
         .orWhere('special', 'like', '%geometry.LineString%')

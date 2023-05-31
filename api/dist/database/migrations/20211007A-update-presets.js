@@ -1,11 +1,11 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 export async function up(knex) {
-    await knex.schema.alterTable('directus_presets', (table) => {
+    await knex.schema.alterTable('superscribe_presets', (table) => {
         table.json('filter');
     });
     const presets = await knex
         .select('id', 'filters', 'layout_query')
-        .from('directus_presets');
+        .from('superscribe_presets');
     for (const preset of presets) {
         if (preset.filters) {
             const oldFilters = (typeof preset.filters === 'string' ? parseJSON(preset.filters) : preset.filters) ?? [];
@@ -24,7 +24,7 @@ export async function up(knex) {
                 });
             }
             if (newFilter._and.length > 0) {
-                await knex('directus_presets')
+                await knex('superscribe_presets')
                     .update({ filter: JSON.stringify(newFilter) })
                     .where('id', '=', preset.id);
             }
@@ -37,23 +37,23 @@ export async function up(knex) {
                 }
                 layoutQuery[layout] = query;
             }
-            await knex('directus_presets')
+            await knex('superscribe_presets')
                 .update({ layout_query: JSON.stringify(layoutQuery) })
                 .where('id', '=', preset.id);
         }
     }
-    await knex.schema.alterTable('directus_presets', (table) => {
+    await knex.schema.alterTable('superscribe_presets', (table) => {
         table.dropColumn('filters');
     });
 }
 export async function down(knex) {
     const { nanoid } = await import('nanoid');
-    await knex.schema.alterTable('directus_presets', (table) => {
+    await knex.schema.alterTable('superscribe_presets', (table) => {
         table.json('filters');
     });
     const presets = await knex
         .select('id', 'filter', 'layout_query')
-        .from('directus_presets');
+        .from('superscribe_presets');
     for (const preset of presets) {
         if (preset.filter) {
             const newFilter = (typeof preset.filter === 'string' ? parseJSON(preset.filter) : preset.filter) ?? {};
@@ -74,7 +74,7 @@ export async function down(knex) {
                 });
             }
             if (oldFilters.length > 0) {
-                await knex('directus_presets')
+                await knex('superscribe_presets')
                     .update({ filters: JSON.stringify(oldFilters) })
                     .where('id', '=', preset.id);
             }
@@ -87,12 +87,12 @@ export async function down(knex) {
                 }
                 layoutQuery[layout] = query;
             }
-            await knex('directus_presets')
+            await knex('superscribe_presets')
                 .update({ layout_query: JSON.stringify(layoutQuery) })
                 .where('id', '=', preset.id);
         }
     }
-    await knex.schema.alterTable('directus_presets', (table) => {
+    await knex.schema.alterTable('superscribe_presets', (table) => {
         table.dropColumn('filter');
     });
 }

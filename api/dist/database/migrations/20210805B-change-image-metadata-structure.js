@@ -1,9 +1,9 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 // Change image metadata structure to match the output from 'exifr'
 export async function up(knex) {
     const files = await knex
         .select('id', 'metadata')
-        .from('directus_files')
+        .from('superscribe_files')
         .whereNotNull('metadata');
     for (const { id, metadata } of files) {
         let prevMetadata;
@@ -38,7 +38,7 @@ export async function up(knex) {
             if (prevMetadata.iptc) {
                 newMetadata.iptc = prevMetadata.iptc;
             }
-            await knex('directus_files')
+            await knex('superscribe_files')
                 .update({ metadata: JSON.stringify(newMetadata) })
                 .where({ id });
         }
@@ -47,7 +47,7 @@ export async function up(knex) {
 export async function down(knex) {
     const files = await knex
         .select('id', 'metadata')
-        .from('directus_files')
+        .from('superscribe_files')
         .whereNotNull('metadata')
         .whereNot('metadata', '{}');
     for (const { id, metadata } of files) {
@@ -76,7 +76,7 @@ export async function down(knex) {
                 newMetadata.iptc = newMetadata.exif['iptc'];
                 delete newMetadata.exif['iptc'];
             }
-            await knex('directus_files')
+            await knex('superscribe_files')
                 .update({ metadata: JSON.stringify(newMetadata) })
                 .where({ id });
         }

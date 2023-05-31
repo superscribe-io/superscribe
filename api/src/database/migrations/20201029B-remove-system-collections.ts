@@ -2,7 +2,7 @@ import type { Knex } from 'knex';
 import { merge } from 'lodash-es';
 
 export async function up(knex: Knex): Promise<void> {
-	await knex('directus_collections').delete().where('collection', 'like', 'directus_%');
+	await knex('superscribe_collections').delete().where('collection', 'like', 'superscribe_%');
 }
 
 export async function down(knex: Knex): Promise<void> {
@@ -18,63 +18,63 @@ export async function down(knex: Knex): Promise<void> {
 
 	const systemCollections = [
 		{
-			collection: 'directus_activity',
+			collection: 'superscribe_activity',
 			note: 'Accountability logs for all events',
 		},
 		{
-			collection: 'directus_collections',
+			collection: 'superscribe_collections',
 			icon: 'list_alt',
 			note: 'Additional collection configuration and metadata',
 		},
 		{
-			collection: 'directus_fields',
+			collection: 'superscribe_fields',
 			icon: 'input',
 			note: 'Additional field configuration and metadata',
 		},
 		{
-			collection: 'directus_files',
+			collection: 'superscribe_files',
 			icon: 'folder',
 			note: 'Metadata for all managed file assets',
 		},
 		{
-			collection: 'directus_folders',
+			collection: 'superscribe_folders',
 			note: 'Provides virtual directories for files',
 		},
 		{
-			collection: 'directus_permissions',
+			collection: 'superscribe_permissions',
 			icon: 'admin_panel_settings',
 			note: 'Access permissions for each role',
 		},
 		{
-			collection: 'directus_presets',
+			collection: 'superscribe_presets',
 			icon: 'bookmark_border',
 			note: 'Presets for collection defaults and bookmarks',
 		},
 		{
-			collection: 'directus_relations',
+			collection: 'superscribe_relations',
 			icon: 'merge_type',
 			note: 'Relationship configuration and metadata',
 		},
 		{
-			collection: 'directus_revisions',
+			collection: 'superscribe_revisions',
 			note: 'Data snapshots for all activity',
 		},
 		{
-			collection: 'directus_roles',
+			collection: 'superscribe_roles',
 			icon: 'supervised_user_circle',
 			note: 'Permission groups for system users',
 		},
 		{
-			collection: 'directus_sessions',
+			collection: 'superscribe_sessions',
 			note: 'User session information',
 		},
 		{
-			collection: 'directus_settings',
+			collection: 'superscribe_settings',
 			singleton: true,
 			note: 'Project configuration options',
 		},
 		{
-			collection: 'directus_users',
+			collection: 'superscribe_users',
 			archive_field: 'status',
 			archive_value: 'archived',
 			unarchive_value: 'draft',
@@ -82,7 +82,7 @@ export async function down(knex: Knex): Promise<void> {
 			note: 'System users for the platform',
 		},
 		{
-			collection: 'directus_webhooks',
+			collection: 'superscribe_webhooks',
 			note: 'Configuration for event-based HTTP requests',
 		},
 	].map((row) => {
@@ -95,5 +95,5 @@ export async function down(knex: Knex): Promise<void> {
 		return merge({}, defaults, row);
 	});
 
-	await knex.insert(systemCollections).into('directus_collections');
+	await knex.insert(systemCollections).into('superscribe_collections');
 }

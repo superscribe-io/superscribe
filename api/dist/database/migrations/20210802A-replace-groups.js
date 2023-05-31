@@ -1,7 +1,7 @@
-import { parseJSON } from '@directus/utils';
+import { parseJSON } from '@superscribe/utils';
 import logger from '../../logger.js';
 export async function up(knex) {
-    const dividerGroups = await knex.select('*').from('directus_fields').where('interface', '=', 'group-divider');
+    const dividerGroups = await knex.select('*').from('superscribe_fields').where('interface', '=', 'group-divider');
     for (const dividerGroup of dividerGroups) {
         const newOptions = { showHeader: true };
         if (dividerGroup.options) {
@@ -18,7 +18,7 @@ export async function up(knex) {
             }
         }
         try {
-            await knex('directus_fields')
+            await knex('superscribe_fields')
                 .update({
                 interface: 'group-standard',
                 options: JSON.stringify(newOptions),
@@ -30,14 +30,14 @@ export async function up(knex) {
             logger.warn(err);
         }
     }
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({
         interface: 'group-standard',
     })
         .where({ interface: 'group-raw' });
 }
 export async function down(knex) {
-    await knex('directus_fields')
+    await knex('superscribe_fields')
         .update({
         interface: 'group-raw',
     })

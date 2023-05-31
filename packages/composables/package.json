@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/composables",
-	"version": "9.26.4",
+	"version": "9.26.5",
 	"type": "module",
 	"scripts": {
 		"build": "tsc --build",
