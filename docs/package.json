@@ -4,7 +4,7 @@
 	"scripts": {
 		"spellcheck": "spellchecker -p spell indefinite-article repeated-words syntax-mentions syntax-urls frontmatter",
 		"dev": "vitepress dev",
-		"build": "vitepress build",
+		"build": "rm -rf .vitepress/dist && vitepress build",
 		"preview": "vitepress preview",
 		"update-thumbnail": "thumbsmith deploy .thumbsmith/docs.thumbnail.html || exit 0"
 	},
@@ -18,5 +18,5 @@
 	"dependencies": {
 		"node-fetch": "3.3.1"
 	},
-	"version": "9.26.5"
+	"version": "9.26.6"
 }

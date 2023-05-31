@@ -7,6 +7,7 @@ import count from './commands/count/index.js';
 import dbInstall from './commands/database/install.js';
 import dbMigrate from './commands/database/migrate.js';
 import init from './commands/init/index.js';
+import superscribeify from './commands/database/superscribeify.js';
 import rolesCreate from './commands/roles/create.js';
 import { apply } from './commands/schema/apply.js';
 import { snapshot } from './commands/schema/snapshot.js';
@@ -42,6 +43,10 @@ export async function createCli() {
         .command('migrate:down')
         .description('Downgrade the database')
         .action(() => dbMigrate('down'));
+    dbCommand
+        .command('superscribeify')
+        .description("Convert from directus tables to superscribe")
+        .action(superscribeify);
     const usersCommand = program.command('users');
     usersCommand
         .command('create')

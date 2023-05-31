@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/schema",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"description": "Utility for extracting information about existing DB schema",
 	"type": "module",
 	"keywords": [
@@ -38,7 +38,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsc --build",
+		"build": "rm -rd dist && tsc --build",
 		"dev": "tsc --watch"
 	},
 	"dependencies": {

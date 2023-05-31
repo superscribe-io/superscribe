@@ -1,1 +1,1 @@
-export default function start(): Promise<void>;
+export default function superscribeify(): Promise<void>;

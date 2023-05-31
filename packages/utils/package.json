@@ -1,9 +1,9 @@
 {
 	"name": "@superscribe/utils",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"type": "module",
 	"scripts": {
-		"build": "tsc --project browser/tsconfig.json && tsc --project node/tsconfig.json && tsc --project shared/tsconfig.json",
+		"build": "rm -rf dist && tsc --project browser/tsconfig.json && tsc --project node/tsconfig.json && tsc --project shared/tsconfig.json",
 		"dev": "concurrently \"tsc --watch --project browser/tsconfig.json\" \"tsc --watch --project node/tsconfig.json\" \"tsc --watch --project shared/tsconfig.json\"",
 		"test": "vitest --watch=false"
 	},

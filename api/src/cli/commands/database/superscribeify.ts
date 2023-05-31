@@ -13,7 +13,7 @@ let data_update_tables = [
 	'superscribe_shares',
 ]
 
-export default async function start(): Promise<void> {
+export default async function superscribeify(): Promise<void> {
 	const knex = getDatabase();
     let renamed_tables: string[] = [];
 

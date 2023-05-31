@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/extensions-sdk",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"description": "A toolkit to develop extensions to extend Superscribe",
 	"homepage": "https://superscribe.io",
 	"type": "module",
@@ -29,7 +29,7 @@
 		"!**/*.test.{js,d.ts}"
 	],
 	"scripts": {
-		"build": "tsc --build",
+		"build": "rm -rf dist && tsc --build",
 		"dev": "tsc --watch",
 		"test": "vitest --watch=false"
 	},

@@ -11,7 +11,7 @@ let data_update_tables = [
     'superscribe_revisions',
     'superscribe_shares',
 ];
-export default async function start() {
+export default async function superscribeify() {
     const knex = getDatabase();
     let renamed_tables = [];
     logger.warn("Renaming directus tables...");

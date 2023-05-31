@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/app",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"description": "App dashboard for Superscribe",
 	"homepage": "https://superscribe.io",
 	"type": "module",
@@ -20,7 +20,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "vite build",
+		"build": "rm -rf dist && vite build",
 		"build-storybook": "storybook build",
 		"dev": "vite --clearScreen false",
 		"storybook": "storybook dev -p 6006",

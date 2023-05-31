@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/specs",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"description": "OpenAPI Specification of the Superscribe API",
 	"homepage": "https://superscribe.io",
 	"type": "module",
@@ -25,7 +25,7 @@
 		"index.js"
 	],
 	"scripts": {
-		"build": "swagger-cli bundle src/openapi.yaml -o dist/openapi.json",
+		"build": "rm -rf dist && swagger-cli bundle src/openapi.yaml -o dist/openapi.json",
 		"build:deref": "swagger-cli bundle src/openapi.yaml -o dist/openapi-deref.json --dereference",
 		"dev": "npm-watch build",
 		"ui:watch": "swagger-ui-watcher src/openapi.yaml",

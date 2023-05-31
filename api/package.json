@@ -1,6 +1,6 @@
 {
 	"name": "@superscribe/api",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"description": "Superscribe is a real-time API and App dashboard for managing SQL database content",
 	"type": "module",
 	"keywords": [
@@ -46,7 +46,7 @@
 		"!**/__*__/"
 	],
 	"scripts": {
-		"build": "tsc --build && copyfiles \"src/**/*.{yaml,liquid}\" -u 1 dist",
+		"build": "rm -rf dist && tsc --build && copyfiles \"src/**/*.{yaml,liquid}\" -u 1 dist",
 		"cli": "NODE_ENV=development SERVE_APP=false tsx src/cli/run.ts",
 		"dev": "NODE_ENV=development SERVE_APP=false tsx watch --clear-screen=false src/start.ts",
 		"test": "vitest --watch=false"

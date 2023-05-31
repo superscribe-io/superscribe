@@ -1,9 +1,9 @@
 {
 	"name": "@superscribe/storage-driver-local",
-	"version": "9.26.5",
+	"version": "9.26.6",
 	"type": "module",
 	"scripts": {
-		"build": "tsc --build",
+		"build": "rm -rf dist && tsc --build",
 		"dev": "tsc --watch",
 		"test": "vitest --watch=false"
 	},
