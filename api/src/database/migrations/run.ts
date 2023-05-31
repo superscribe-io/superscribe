@@ -24,9 +24,9 @@ export default async function run(database: Knex, direction: 'up' | 'down' | 'la
 	customMigrationFiles = customMigrationFiles.filter((file: string) => file.endsWith('.js'));
 
 	let completedMigrations:Migration[];
-	let has_not_upgraded = await database.schema.hasTable('directus_migrations');
+	let has_not_upgraded = await database.schema.hasTable('superscribe_migrations');
 	if(has_not_upgraded)
-		completedMigrations = await database.select<Migration[]>('*').from('directus_migrations').orderBy('version');
+		completedMigrations = await database.select<Migration[]>('*').from('superscribe_migrations').orderBy('version');
 	else
 		completedMigrations = await database.select<Migration[]>('*').from('superscribe_migrations').orderBy('version');
 
