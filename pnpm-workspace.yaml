@@ -1,7 +1,2 @@
 packages:
-  - superscribe
-  - app
-  - api
-  - docs
   - packages/*
-  - tests/*
