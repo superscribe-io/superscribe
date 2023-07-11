@@ -1,0 +1,19 @@
+{
+  "name": "db",
+  "version": "0.1.0",
+  "description": "Superscribe database utilities",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase-cache-helpers/postgrest-filter": "^1.0.11",
+    "extract-pg-schema": "^4.2.2",
+    "knex": "^2.5.0",
+    "postgres": "^3.3.5"
+  }
+}
