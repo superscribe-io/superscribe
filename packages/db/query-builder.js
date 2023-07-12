@@ -122,11 +122,9 @@ export default class QueryBuilder {
 
         for (let filter of node) {
             if (filter.and)
-                for (let and_filter of filter.and)
-                    this.buildQuery(and_filter, knex, false, depth + 1);
+                await this.buildQuery(filter.and, knex, false, depth + 1);
             if (filter.or)
-                for (let or_filter of filter.or)
-                    this.buildQuery(or_filter, knex, true, depth + 1);
+                await this.buildQuery(filter.or, knex, true, depth + 1);
 
             if(or)
                 knex.orWhere(filter.alias || filter.path, OPERATOR_MAP[filter.operator], filter.value)

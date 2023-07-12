@@ -23,12 +23,13 @@ export default class Database {
     constructor(connection_information) {
         this.connection_information = connection_information;
         this._knex = knex({
+            client: 'pg',
             connection: connection_information
         });
     }
 
     async initSchema() {
-        let schema_utils = new SchemaUtils(connection_information);
+        let schema_utils = new SchemaUtils(this.connection_information);
         await schema_utils.getSchema();
         this._schema = schema_utils;
     }

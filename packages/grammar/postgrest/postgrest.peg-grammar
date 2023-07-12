@@ -1,0 +1,110 @@
+start = url_params*
+
+url_params = value:(url_param) '&'* { return value }
+
+url_param =
+	select / order / or_param / and_param / filter_param
+
+filter_param = 
+	column:identifier '=' value: filter_param_value {return {column, ...value} }
+filter_param_value = op:identifier '.' value:filter_value { return {op, value} }
+
+/******** order rules ************/
+order =
+	'order='i order_values:order_values
+    	{return {order: order_values}}
+
+order_values =
+	(value:order_value ','* {return value})* 
+
+order_value =
+	order_matches:(identifier '.' identifier '.' identifier
+    / identifier '.' identifier
+	/ identifier) 
+    {
+    	if(!Array.isArray(order_matches))
+        	order_matches = [order_matches];
+    	let column = order_matches[0];
+        let ret = {
+        	column
+        }
+        if(order_matches.includes('asc'))
+        	ret.direction = 'asc';
+        if(order_matches.includes('desc'))
+        	ret.direction = 'desc';
+        if(order_matches.includes('nullsfirst'))
+        	ret.nulls = 'nullsfirst';
+        if(order_matches.includes('nullslast'))
+        	ret.nulls = 'nullslast';
+        return ret;
+    }
+/**************************/
+
+/******** select rules ************/
+select =
+	'select='i select_values:select_values 
+    	{
+        	let columns = select_values.filter(value => !value.table);
+            let tables = select_values.filter(value => value.table).map(value => value.table);
+        	return {select: {columns, tables}}
+        }
+
+select_values = 
+	(value:select_value ','* {return value})* 
+    
+select_value =
+	table / alias / name:identifier {return {alias: null, name}}
+
+table = 
+	table_identifier:table_identifier '(' table_columns:table_columns ')' 
+    	{return {table: {name: table_identifier, columns:table_columns}}}
+
+table_columns = 
+	(column:table_column ','* {return column})*  
+
+table_column = 
+	table:table / alias / name:identifier {return {alias: null, name}}
+
+table_identifier =
+	alias / identifier
+/**************************/
+
+/*************** and/or rules ****************/
+or_param =
+	'or=('i or_values:logical_filters ')'
+    	{
+        	return {or: or_values}
+        }
+        
+and_param =
+	'and=('i and_values:logical_filters ')'
+    	{
+        	return {and: and_values}
+        }
+
+/**************************/
+
+and = 
+	'and(' logical_filters:logical_filters ')' 
+    	{return {and: {filters:logical_filters}}}
+        
+or = 
+	'or(' logical_filters:logical_filters ')' 
+    	{return {or: {filters:logical_filters}}}
+        
+logical_filters = 
+	(filter:logical_filter ','* {return filter})* 
+    
+logical_filter = and / or / logical_filter_identifier
+
+logical_filter_identifier = 
+	column:identifier '.' op:identifier '.' value:filter_value
+    	{ return {column, op, value} }
+
+alias = alias:identifier ':' name:identifier {return {alias, name}}
+filter_value = value:[^&,)(]+ {return value.join('')}
+identifier = chars:[a-z0-9_]i+ {return chars.join('')}
+       
+
+
+	
