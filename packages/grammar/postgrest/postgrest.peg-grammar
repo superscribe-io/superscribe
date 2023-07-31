@@ -107,4 +107,34 @@ logical_filter_identifier =
 alias = alias:identifier ':' name:identifier {return {alias, name}}
 filter_value = value:[^&,)(]+ {return value.join('')}
 identifier = chars:[a-z0-9_]i+ {return chars.join('')}
-     
+operator =
+	'isdistinct' /
+	'imatch' /
+	'match' /
+	'ilike' /
+	'like' /
+	'neq' /
+	'eq' /
+	'gte' /
+	'gt' /
+	'lte' /
+	'lt' /
+	'in' /
+	'is' /
+	'fts' /
+	'plfts' /
+	'phfts' /
+	'wfts' /
+	'cs' /
+	'cd' /
+	'ov' /
+	'sl' /
+	'sr' /
+	'nxr' /
+	'nxl' /
+	'adj' /
+	'not' /
+	'or' /
+	'and' /
+	'all' /
+	'any' 
