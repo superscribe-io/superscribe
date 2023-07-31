@@ -69,7 +69,7 @@ table_identifier =
 	alias / identifier
 /**************************/
 
-/*************** and/or rules ****************/
+/*************** top level and/or rules ****************/
 or_param =
 	'or=('i or_values:logical_filters ')'
     	{
@@ -84,27 +84,27 @@ and_param =
 
 /**************************/
 
+/** nested and/or rules *****/
 and = 
-	'and(' logical_filters:logical_filters ')' 
-    	{return {and: {filters:logical_filters}}}
+	logical_not:'not.'? 'and(' logical_filters:logical_filters ')' 
+    	{return {and: {not: !!logical_not, filters:logical_filters}}}
         
 or = 
-	'or(' logical_filters:logical_filters ')' 
-    	{return {or: {filters:logical_filters}}}
-        
+	logical_not:'not.'? 'or(' logical_filters:logical_filters ')' 
+    	{return {or: {not: !!logical_not, filters:logical_filters}}}
+/********/
+
+
 logical_filters = 
 	(filter:logical_filter ','* {return filter})* 
     
 logical_filter = and / or / logical_filter_identifier
 
 logical_filter_identifier = 
-	column:identifier '.' op:identifier '.' value:filter_value
-    	{ return {column, op, value} }
+	column:identifier '.' logical_not:'not.'? op:identifier '.' value:filter_value
+    	{ return {not: !!logical_not, column, op, value} }
 
 alias = alias:identifier ':' name:identifier {return {alias, name}}
 filter_value = value:[^&,)(]+ {return value.join('')}
 identifier = chars:[a-z0-9_]i+ {return chars.join('')}
-       
-
-
-	
+     
