@@ -101,24 +101,70 @@ logical_filters =
 logical_filter = and / or / logical_filter_identifier
 
 logical_filter_identifier = 
-	column:identifier '.' logical_not:'not.'? op:identifier '.' value:filter_value
+	column:identifier '.' logical_not:'not.'? op:operator '.' value:(filter_value_list / filter_value)
     	{ return {not: !!logical_not, column, op, value} }
 
 alias = alias:identifier ':' name:identifier {return {alias, name}}
-filter_value = value:[^&,)(]+ {return value.join('')}
+filter_value = value:[^&,{})(]+ {return value.join('')}
+filter_value_list = '{' values:(value:filter_value ','* {return value})* '}' {return values}
 identifier = chars:[a-z0-9_]i+ {return chars.join('')}
 operator =
 	'isdistinct' /
-	'imatch' /
-	'match' /
-	'ilike' /
-	'like' /
+	op:'imatch' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'match' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'ilike' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'like' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
 	'neq' /
-	'eq' /
-	'gte' /
-	'gt' /
-	'lte' /
-	'lt' /
+	op:'eq' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'gte' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'gt' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'lte' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
+	op:'lt' modifier: ('(any)'/'(all)')? {
+    	if(modifier) {
+        	return {name:op, modifier: modifier.substring(1,4)}
+        }
+        return op
+    } /
 	'in' /
 	'is' /
 	'fts' /
@@ -132,9 +178,4 @@ operator =
 	'sr' /
 	'nxr' /
 	'nxl' /
-	'adj' /
-	'not' /
-	'or' /
-	'and' /
-	'all' /
-	'any' 
+	'adj'
